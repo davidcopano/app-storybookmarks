@@ -4,7 +4,7 @@
   </ion-text>
   <ion-slides pager="true">
     <ion-slide>
-      <div class="img-group">
+      <div class="img-group ion-margin-top">
         <img src="assets/imgs/tutorial/laptop.png" class="laptop">
         <img src="assets/imgs/tutorial/phone.png" class="phone">
       </div>
@@ -14,12 +14,16 @@
       </ion-text>
     </ion-slide>
     <ion-slide>
-      <img src="assets/imgs/tutorial/security.png">
-      <ion-text color="secondary">
-        <h2></h2>
+      <img src="assets/imgs/tutorial/security.png" class="img-security">
+      <ion-text color="secondary" class="subtitle-security ion-padding">
+        <h2>{{'SECURITY' | translate}}</h2>
+        <h4>{{'THE_MARKERS_YOU_KEEP_WILL_BE_SAFE_AND_PRIVATE_IF_YOU_WISH' | translate}}</h4>
       </ion-text>
     </ion-slide>
     <ion-slide>Slide 3</ion-slide>
     <ion-slide>Slide 4</ion-slide>
   </ion-slides>
+  <div class="button-footer">
+    <ion-button color="secondary" fill="clear">{{'SKIP' | translate}}</ion-button>
+  </div>
 </ion-content>

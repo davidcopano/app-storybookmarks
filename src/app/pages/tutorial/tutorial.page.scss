@@ -41,4 +41,18 @@ ion-slide {
             margin: 8px 0;
         }
     }
+    .img-security {
+        max-width: 128px;
+        margin-top: 25%;
+    }
+    .subtitle-security {
+        margin-top: 10%;
+    }
+}
+
+.button-footer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1;
 }

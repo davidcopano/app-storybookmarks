@@ -1,4 +1,7 @@
 {
-    "SAVE_YOUR_BOOKMARKS_ONLINE": "Guarda tus marcadores online",
-    "AND_SHARE_IT": "¡Y compártelos!"
+  "SAVE_YOUR_BOOKMARKS_ONLINE": "Guarda tus marcadores online",
+  "AND_SHARE_IT": "¡Y compártelos!",
+  "SECURITY": "Seguridad",
+  "THE_MARKERS_YOU_KEEP_WILL_BE_SAFE_AND_PRIVATE_IF_YOU_WISH": "Los marcadores que guardes estarán seguros y privados (si lo deseas...).",
+  "SKIP": "Saltar"
 }
