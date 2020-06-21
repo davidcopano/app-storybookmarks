@@ -5,7 +5,7 @@ ion-content {
 .title {
     width: 100%;
     position: absolute;
-    top: 15vh;
+    top: 12vh;
     h1 {
         margin: 0;
         font-size: 2.2rem;
@@ -13,11 +13,12 @@ ion-content {
 }
 
 ion-slides {
-    height: 100%;
+    height: 95%;
     --bullet-background-active: var(--ion-color-secondary);
 }
 
 ion-slide {
+    flex-direction: column;
     .img-group {
         width: 100%;
         position: relative;
@@ -31,6 +32,13 @@ ion-slide {
             position: relative;
             left: 20%;
             max-width: 128px;
+        }
+    }
+    .subtitle {
+        position: relative;
+        top: 10%;
+        h3 {
+            margin: 8px 0;
         }
     }
 }
