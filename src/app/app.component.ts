@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -46,15 +47,22 @@ export class AppComponent implements OnInit {
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen
+    private splashScreen: SplashScreen,
+    private translateService: TranslateService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
+    this.initTranslations();
     this.platform.ready().then(() => {
       this.splashScreen.hide();
     });
+  }
+
+  initTranslations() {
+    this.translateService.setDefaultLang('es');
+    this.translateService.use('es');
   }
 
   ngOnInit() {
