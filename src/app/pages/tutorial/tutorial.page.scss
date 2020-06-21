@@ -1,0 +1,36 @@
+ion-content {
+    --background: var(--ion-color-primary);
+}
+
+.title {
+    width: 100%;
+    position: absolute;
+    top: 10vh;
+    h1 {
+        margin: 0;
+        font-size: 2.2rem;
+    }
+}
+
+ion-slides {
+    height: 100%;
+    --bullet-background-active: var(--ion-color-secondary);
+}
+
+ion-slide {
+    .img-group {
+        width: 100%;
+        position: relative;
+        .laptop {
+            position: absolute;
+            top: 25%;
+            left: 10%;
+            max-width: 60%;
+        }
+        .phone {
+            position: relative;
+            left: 20%;
+            max-width: 128px;
+        }
+    }
+}
