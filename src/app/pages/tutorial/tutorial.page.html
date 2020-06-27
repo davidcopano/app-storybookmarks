@@ -1,4 +1,12 @@
 <ion-content>
+  <div class="select-language">
+    <ion-button color="primary" fill="clear" *ngIf="translateService?.currentLang == 'es'" (click)="changeLang('en')">
+      <img src="assets/imgs/uk.png">
+    </ion-button>
+    <ion-button color="primary" fill="clear" *ngIf="translateService?.currentLang == 'en'" (click)="changeLang('es')">
+      <img src="assets/imgs/spain.png">
+    </ion-button>
+  </div>
   <ion-text color="secondary" class="title ion-text-center">
     <h1>storybookmarks</h1>
   </ion-text>

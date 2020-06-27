@@ -2,6 +2,18 @@ ion-content {
     --background: var(--ion-color-primary);
 }
 
+.select-language {
+    position: absolute;
+    right: 0;
+    top: 32px;
+    z-index: 99999;
+    ion-button {
+        img {
+            max-width: 32px;
+        }
+    }
+}
+
 .title {
     width: 100%;
     position: absolute;
