@@ -10,5 +10,7 @@
   "ARE_YOU_A_DEVELOPER_YOU_CAN_CONTRIBUTE_TO_THE_PROJECT_BY_IMPROVING_ITS_SOURCE_CODE": "¿Eres desarrollador? Puedes contribuir al proyecto mejorando su código fuente",
   "LOGIN": "Iniciar sesión",
   "PASSWORD": "Contraseña",
-  "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?"
+  "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
+  "DONT_YOU_HAVE_AN_ACCOUNT": "¿No posees una cuenta?",
+  "REGISTER": "Registrarse"
 }

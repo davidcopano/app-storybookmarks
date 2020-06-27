@@ -10,5 +10,7 @@
   "ARE_YOU_A_DEVELOPER_YOU_CAN_CONTRIBUTE_TO_THE_PROJECT_BY_IMPROVING_ITS_SOURCE_CODE": "Are you a developer? You can contribute to the project by improving its source code",
   "LOGIN": "Login",
   "PASSWORD": "Password",
-  "FORGOT_PASSWORD": "Forgot your password?"
+  "FORGOT_PASSWORD": "Forgot your password?",
+  "DONT_YOU_HAVE_AN_ACCOUNT": "Don't you have an account?",
+  "REGISTER": "Register"
 }
