@@ -1,0 +1,18 @@
+ion-item.with-white-input {
+    --background: transparent;
+    color: var(--ion-color-secondary) !important;
+    --color: var(--ion-color-secondary) !important;
+    ion-label {
+        --color: var(--ion-color-secondary) !important;
+        transform: initial !important;
+    }
+    &.item-has-focus {
+        ion-label {
+            color: var(--ion-color-secondary) !important;
+        }
+    }
+    ion-input {
+        --background: #E5E5E5;
+        margin-top: 16px;
+    }
+}
