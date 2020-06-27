@@ -16,7 +16,10 @@
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label position="stacked">{{'PASSWORD' | translate}}</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" #passwordInput [type]="passwordTypeInput"></ion-input>
+      <button slot="end" class="toggle-password-mode" (click)="togglePasswordMode()">
+        <ion-icon [name]="(passwordTypeInput === 'text') ? 'eye-off' : 'eye'"></ion-icon>
+      </button>
     </ion-item>
   </form>
 </ion-content>
