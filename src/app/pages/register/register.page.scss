@@ -1,0 +1,50 @@
+ion-content {
+    --background: var(--ion-color-primary);
+}
+
+.title-wrapper {
+    width: 100%;
+    margin-top: 8vh;
+    h1 {
+        margin: 0;
+        font-size: 2.2rem;
+    }
+}
+
+.subtitle-wrapper {
+    margin-top: 5vh;
+    h2 {
+        margin-left: 10vw;
+    }
+}
+
+.form {
+    padding: 0 5vw;
+    margin-top: 5vh;
+}
+
+.toggle-password-mode {
+    position: absolute;
+    right: 16px;
+    bottom: -2px;
+    background: transparent;
+    z-index: 99999;
+    ion-icon {
+        font-size: 22px;
+        color: #757575;
+    }
+}
+
+.toggle-password-mode:focus {
+    outline: none !important;
+}
+
+.register-button {
+    font-size: 18px;
+    --font-size: 18px;
+    margin: 32px 4vw;
+}
+
+a {
+    text-decoration: none;
+}
