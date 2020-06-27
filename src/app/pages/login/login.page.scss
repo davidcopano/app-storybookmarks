@@ -45,3 +45,18 @@ ion-content {
     --font-size: 18px;
     margin: 0 5vw;
 }
+
+.login-options-text {
+    width: 80%;
+    margin: auto;
+    margin-top: 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--ion-color-secondary);
+    line-height: 0.1em;
+    padding: 0 5vw;
+    span {
+        background: var(--ion-color-primary);
+        padding: 0 10px;
+        color: var(--ion-color-secondary);
+    }
+}

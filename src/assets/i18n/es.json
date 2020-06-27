@@ -12,5 +12,6 @@
   "PASSWORD": "Contraseña",
   "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
   "DONT_YOU_HAVE_AN_ACCOUNT": "¿No posees una cuenta?",
-  "REGISTER": "Registrarse"
+  "REGISTER": "Registrarse",
+  "OR": "o"
 }
