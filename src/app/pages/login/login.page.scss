@@ -14,12 +14,12 @@ ion-content {
 .subtitle-wrapper {
     margin-top: 5vh;
     h2 {
-        margin-left: 15vw;
+        margin-left: 10vw;
     }
 }
 
 .form {
-    padding: 0 10vw;
+    padding: 0 5vw;
     margin-top: 5vh;
 }
 
@@ -37,4 +37,11 @@ ion-content {
 
 .toggle-password-mode:focus {
     outline: none !important;
+}
+
+.login-button {
+    margin-top: 60px;
+    font-size: 18px;
+    --font-size: 18px;
+    margin: 0 5vw;
 }

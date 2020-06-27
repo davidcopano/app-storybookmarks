@@ -1,4 +1,6 @@
 ion-button {
     letter-spacing: normal;
-    text-transform: uppercase;
+    text-transform: none;
+    --box-shadow: none;
+    height: 40px;
 }
