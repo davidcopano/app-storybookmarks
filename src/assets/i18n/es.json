@@ -3,5 +3,9 @@
   "AND_SHARE_IT": "¡Y compártelos!",
   "SECURITY": "Seguridad",
   "THE_MARKERS_YOU_KEEP_WILL_BE_SAFE_AND_PRIVATE_IF_YOU_WISH": "Los marcadores que guardes estarán seguros y privados (si lo deseas...).",
-  "SKIP": "Saltar"
+  "SKIP": "Saltar",
+  "SHARE": "Compartir",
+  "YOU_CAN_PUBLICLY_SHARE_THE_BOOKMARKS_YOU_WANT": "Puedes compartir públicamente los marcadores que desees",
+  "OPEN_SOURCE": "Código abierto",
+  "ARE_YOU_A_DEVELOPER_YOU_CAN_CONTRIBUTE_TO_THE_PROJECT_BY_IMPROVING_ITS_SOURCE_CODE": "¿Eres desarrollador? Puedes contribuir al proyecto mejorando su código fuente"
 }

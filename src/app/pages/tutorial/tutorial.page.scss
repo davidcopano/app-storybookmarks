@@ -41,11 +41,15 @@ ion-slide {
             margin: 8px 0;
         }
     }
-    .img-security {
+    .img-security, 
+    .img-share,
+    .img-open-source {
         max-width: 128px;
         margin-top: 25%;
     }
-    .subtitle-security {
+    .subtitle-security, 
+    .subtitle-share,
+    .subtitle-open-source {
         margin-top: 10%;
     }
 }
