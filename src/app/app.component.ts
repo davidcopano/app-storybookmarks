@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
+import { LangService } from './services/lang.service';
 
 @Component({
   selector: 'app-root',
@@ -48,7 +49,8 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private langService: LangService
   ) {
     this.initializeApp();
   }
@@ -60,10 +62,10 @@ export class AppComponent implements OnInit {
     });
   }
 
-  initTranslations() {
-    let userLanguage = navigator.language;
-    this.translateService.setDefaultLang(userLanguage);
-    this.translateService.use(userLanguage);
+  async initTranslations() {
+    await this.langService.loadSavedLang();
+    this.translateService.setDefaultLang(this.langService.currentLang);
+    this.translateService.use(this.langService.currentLang);
   }
 
   ngOnInit() {
