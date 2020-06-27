@@ -1,7 +1,7 @@
-ion-item.with-white-input {
+ion-item.with-light-input {
     --background: transparent;
-    color: var(--ion-color-secondary) !important;
-    --color: var(--ion-color-secondary) !important;
+    color: #000000 !important;
+    --color: #000000 !important;
     ion-label {
         --color: var(--ion-color-secondary) !important;
         transform: initial !important;
@@ -13,6 +13,8 @@ ion-item.with-white-input {
     }
     ion-input {
         --background: #E5E5E5;
-        margin-top: 16px;
+        margin-top: 12px;
+        --padding-start: 12px !important;
+        --padding-end: 12px;
     }
 }
