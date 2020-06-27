@@ -2,8 +2,7 @@
 
 /** Ionic CSS Variables **/
 :root {
-
-  --ion-font-family: 'Muli';
+  --ion-font-family: "Muli";
 
   /** primary **/
   --ion-color-primary: #247ba0;
@@ -76,6 +75,23 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** facebook **/
+  --ion-color-facebook: #4267b2;
+  --ion-color-facebook-rgb: 66, 103, 178;
+  --ion-color-facebook-contrast: #ffffff;
+  --ion-color-facebook-contrast-rgb: 255, 255, 255;
+  --ion-color-facebook-shade: #3a5b9d;
+  --ion-color-facebook-tint: #5576ba;
+
+  .ion-color-facebook {
+    --ion-color-base: var(--ion-color-facebook);
+    --ion-color-base-rgb: var(--ion-color-facebook-rgb);
+    --ion-color-contrast: var(--ion-color-facebook-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-facebook-contrast-rgb);
+    --ion-color-shade: var(--ion-color-facebook-shade);
+    --ion-color-tint: var(--ion-color-facebook-tint);
+  }
 }
 
 // @media (prefers-color-scheme: dark) {

@@ -13,5 +13,7 @@
   "FORGOT_PASSWORD": "Forgot your password?",
   "DONT_YOU_HAVE_AN_ACCOUNT": "Don't you have an account?",
   "REGISTER": "Register",
-  "OR": "or"
+  "OR": "or",
+  "CONTINUE_WITH_FACEBOOK": "Continue with Facebook",
+  "CONTINUE_WITH_GOOGLE": "Continue with Google"
 }
