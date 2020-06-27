@@ -21,13 +21,13 @@
         <ion-icon [name]="(passwordTypeInput === 'text') ? 'eye-off' : 'eye'"></ion-icon>
       </button>
     </ion-item>
-    <ion-button type="button" class="ion-float-right" color="secondary" fill="clear">{{'FORGOT_PASSWORD' | translate}}
+    <ion-button type="button" class="ion-float-right" color="secondary" fill="clear" routerLink="/forgot-password" routerDirection="root">{{'FORGOT_PASSWORD' | translate}}
     </ion-button>
     <ion-button type="submit" class="clear-both login-button" expand="full" color="secondary">{{'LOGIN' | translate}}
     </ion-button>
   </form>
   <p class="ion-text-center text-light">{{'DONT_YOU_HAVE_AN_ACCOUNT' | translate}} <a class="register"
-      class="text-secondary">{{'REGISTER' | translate}}</a>
+      class="text-secondary" routerLink="/register" routerDirection="root">{{'REGISTER' | translate}}</a>
   </p>
   <p class="login-options-text">
     <span>{{'OR' | translate}}</span>
