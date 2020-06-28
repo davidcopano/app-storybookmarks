@@ -4,15 +4,16 @@ import { Storage } from '@ionic/storage';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LangService } from '../lang/lang.service';
 import { TranslateService } from '@ngx-translate/core';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilitiesService {
 
-  public loading: HTMLIonLoadingElement;
+  private loading: HTMLIonLoadingElement;
 
-  constructor(private loadingCtrl: LoadingController, private alertCtrl: AlertController, private platform: Platform, private toast: ToastController, private storage: Storage, private langService: LangService, private translateService: TranslateService) { }
+  constructor(private loadingCtrl: LoadingController, private alertCtrl: AlertController, private platform: Platform, private toast: ToastController, private storage: Storage, private langService: LangService, private translateService: TranslateService, private spinnerDialog: SpinnerDialog) { }
 
   /**
    * Cierra la sesión borrando todos los datos del usuario actual
@@ -36,18 +37,35 @@ export class UtilitiesService {
    * @param message Mensaje del loading (opcional)
    */
   async showLoading(message?: string, duration?: number) {
-    this.loading = await this.loadingCtrl.create({
-      message: message ? message : null,
-      duration: duration ? duration : null
-    });
-    return this.loading.present();
+    if (this.isInMobileDevice()) {
+      this.spinnerDialog.show(message, null);
+    }
+    else {
+      this.loading = await this.loadingCtrl.create({
+        message: message ? message : null,
+        duration: duration ? duration : null
+      });
+      return this.loading.present();
+    }
   }
 
   /**
    * Quita el loading cargado (arreglado)
    */
   public dismissLoading() {
-    this.loading.dismiss().then(() => { return true; })
+    if (this.isInMobileDevice()) {
+      this.spinnerDialog.hide();
+    }
+    else {
+      return this.loading.dismiss();
+    }
+  }
+
+  /**
+   * Devuelve si se está ejecutando la aplicación en un dispositivo móvil
+   */
+  isInMobileDevice() {
+    return this.platform.is('mobile') ? true : false;
   }
 
   /**

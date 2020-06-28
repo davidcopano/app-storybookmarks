@@ -26,12 +26,15 @@ export class LoginPage implements OnInit {
     });
   }
 
-  submitForm() {
+  async submitForm() {
+    await this.utilitiesService.showLoading('Iniciando sesión...');
     let values = this.form.value;
-    this.apiService.login(values.email, values.password).subscribe(response => {
+    this.apiService.login(values.email, values.password).subscribe(async (response) => {
+      await this.utilitiesService.dismissLoading();
       console.log('response = ');
       console.log(response);
-    }, (error: HttpErrorResponse) => {
+    }, async (error: HttpErrorResponse) => {
+      await this.utilitiesService.dismissLoading();
       this.utilitiesService.handleHttpErrorResponse(error);
     })
   }
