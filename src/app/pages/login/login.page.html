@@ -9,21 +9,21 @@
       <h2>{{'LOGIN' | translate}}</h2>
     </ion-text>
   </div>
-  <form class="form">
+  <form class="form" [formGroup]="form" (ngSubmit)="submitForm()">
     <ion-item class="with-light-input" lines="none">
       <ion-label position="stacked">Email</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label position="stacked">{{'PASSWORD' | translate}}</ion-label>
-      <ion-input type="password" #passwordInput [type]="passwordTypeInput"></ion-input>
+      <ion-input type="password" #passwordInput [type]="passwordTypeInput" formControlName="password"></ion-input>
       <button slot="end" class="toggle-password-mode" (click)="togglePasswordMode()">
         <ion-icon [name]="(passwordTypeInput === 'text') ? 'eye-off' : 'eye'"></ion-icon>
       </button>
     </ion-item>
     <a class="text-secondary ion-float-right forgot-password-button" routerLink="/forgot-password"
       routerDirection="root">{{'FORGOT_PASSWORD' | translate}}</a>
-    <ion-button type="submit" class="clear-both login-button" expand="full" color="secondary">{{'LOGIN' | translate}}
+    <ion-button type="submit" class="clear-both login-button" expand="full" color="secondary" [disabled]="!form.valid">{{'LOGIN' | translate}}
     </ion-button>
   </form>
   <p class="ion-text-center text-light">{{'DONT_YOU_HAVE_AN_ACCOUNT' | translate}} <a class="text-secondary"
