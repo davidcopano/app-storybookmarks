@@ -18,5 +18,8 @@
   "CONTINUE_WITH_GOOGLE": "Continuar con Google",
   "REPEAT_PASSWORD": "Repite la contraseña",
   "USER": "Usuario",
-  "ALREADY_HAVE_AN_ACCOUNT": "¿Ya posees una cuenta?"
+  "ALREADY_HAVE_AN_ACCOUNT": "¿Ya posees una cuenta?",
+  "RECOVER_PASSWORD": "Recuperar contraseña",
+  "DO_YOU_REMEMBER_YOUR_PASSWORD_YET": "¿Ya recuerdas tu contraseña?",
+  "RECOVER_PASSWORD_TEXT": "Introduce a continuación tu email en el que enviaremos tu nueva contraseña"
 }
