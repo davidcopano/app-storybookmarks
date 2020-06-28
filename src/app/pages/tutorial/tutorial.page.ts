@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LangService } from 'src/app/services/lang.service';
+import { LangService } from '../../services/lang/lang.service';
 
 @Component({
   selector: 'app-tutorial',

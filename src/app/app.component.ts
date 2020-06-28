@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
-import { LangService } from './services/lang.service';
+import { LangService } from './services/lang/lang.service';
 
 @Component({
   selector: 'app-root',
