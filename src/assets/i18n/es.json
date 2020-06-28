@@ -21,5 +21,7 @@
   "ALREADY_HAVE_AN_ACCOUNT": "¿Ya posees una cuenta?",
   "RECOVER_PASSWORD": "Recuperar contraseña",
   "DO_YOU_REMEMBER_YOUR_PASSWORD_YET": "¿Ya recuerdas tu contraseña?",
-  "RECOVER_PASSWORD_TEXT": "Introduce a continuación tu email en el que enviaremos tu nueva contraseña"
+  "RECOVER_PASSWORD_TEXT": "Introduce a continuación tu email en el que enviaremos tu nueva contraseña",
+  "VALUE_REQUIRED": "Este campo es obligatorio",
+  "VALUE_EMAIL": "Este campo debe ser un email válido"
 }

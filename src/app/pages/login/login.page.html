@@ -14,6 +14,14 @@
       <ion-label position="stacked">Email</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="errors">
+      <ion-text color="danger" *ngIf="email.errors.required">
+        <p>{{'VALUE_REQUIRED' | translate }}</p>
+      </ion-text>
+      <ion-text color="danger" *ngIf="email.errors.email">
+        <p>{{'VALUE_EMAIL' | translate}}</p>
+      </ion-text>
+    </div>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label position="stacked">{{'PASSWORD' | translate}}</ion-label>
       <ion-input type="password" #passwordInput [type]="passwordTypeInput" formControlName="password"></ion-input>
@@ -21,9 +29,15 @@
         <ion-icon [name]="(passwordTypeInput === 'text') ? 'eye-off' : 'eye'"></ion-icon>
       </button>
     </ion-item>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="errors">
+      <ion-text color="danger" *ngIf="password.errors.required">
+        <p>{{'VALUE_REQUIRED' | translate }}</p>
+      </ion-text>
+    </div>
     <a class="text-secondary ion-float-right forgot-password-button" routerLink="/forgot-password"
       routerDirection="root">{{'FORGOT_PASSWORD' | translate}}</a>
-    <ion-button type="submit" class="clear-both login-button" expand="full" color="secondary" [disabled]="!form.valid">{{'LOGIN' | translate}}
+    <ion-button type="submit" class="clear-both login-button" expand="full" color="secondary" [disabled]="!form.valid">
+      {{'LOGIN' | translate}}
     </ion-button>
   </form>
   <p class="ion-text-center text-light">{{'DONT_YOU_HAVE_AN_ACCOUNT' | translate}} <a class="text-secondary"
