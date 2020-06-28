@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api/api.service';
 import { User } from "../../models";
+import { HttpErrorResponse } from '@angular/common/http';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginPage implements OnInit {
   private passwordTypeInput = 'password';
   private form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService) { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private utilitiesService: UtilitiesService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -29,9 +31,8 @@ export class LoginPage implements OnInit {
     this.apiService.login(values.email, values.password).subscribe(response => {
       console.log('response = ');
       console.log(response);
-    }, error => {
-      console.log('error = ');
-      console.log(error);
+    }, (error: HttpErrorResponse) => {
+      this.utilitiesService.handleHttpErrorResponse(error);
     })
   }
 
