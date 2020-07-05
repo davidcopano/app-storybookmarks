@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api/api.service';
-import { User } from "../../models";
+import { User, FacebookProfile } from "../../models";
 import { HttpErrorResponse } from '@angular/common/http';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginPage implements OnInit {
   private passwordTypeInput = 'password';
   private form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private utilitiesService: UtilitiesService) { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private utilitiesService: UtilitiesService, private facebook: Facebook) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -47,6 +48,20 @@ export class LoginPage implements OnInit {
     setTimeout(() => {
       nativeEl.setSelectionRange(inputSelection, inputSelection);
     }, 1);
+  }
+
+  async loginWithFacebook() {
+    try {
+      let facebookLoginResponse = await this.facebook.login(['public_profile', 'user_friends', 'email']);
+      let facebookProfile: FacebookProfile = await this.facebook.api('me?fields=id,email,name', []);
+
+      console.log('facebookProfile = ');
+      console.log(facebookProfile);
+    }
+    catch(err) {
+      console.log('err');
+      console.log(err);
+    }
   }
 
   get email() { return this.form.get('email'); }
