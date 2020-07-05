@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api/api.service';
-import { User, FacebookProfile } from "../../models";
+import { User, FacebookProfile, GoogleLoginResponse } from "../../models";
 import { HttpErrorResponse } from '@angular/common/http';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { Facebook } from '@ionic-native/facebook/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginPage implements OnInit {
   private passwordTypeInput = 'password';
   private form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private utilitiesService: UtilitiesService, private facebook: Facebook) { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private utilitiesService: UtilitiesService, private facebook: Facebook, private google: GooglePlus) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -57,6 +58,19 @@ export class LoginPage implements OnInit {
 
       console.log('facebookProfile = ');
       console.log(facebookProfile);
+    }
+    catch(err) {
+      console.log('err');
+      console.log(err);
+    }
+  }
+
+  async loginWithGoogle() {
+    try {
+      let googleLoginResponse: GoogleLoginResponse = await this.google.login({});
+
+      console.log('googleLoginResponse =');
+      console.log(googleLoginResponse);
     }
     catch(err) {
       console.log('err');
