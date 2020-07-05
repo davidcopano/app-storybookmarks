@@ -16,8 +16,8 @@ export class LoginPage implements OnInit {
 
   @ViewChild('passwordInput', { read: ElementRef }) passwordEye: ElementRef;
 
-  private passwordTypeInput = 'password';
-  private form: FormGroup;
+  public passwordTypeInput = 'password';
+  public form: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private utilitiesService: UtilitiesService, private facebook: Facebook, private google: GooglePlus) { }
 
