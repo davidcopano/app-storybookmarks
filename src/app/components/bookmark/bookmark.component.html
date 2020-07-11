@@ -4,7 +4,7 @@
     <a class="link" (click)="openLink(item?.url)">{{ item?.url }}</a>
     <p class="created_at">{{ item?.created_at }}</p>
   </ion-label>
-  <ion-button class="options ion-align-self-baseline" color="dark" fill="clear" shape="round" slot="end" (click)="showPopover(item)">
+  <ion-button class="options ion-align-self-baseline" color="dark" fill="clear" shape="round" slot="end" (click)="showPopover($event, item)">
     <ion-icon name="ellipsis-vertical"></ion-icon>
   </ion-button>
 </ion-item>

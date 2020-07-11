@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Bookmark } from '../../interfaces';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { PopoverController } from '@ionic/angular';
+import { BookmarkOptionsComponent } from '../bookmark-options/bookmark-options.component';
 
 @Component({
   selector: 'app-bookmark',
@@ -13,16 +15,23 @@ export class BookmarkComponent implements OnInit {
 
   private itemDefaultBorderColor: string = 'black';
 
-  constructor(private inAppBrowser: InAppBrowser) { }
+  constructor(private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   openLink(url: string) {
     this.inAppBrowser.create(url, '_system');
   }
 
-  showPopover(item: Bookmark) {
-    console.log('showPopover');
-    console.log(item);
+  async showPopover($event: any, item: Bookmark) {
+    const popover = await this.popoverCtrl.create({
+      component: BookmarkOptionsComponent,
+      event: $event,
+      translucent: true,
+      componentProps: {
+        item: item
+      }
+    });
+    await popover.present();
   }
 }
