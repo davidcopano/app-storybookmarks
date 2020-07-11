@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginPage implements OnInit {
   public passwordTypeInput = 'password';
   public form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private utilitiesService: UtilitiesService, private facebook: Facebook, private google: GooglePlus) { }
+  constructor(private navCtrl: NavController, private formBuilder: FormBuilder, private apiService: ApiService, private utilitiesService: UtilitiesService, private facebook: Facebook, private google: GooglePlus) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -29,16 +30,19 @@ export class LoginPage implements OnInit {
   }
 
   async submitForm() {
-    await this.utilitiesService.showLoading('Iniciando sesión...');
-    let values = this.form.value;
-    this.apiService.login(values.email, values.password).subscribe(async (response) => {
-      await this.utilitiesService.dismissLoading();
-      console.log('response = ');
-      console.log(response);
-    }, async (error: HttpErrorResponse) => {
-      await this.utilitiesService.dismissLoading();
-      this.utilitiesService.handleHttpErrorResponse(error);
-    })
+
+    this.navCtrl.navigateRoot('/bookmarks');
+
+    // await this.utilitiesService.showLoading('Iniciando sesión...');
+    // let values = this.form.value;
+    // this.apiService.login(values.email, values.password).subscribe(async (response) => {
+    //   await this.utilitiesService.dismissLoading();
+    //   console.log('response = ');
+    //   console.log(response);
+    // }, async (error: HttpErrorResponse) => {
+    //   await this.utilitiesService.dismissLoading();
+    //   this.utilitiesService.handleHttpErrorResponse(error);
+    // })
   }
 
   togglePasswordMode() {
