@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Bookmark } from '../../interfaces';
 import { NavParams, PopoverController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-bookmark-options',
@@ -12,7 +13,7 @@ export class BookmarkOptionsComponent implements OnInit {
 
   item: Bookmark;
 
-  constructor(private navParams: NavParams, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController) { }
+  constructor(private navParams: NavParams, private utilities: UtilitiesService, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
@@ -20,6 +21,15 @@ export class BookmarkOptionsComponent implements OnInit {
 
   openLink() {
     this.inAppBrowser.create(this.item.url, '_system');
+    this.closeSelf();
+  }
+
+  copyLink() {
+    this.utilities.copyToClipboard(this.item.url);
+    this.closeSelf();
+  }
+
+  private closeSelf() {
     this.popoverCtrl.dismiss();
   }
 }

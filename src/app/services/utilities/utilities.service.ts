@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { LangService } from '../lang/lang.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UtilitiesService {
 
   private loading: HTMLIonLoadingElement;
 
-  constructor(private loadingCtrl: LoadingController, private alertCtrl: AlertController, private platform: Platform, private toast: ToastController, private storage: Storage, private langService: LangService, private translateService: TranslateService, private spinnerDialog: SpinnerDialog) { }
+  constructor(private loadingCtrl: LoadingController, private alertCtrl: AlertController, private platform: Platform, private toast: ToastController, private storage: Storage, private langService: LangService, private translateService: TranslateService, private spinnerDialog: SpinnerDialog, private clipboard: Clipboard) { }
 
   /**
    * Cierra la sesión borrando todos los datos del usuario actual
@@ -58,6 +59,24 @@ export class UtilitiesService {
     }
     else {
       return this.loading.dismiss();
+    }
+  }
+
+  /**
+   * Copia el texto pasado al portapapeles del dispositivo
+   * @param text Texto a copiar en el portapapeles
+   */
+  public copyToClipboard(text: string) {
+    if (this.isInMobileDevice()) {
+      this.clipboard.copy(text);
+    }
+    else {
+      let aux = document.createElement("input");
+      aux.setAttribute("value", text);
+      document.body.appendChild(aux);
+      aux.select();
+      document.execCommand("copy");
+      document.body.removeChild(aux);
     }
   }
 
