@@ -11,6 +11,8 @@ export class BookmarkComponent implements OnInit {
 
   @Input() item: Bookmark;
 
+  private itemDefaultBorderColor: string = 'black';
+
   constructor(private inAppBrowser: InAppBrowser) { }
 
   ngOnInit() {}

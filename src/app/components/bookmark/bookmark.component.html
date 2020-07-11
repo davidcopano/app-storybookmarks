@@ -1,10 +1,10 @@
-<ion-item lines="none">
-  <ion-label slot="start">
+<ion-item class="ion-text-wrap" lines="none" [style.border-color]="item?.color ? item?.color : itemDefaultBorderColor">
+  <ion-label>
     <h2 class="title">{{ item?.title }}</h2>
     <a class="link" (click)="openLink(item?.url)">{{ item?.url }}</a>
     <p class="created_at">{{ item?.created_at }}</p>
   </ion-label>
-  <ion-button class="ion-align-self-baseline" color="dark" fill="clear" slot="end" (click)="showPopover(item)">
+  <ion-button class="ion-align-self-baseline" color="dark" fill="clear" shape="round" slot="end" (click)="showPopover(item)">
     <ion-icon name="ellipsis-vertical"></ion-icon>
   </ion-button>
 </ion-item>
