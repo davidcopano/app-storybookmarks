@@ -28,5 +28,6 @@
   "BOOKMARKS": "Marcadores",
   "WARNING": "Advertencia",
   "WARNING_TEXT": "Los marcadores que tengas públicos los puede ver cualquier persona, si tienen la URL correspondiente",
-  "CANCEL": "Cancelar"
+  "CANCEL": "Cancelar",
+  "LINK_COPIED_TO_CLIPBOARD": "Enlace copiado al portapapeles"
 }

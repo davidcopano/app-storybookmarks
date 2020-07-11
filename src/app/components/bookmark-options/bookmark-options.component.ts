@@ -3,6 +3,7 @@ import { Bookmark } from '../../interfaces';
 import { NavParams, PopoverController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bookmark-options',
@@ -12,11 +13,16 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 export class BookmarkOptionsComponent implements OnInit {
 
   item: Bookmark;
+  linkCopiedToClipboardText: string;
 
-  constructor(private navParams: NavParams, private utilities: UtilitiesService, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController) { }
+  constructor(private navParams: NavParams, private utilities: UtilitiesService, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController, private translateService: TranslateService) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
+
+    this.translateService.get('LINK_COPIED_TO_CLIPBOARD').subscribe(text => {
+      this.linkCopiedToClipboardText = text;
+    })
   }
 
   openLink() {
@@ -24,12 +30,13 @@ export class BookmarkOptionsComponent implements OnInit {
     this.closeSelf();
   }
 
-  copyLink() {
+  async copyLink() {
     this.utilities.copyToClipboard(this.item.url);
     this.closeSelf();
+    this.utilities.showToast(this.linkCopiedToClipboardText);
   }
 
   private closeSelf() {
-    this.popoverCtrl.dismiss();
+    return this.popoverCtrl.dismiss();
   }
 }
