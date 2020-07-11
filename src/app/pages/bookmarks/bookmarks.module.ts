@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { BookmarksPageRoutingModule } from './bookmarks-routing.module';
 import { BookmarksPage } from './bookmarks.page';
+import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { BookmarksPage } from './bookmarks.page';
     BookmarksPageRoutingModule,
     TranslateModule
   ],
-  declarations: [BookmarksPage]
+  entryComponents: [BookmarkComponent],
+  declarations: [BookmarksPage, BookmarkComponent]
 })
 export class BookmarksPageModule {}
