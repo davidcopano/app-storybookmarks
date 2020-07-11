@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { BookmarksPageRoutingModule } from './bookmarks-routing.module';
-
 import { BookmarksPage } from './bookmarks.page';
 
 @NgModule({
@@ -13,7 +11,8 @@ import { BookmarksPage } from './bookmarks.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    BookmarksPageRoutingModule
+    BookmarksPageRoutingModule,
+    TranslateModule
   ],
   declarations: [BookmarksPage]
 })

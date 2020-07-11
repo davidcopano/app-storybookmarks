@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>bookmarks</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'BOOKMARKS' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <p class="warning">
+    <u>{{ 'WARNING' | translate }}</u>: {{ 'WARNING_TEXT' | translate }}
+  </p>
 </ion-content>

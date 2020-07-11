@@ -24,5 +24,8 @@
   "RECOVER_PASSWORD_TEXT": "Introduce a continuación tu email en el que enviaremos tu nueva contraseña",
   "VALUE_REQUIRED": "Este campo es obligatorio",
   "VALUE_EMAIL": "Este campo debe ser un email válido",
-  "UNKNOWN_PETITION_ERROR": "Hubo un error desconocido con tu petición. Inténtalo de nuevo más tarde"
+  "UNKNOWN_PETITION_ERROR": "Hubo un error desconocido con tu petición. Inténtalo de nuevo más tarde",
+  "BOOKMARKS": "Marcadores",
+  "WARNING": "Advertencia",
+  "WARNING_TEXT": "Los marcadores que tengas públicos los puede ver cualquier persona, si tienen la URL correspondiente"
 }
