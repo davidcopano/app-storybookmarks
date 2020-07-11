@@ -27,5 +27,6 @@
   "UNKNOWN_PETITION_ERROR": "Hubo un error desconocido con tu petición. Inténtalo de nuevo más tarde",
   "BOOKMARKS": "Marcadores",
   "WARNING": "Advertencia",
-  "WARNING_TEXT": "Los marcadores que tengas públicos los puede ver cualquier persona, si tienen la URL correspondiente"
+  "WARNING_TEXT": "Los marcadores que tengas públicos los puede ver cualquier persona, si tienen la URL correspondiente",
+  "CANCEL": "Cancelar"
 }

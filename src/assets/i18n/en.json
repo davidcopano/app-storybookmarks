@@ -27,5 +27,6 @@
   "UNKNOWN_PETITION_ERROR": "There was an unknown error in your petition. Try again later",
   "BOOKMARKS": "Bookmarks",
   "WARNING": "Warning",
-  "WARNING_TEXT": "Bookmarks you have in public can be seen by anyone, if they have the corresponding URL"
+  "WARNING_TEXT": "Bookmarks you have in public can be seen by anyone, if they have the corresponding URL",
+  "CANCEL": "Cancel"
 }
