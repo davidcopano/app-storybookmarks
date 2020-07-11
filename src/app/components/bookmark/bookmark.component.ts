@@ -18,4 +18,9 @@ export class BookmarkComponent implements OnInit {
   openLink(url: string) {
     this.inAppBrowser.create(url, '_system');
   }
+
+  showPopover(item: Bookmark) {
+    console.log('showPopover');
+    console.log(item);
+  }
 }
