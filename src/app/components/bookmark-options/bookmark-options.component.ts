@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bookmark } from '../../interfaces';
-import { NavParams } from '@ionic/angular';
+import { NavParams, PopoverController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
@@ -12,7 +12,7 @@ export class BookmarkOptionsComponent implements OnInit {
 
   item: Bookmark;
 
-  constructor(private navParams: NavParams, private inAppBrowser: InAppBrowser) { }
+  constructor(private navParams: NavParams, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
@@ -20,5 +20,6 @@ export class BookmarkOptionsComponent implements OnInit {
 
   openLink() {
     this.inAppBrowser.create(this.item.url, '_system');
+    this.popoverCtrl.dismiss();
   }
 }
