@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Bookmark } from 'src/app/interfaces';
+import { Bookmark } from '../../interfaces';
 
 @Component({
   selector: 'app-bookmarks',

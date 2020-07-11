@@ -25,5 +25,5 @@
       <ion-select-option value="z_to_a">De la Z a la A</ion-select-option>
     </ion-select>
   </ion-item>
-  <app-bookmark *ngFor="let bookmark of bookmarks"></app-bookmark>
+  <app-bookmark [item]="bookmark" *ngFor="let bookmark of bookmarks"></app-bookmark>
 </ion-content>

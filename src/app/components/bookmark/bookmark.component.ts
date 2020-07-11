@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Bookmark } from '../../interfaces';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-bookmark',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookmarkComponent implements OnInit {
 
-  constructor() { }
+  @Input() item: Bookmark;
+
+  constructor(private inAppBrowser: InAppBrowser) { }
 
   ngOnInit() {}
 
+  openLink(url: string) {
+    this.inAppBrowser.create(url, '_system');
+  }
 }

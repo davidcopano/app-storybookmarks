@@ -1,3 +1,7 @@
-<p>
-  bookmark works!
-</p>
+<ion-item lines="none">
+  <ion-label>
+    <h2 class="title">{{ item?.title }}</h2>
+    <a class="link" (click)="openLink(item?.url)">{{ item?.url }}</a>
+    <p class="created_at">{{ item?.created_at }}</p>
+  </ion-label>
+</ion-item>
