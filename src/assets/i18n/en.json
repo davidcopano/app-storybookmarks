@@ -29,5 +29,8 @@
   "WARNING": "Warning",
   "WARNING_TEXT": "Bookmarks you have in public can be seen by anyone, if they have the corresponding URL",
   "CANCEL": "Cancel",
-  "LINK_COPIED_TO_CLIPBOARD": "Link copied to clipboard"
+  "LINK_COPIED_TO_CLIPBOARD": "Link copied to clipboard",
+  "DELETE_BOOKMARK": "Delete bookmark",
+  "DELETE_BOOKMARK_CONFIRMATION": "Are you sure do you want to delete this bookmark?",
+  "YES_DELETE": "Yes, delete"
 }

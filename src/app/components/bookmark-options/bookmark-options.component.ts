@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Bookmark } from '../../interfaces';
-import { NavParams, PopoverController } from '@ionic/angular';
+import { NavParams, PopoverController, AlertController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { TranslateService } from '@ngx-translate/core';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-bookmark-options',
@@ -13,16 +15,25 @@ import { TranslateService } from '@ngx-translate/core';
 export class BookmarkOptionsComponent implements OnInit {
 
   item: Bookmark;
-  linkCopiedToClipboardText: string;
 
-  constructor(private navParams: NavParams, private utilities: UtilitiesService, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController, private translateService: TranslateService) { }
+  private linkCopiedToClipboardText: string;
+  private deleteBookmarkText: string;
+  private deleteBookmarkConfirmationText: string;
+  private yesDeleteText: string;
+  private cancelText: string;
+
+  constructor(private navParams: NavParams, private utilities: UtilitiesService, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController, private translateService: TranslateService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
-
-    this.translateService.get('LINK_COPIED_TO_CLIPBOARD').subscribe(text => {
-      this.linkCopiedToClipboardText = text;
-    })
+    let translationTexts = this.getTranslationValues();
+    translationTexts.subscribe(translations => {
+      this.linkCopiedToClipboardText = translations.linkCopiedToClipboardText;
+      this.deleteBookmarkText = translations.deleteBookmarkText;
+      this.deleteBookmarkConfirmationText = translations.deleteBookmarkConfirmationText;
+      this.yesDeleteText = translations.yesDeleteText;
+      this.cancelText = translations.cancelText;
+    });
   }
 
   openLink() {
@@ -36,7 +47,42 @@ export class BookmarkOptionsComponent implements OnInit {
     this.utilities.showToast(this.linkCopiedToClipboardText);
   }
 
+  async delete() {
+    let alert = await this.alertCtrl.create({
+      header: this.deleteBookmarkText,
+      message: this.deleteBookmarkConfirmationText,
+      buttons: [
+        {
+          text: this.cancelText,
+          role: 'cancel'
+        },
+        {
+          text: this.yesDeleteText,
+          handler: () => {
+            console.log('delete clicked');
+            this.closeSelf();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   private closeSelf() {
     return this.popoverCtrl.dismiss();
+  }
+
+  private getTranslationValues() {
+    return forkJoin(
+      this.translateService.get('LINK_COPIED_TO_CLIPBOARD'),
+      this.translateService.get('DELETE_BOOKMARK'),
+      this.translateService.get('DELETE_BOOKMARK_CONFIRMATION'),
+      this.translateService.get('YES_DELETE'),
+      this.translateService.get('CANCEL'),
+    ).pipe(
+      map(([linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText]) => {
+        return { linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText };
+      })
+    );
   }
 }

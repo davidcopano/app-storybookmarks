@@ -29,5 +29,8 @@
   "WARNING": "Advertencia",
   "WARNING_TEXT": "Los marcadores que tengas públicos los puede ver cualquier persona, si tienen la URL correspondiente",
   "CANCEL": "Cancelar",
-  "LINK_COPIED_TO_CLIPBOARD": "Enlace copiado al portapapeles"
+  "LINK_COPIED_TO_CLIPBOARD": "Enlace copiado al portapapeles",
+  "DELETE_BOOKMARK": "Borrar marcador",
+  "DELETE_BOOKMARK_CONFIRMATION": "¿Estás seguro de que deseas eliminar este marcador?",
+  "YES_DELETE": "Sí, eliminar"
 }
