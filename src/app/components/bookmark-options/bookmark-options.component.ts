@@ -58,6 +58,8 @@ export class BookmarkOptionsComponent implements OnInit {
         },
         {
           text: this.yesDeleteText,
+          role: 'destructive',
+          cssClass: 'text-danger',
           handler: () => {
             console.log('delete clicked');
             this.closeSelf();

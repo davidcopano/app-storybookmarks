@@ -9,6 +9,7 @@ import { Bookmark } from '../../interfaces';
 export class BookmarksPage implements OnInit {
 
   bookmarks: Bookmark[] = [];
+  private bookmarksOrder: string = 'default';
 
   constructor() { }
 
