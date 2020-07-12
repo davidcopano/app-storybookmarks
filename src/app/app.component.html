@@ -31,6 +31,14 @@
           </div>
         </div>
         <div class="divider"></div>
+        <ion-menu-toggle *ngFor="let menuRoute of menuRoutes">
+          <ion-item class="menu-route" color="primary" button lines="none" [routerLink]="menuRoute?.link">
+            <ion-label>
+              <ion-icon [name]="menuRoute?.icon"></ion-icon>
+              {{ menuRoute?.title }}
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
