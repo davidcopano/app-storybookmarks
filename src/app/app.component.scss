@@ -3,10 +3,16 @@ ion-content {
 }
 
 .menu-header {
-  margin: 32px 16px;
+  margin: 32px 16px 16px;
 }
 
 .user-options {
-  width: 90%;
-  float: right;
+  width: 85%;
+  margin: auto;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: white;
 }
