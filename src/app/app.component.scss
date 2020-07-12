@@ -15,4 +15,18 @@ ion-content {
   width: 100%;
   height: 1px;
   background: white;
+  margin-bottom: 16px;
+}
+
+.menu-route {
+  margin-bottom: 8px;
+  ion-label {
+    color: var(--ion-color-secondary);
+    --color: var(--ion-color-secondary);
+    font-size: 18px;
+    --font-size: 18px;
+    ion-icon {
+      margin: 0 8px;
+    }
+  }
 }
