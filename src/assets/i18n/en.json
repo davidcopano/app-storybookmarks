@@ -37,5 +37,6 @@
   "ORDER_BY_DEFAULT_BOOKMARKS": "Default (newest to oldest)",
   "ORDER_BY_OLDEST_BOOKMARKS": "Oldest to newest",
   "A_TO_Z": "A to Z",
-  "Z_TO_A": "Z to A"
+  "Z_TO_A": "Z to A",
+  "SEARCH": "Search"
 }

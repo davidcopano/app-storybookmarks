@@ -37,5 +37,6 @@
   "ORDER_BY_DEFAULT_BOOKMARKS": "Defecto (más nuevo a más antiguo)",
   "ORDER_BY_OLDEST_BOOKMARKS": "Más antiguo a más nuevo",
   "A_TO_Z": "De la A a la Z",
-  "Z_TO_A": "De la Z a la A"
+  "Z_TO_A": "De la Z a la A",
+  "SEARCH": "Buscar"
 }

@@ -65,8 +65,6 @@ export class BookmarksPage implements OnInit {
   }
 
   hideSearchbar() {
-    console.log('hideSearchbar()');
-
     this.isSearching = false;
   }
 }
