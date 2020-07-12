@@ -13,6 +13,7 @@ export class BookmarksPage implements OnInit {
 
   bookmarks: Bookmark[] = [];
   private bookmarksOrder: string = 'default';
+  private isSearching: boolean = false;
 
   constructor() { }
 
@@ -57,5 +58,15 @@ export class BookmarksPage implements OnInit {
         this.infiniteScroll.disabled = true;
       }
     }, 500);
+  }
+
+  showSearchbar() {
+    this.isSearching = true;
+  }
+
+  hideSearchbar() {
+    console.log('hideSearchbar()');
+
+    this.isSearching = false;
   }
 }
