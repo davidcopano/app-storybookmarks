@@ -24,7 +24,7 @@
             </ion-item>
             <ion-item button color="primary" lines="none">
               <ion-label>
-                <ion-icon name="create"></ion-icon>
+                <ion-icon name="exit"></ion-icon>
                 {{ 'LOGOUT' | translate }}
               </ion-label>
             </ion-item>
@@ -35,7 +35,7 @@
           <ion-item class="menu-route" color="primary" button lines="none" [routerLink]="menuRoute?.link">
             <ion-label>
               <ion-icon [name]="menuRoute?.icon"></ion-icon>
-              {{ menuRoute?.title }}
+              {{ menuRoute?.translationKey | translate }}
             </ion-label>
           </ion-item>
         </ion-menu-toggle>

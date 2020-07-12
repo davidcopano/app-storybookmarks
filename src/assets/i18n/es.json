@@ -45,5 +45,7 @@
   "DELETE": "Eliminar",
   "HI": "Hola",
   "EDIT_PROFILE": "Editar perfil",
-  "LOGOUT": "Cerrar sesión"
+  "LOGOUT": "Cerrar sesión",
+  "FOLDERS": "Carpetas",
+  "OPTIONS": "Opciones"
 }

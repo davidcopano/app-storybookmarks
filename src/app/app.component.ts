@@ -16,17 +16,17 @@ export class AppComponent implements OnInit {
   private showUserOptions: boolean = false;
   private menuRoutes: MenuRoute[] = [
     {
-      title: 'Marcadores',
+      translationKey: 'BOOKMARKS',
       link: '/bookmarks',
       icon: 'bookmarks'
     },
     {
-      title: 'Carpetas',
+      translationKey: 'FOLDERS',
       link: '/bookmarks',
       icon: 'folder'
     },
     {
-      title: 'Opciones',
+      translationKey: 'OPTIONS',
       link: '/bookmarks',
       icon: 'settings'
     },

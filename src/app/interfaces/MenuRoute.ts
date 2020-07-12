@@ -1,5 +1,5 @@
 export interface MenuRoute {
-    title: string;
+    translationKey: string;
     link: string;
     icon: string;
 }

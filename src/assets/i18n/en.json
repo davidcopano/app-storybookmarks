@@ -45,5 +45,7 @@
   "DELETE": "Delete",
   "HI": "Hi",
   "EDIT_PROFILE": "Edit profile",
-  "LOGOUT": "Log out"
+  "LOGOUT": "Log out",
+  "FOLDERS": "Folders",
+  "OPTIONS": "Options"
 }
