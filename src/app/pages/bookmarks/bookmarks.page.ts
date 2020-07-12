@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Bookmark } from '../../interfaces';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, IonSearchbar } from '@ionic/angular';
 
 @Component({
   selector: 'app-bookmarks',
@@ -10,6 +10,7 @@ import { IonInfiniteScroll } from '@ionic/angular';
 export class BookmarksPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  @ViewChild(IonSearchbar) searchBar: IonSearchbar;
 
   bookmarks: Bookmark[] = [];
   private bookmarksOrder: string = 'default';
@@ -60,8 +61,16 @@ export class BookmarksPage implements OnInit {
     }, 500);
   }
 
+  searchBookmarks($event) {
+    let value = $event.target.value;
+    
+    console.log('searchBookmarks()');
+    console.log(value);
+  }
+
   showSearchbar() {
     this.isSearching = true;
+    this.searchBar.setFocus();
   }
 
   hideSearchbar() {
