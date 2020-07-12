@@ -22,6 +22,11 @@ export class BookmarkOptionsComponent implements OnInit {
   private yesDeleteText: string;
   private cancelText: string;
 
+  private openLinkText: string;
+  private copyLinkText: string;
+  private editDataText: string;
+  private deleteText: string;
+
   constructor(private navParams: NavParams, private utilities: UtilitiesService, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController, private translateService: TranslateService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
@@ -33,6 +38,11 @@ export class BookmarkOptionsComponent implements OnInit {
       this.deleteBookmarkConfirmationText = translations.deleteBookmarkConfirmationText;
       this.yesDeleteText = translations.yesDeleteText;
       this.cancelText = translations.cancelText;
+
+      this.openLinkText = translations.openLinkText;
+      this.copyLinkText = translations.copyLinkText;
+      this.editDataText = translations.editDataText;
+      this.deleteText = translations.deleteText;
     });
   }
 
@@ -81,9 +91,23 @@ export class BookmarkOptionsComponent implements OnInit {
       this.translateService.get('DELETE_BOOKMARK_CONFIRMATION'),
       this.translateService.get('YES_DELETE'),
       this.translateService.get('CANCEL'),
+      this.translateService.get('OPEN_LINK'),
+      this.translateService.get('COPY_LINK'),
+      this.translateService.get('EDIT_DATA'),
+      this.translateService.get('DELETE'),
     ).pipe(
-      map(([linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText]) => {
-        return { linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText };
+      map(([linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText, openLinkText, copyLinkText, editDataText, deleteText]) => {
+        return {
+          linkCopiedToClipboardText,
+          deleteBookmarkText,
+          deleteBookmarkConfirmationText,
+          yesDeleteText,
+          cancelText,
+          openLinkText,
+          copyLinkText,
+          editDataText,
+          deleteText
+        };
       })
     );
   }

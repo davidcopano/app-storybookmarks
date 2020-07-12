@@ -38,5 +38,9 @@
   "ORDER_BY_OLDEST_BOOKMARKS": "Oldest to newest",
   "A_TO_Z": "A to Z",
   "Z_TO_A": "Z to A",
-  "SEARCH": "Search"
+  "SEARCH": "Search",
+  "OPEN_LINK": "Open link",
+  "COPY_LINK": "Copy link",
+  "EDIT_DATA": "Edit data",
+  "DELETE": "Delete"
 }
