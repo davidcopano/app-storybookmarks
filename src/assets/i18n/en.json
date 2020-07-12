@@ -42,5 +42,8 @@
   "OPEN_LINK": "Open link",
   "COPY_LINK": "Copy link",
   "EDIT_DATA": "Edit data",
-  "DELETE": "Delete"
+  "DELETE": "Delete",
+  "HI": "Hi",
+  "EDIT_PROFILE": "Edit profile",
+  "LOGOUT": "Log out"
 }

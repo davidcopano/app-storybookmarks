@@ -2,26 +2,34 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
+        <div class="menu-header">
+          <ion-text color="secondary">
+            <h2 class="ion-text-center">storybookmarks</h2>
+          </ion-text>
+          <ion-item color="primary" lines="none">
+            <ion-label>
+              <ion-icon name="person"></ion-icon>
+              {{ 'HI' | translate }}, usuario
+            </ion-label>
+            <ion-button color="light" fill="clear" slot="end" (click)="toggleUserOptions()">
+              <ion-icon [name]="showUserOptions ? 'chevron-up' : 'chevron-down'"></ion-icon>
+            </ion-button>
           </ion-item>
-        </ion-list>
+          <div class="user-options" [hidden]="!showUserOptions">
+            <ion-item button color="primary" lines="none">
+              <ion-label>
+                <ion-icon name="create"></ion-icon>
+                {{ 'EDIT_PROFILE' | translate }}
+              </ion-label>
+            </ion-item>
+            <ion-item button color="primary" lines="none">
+              <ion-label>
+                <ion-icon name="create"></ion-icon>
+                {{ 'LOGOUT' | translate }}
+              </ion-label>
+            </ion-item>
+          </div>
+        </div>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
