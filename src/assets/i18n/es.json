@@ -32,5 +32,10 @@
   "LINK_COPIED_TO_CLIPBOARD": "Enlace copiado al portapapeles",
   "DELETE_BOOKMARK": "Borrar marcador",
   "DELETE_BOOKMARK_CONFIRMATION": "¿Estás seguro de que deseas eliminar este marcador?",
-  "YES_DELETE": "Sí, eliminar"
+  "YES_DELETE": "Sí, eliminar",
+  "ORDER_BY": "Ordenar por",
+  "ORDER_BY_DEFAULT_BOOKMARKS": "Defecto (más nuevo a más antiguo)",
+  "ORDER_BY_OLDEST_BOOKMARKS": "Más antiguo a más nuevo",
+  "A_TO_Z": "De la A a la Z",
+  "Z_TO_A": "De la Z a la A"
 }

@@ -32,5 +32,10 @@
   "LINK_COPIED_TO_CLIPBOARD": "Link copied to clipboard",
   "DELETE_BOOKMARK": "Delete bookmark",
   "DELETE_BOOKMARK_CONFIRMATION": "Are you sure do you want to delete this bookmark?",
-  "YES_DELETE": "Yes, delete"
+  "YES_DELETE": "Yes, delete",
+  "ORDER_BY": "Order by",
+  "ORDER_BY_DEFAULT_BOOKMARKS": "Default (newest to oldest)",
+  "ORDER_BY_OLDEST_BOOKMARKS": "Oldest to newest",
+  "A_TO_Z": "A to Z",
+  "Z_TO_A": "Z to A"
 }

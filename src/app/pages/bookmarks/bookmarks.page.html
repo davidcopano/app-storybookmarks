@@ -18,12 +18,12 @@
     <u>{{ 'WARNING' | translate }}</u>: {{ 'WARNING_TEXT' | translate }}
   </p>
   <ion-item lines="none">
-    <ion-label>Ordenar por:</ion-label>
+    <ion-label>{{ 'ORDER_BY' | translate }}:</ion-label>
     <ion-select interface="action-sheet" [cancelText]="'CANCEL' | translate" [(ngModel)]="bookmarksOrder">
-      <ion-select-option value="default">Defecto (más nuevo a más antiguo)</ion-select-option>
-      <ion-select-option value="oldest_to_lowest">Más antiguo a más nuevo</ion-select-option>
-      <ion-select-option value="a_to_z">De la A a la Z</ion-select-option>
-      <ion-select-option value="z_to_a">De la Z a la A</ion-select-option>
+      <ion-select-option value="default">{{ 'ORDER_BY_DEFAULT_BOOKMARKS' | translate }}</ion-select-option>
+      <ion-select-option value="oldest_to_lowest">{{ 'ORDER_BY_OLDEST_BOOKMARKS' | translate }}</ion-select-option>
+      <ion-select-option value="a_to_z">{{ 'A_TO_Z' | translate}}</ion-select-option>
+      <ion-select-option value="z_to_a">{{ 'Z_TO_A' | translate }}</ion-select-option>
     </ion-select>
   </ion-item>
   <app-bookmark [item]="bookmark" *ngFor="let bookmark of bookmarks"></app-bookmark>
