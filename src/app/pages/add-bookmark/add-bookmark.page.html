@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -19,7 +19,7 @@
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'BOOKMARK_COLOR' | translate }}</ion-label>
-      <ion-input class="light-input" type="color" formControlName="color"></ion-input>
+      <ion-input class="light-input" type="color" formControlName="color" [style.border-bottom]="'4px solid ' + form?.get('color').value"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'NOTE' | translate }}
