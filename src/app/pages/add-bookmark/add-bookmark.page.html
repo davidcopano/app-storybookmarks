@@ -10,8 +10,26 @@
 <ion-content class="ion-padding">
   <form [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
     <ion-item class="with-light-input" lines="none">
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-label class="dark-label" position="stacked">{{ 'TITLE' | translate }}</ion-label>
+      <ion-input class="light-input" type="text"></ion-input>
+    </ion-item>
+    <ion-item class="with-light-input ion-margin-top" lines="none">
+      <ion-label class="dark-label" position="stacked">{{ 'LINK' | translate }}</ion-label>
+      <ion-input class="light-input" type="url"></ion-input>
+    </ion-item>
+    <ion-item class="with-light-input ion-margin-top" lines="none">
+      <ion-label class="dark-label" position="stacked">{{ 'BOOKMARK_COLOR' | translate }}</ion-label>
+      <ion-input class="light-input" type="color"></ion-input>
+    </ion-item>
+    <ion-item class="with-light-input ion-margin-top" lines="none">
+      <ion-label class="dark-label" position="stacked">{{ 'NOTE' | translate }} ({{ 'OPTIONAL' | translate | lowercase }})</ion-label>
+      <ion-input class="light-input" type="text"></ion-input>
+    </ion-item>
+    <ion-item class="with-light-input ion-margin-top" lines="none">
+      <ion-label class="dark-label ion-padding-top" position="stacked">{{ 'FOLDER' | translate }} ({{ 'OPTIONAL' | translate | lowercase }})</ion-label>
+      <ion-select class="light-select">
+        <ion-select-option value="1">fdsfds</ion-select-option>
+      </ion-select>
     </ion-item>
   </form>
 </ion-content>

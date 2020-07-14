@@ -5,17 +5,40 @@ ion-item.with-light-input {
     ion-label {
         --color: var(--ion-color-secondary) !important;
         transform: initial !important;
+        &.dark-label {
+            --color: var(--ion-color-dark) !important;
+        }
     }
     &.item-has-focus {
         ion-label {
             color: var(--ion-color-secondary) !important;
+            &.dark-label {
+                color: var(--ion-color-dark) !important;
+                --color: var(--ion-color-dark) !important;
+            }
         }
     }
     ion-input {
-        --background: #E5E5E5;
+        --background: #e5e5e5;
         margin-top: 12px;
         --padding-start: 12px !important;
         --padding-end: 12px;
+        &.light-input {
+            --background: white;
+            border: 1px solid #d4d4d4;
+        }
+    }
+    ion-select {
+        margin-top: 12px;
+        margin-bottom: 12px;
+        height: 40px;
+        --background: #e5e5e5;
+        --padding-start: 12px !important;
+        --padding-end: 12px;
+        &.light-select {
+            --background: white;
+            border: 1px solid #d4d4d4;
+        }
     }
 }
 
