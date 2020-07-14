@@ -59,5 +59,6 @@
   "OPTIONAL": "Opcional",
   "CREATE_THIS_BOOKMARK_AS_PUBLIC": "Crear este marcador como público",
   "WHEN_DOES_THE_PUBLIC_BOOKMARK_EXPIRE": "¿Cuándo expira el marcador público?",
-  "SAVE": "Guardar"
+  "SAVE": "Guardar",
+  "VIEW": "Ver"
 }
