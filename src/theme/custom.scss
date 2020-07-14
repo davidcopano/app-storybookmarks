@@ -40,6 +40,9 @@ ion-item.with-light-input {
             border: 1px solid #d4d4d4;
         }
     }
+    ion-toggle + ion-label {
+        margin-top: 8px !important;
+    }
 }
 
 .clear-both {

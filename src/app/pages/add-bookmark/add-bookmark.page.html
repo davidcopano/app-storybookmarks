@@ -11,25 +11,39 @@
   <form [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
     <ion-item class="with-light-input" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'TITLE' | translate }}</ion-label>
-      <ion-input class="light-input" type="text"></ion-input>
+      <ion-input class="light-input" type="text" formControlName="title"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'LINK' | translate }}</ion-label>
-      <ion-input class="light-input" type="url"></ion-input>
+      <ion-input class="light-input" type="url" formControlName="url"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'BOOKMARK_COLOR' | translate }}</ion-label>
-      <ion-input class="light-input" type="color"></ion-input>
+      <ion-input class="light-input" type="color" formControlName="color"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
-      <ion-label class="dark-label" position="stacked">{{ 'NOTE' | translate }} ({{ 'OPTIONAL' | translate | lowercase }})</ion-label>
-      <ion-input class="light-input" type="text"></ion-input>
+      <ion-label class="dark-label" position="stacked">{{ 'NOTE' | translate }}
+        ({{ 'OPTIONAL' | translate | lowercase }})</ion-label>
+      <ion-input class="light-input" type="text" formControlName="note"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
-      <ion-label class="dark-label ion-padding-top" position="stacked">{{ 'FOLDER' | translate }} ({{ 'OPTIONAL' | translate | lowercase }})</ion-label>
-      <ion-select class="light-select">
+      <ion-label class="dark-label ion-padding-top" position="stacked">{{ 'FOLDER' | translate }}
+        ({{ 'OPTIONAL' | translate | lowercase }})</ion-label>
+      <ion-select class="light-select" formControlName="folder_id">
         <ion-select-option value="1">fdsfds</ion-select-option>
       </ion-select>
     </ion-item>
+    <ion-item class="with-light-input ion-margin-top" lines="none">
+      <ion-toggle color="primary" slot="start" formControlName="public"></ion-toggle>
+      <ion-label class="dark-label" position="stacked">{{ 'CREATE_THIS_BOOKMARK_AS_PUBLIC' | translate }}</ion-label>
+    </ion-item>
+    <ion-item class="with-light-input ion-margin-bottom" lines="none">
+      <ion-label class="dark-label ion-padding-top" position="stacked">
+        {{ 'WHEN_DOES_THE_PUBLIC_BOOKMARK_EXPIRE' | translate }}</ion-label>
+      <ion-datetime color="primary" formControlName="expiration_date"></ion-datetime>
+    </ion-item>
+    <ion-button type="submit" class="clear-both save-button" expand="full" color="primary" [disabled]="!form.valid">
+      {{'SAVE' | translate}}
+    </ion-button>
   </form>
 </ion-content>

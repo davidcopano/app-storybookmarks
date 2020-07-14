@@ -16,11 +16,11 @@ export class AddBookmarkPage implements OnInit {
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
       url: ['', Validators.required],
-      color: ['', Validators.required],
+      color: ['#000000', Validators.required],
       note: [''],
       folder_id: [''],
       public: [''],
-      expiration_date: ['']
+      expiration_date: [new Date().toISOString()]
     })
   }
 
