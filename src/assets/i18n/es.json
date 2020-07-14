@@ -60,5 +60,7 @@
   "CREATE_THIS_BOOKMARK_AS_PUBLIC": "Crear este marcador como público",
   "WHEN_DOES_THE_PUBLIC_BOOKMARK_EXPIRE": "¿Cuándo expira el marcador público?",
   "SAVE": "Guardar",
-  "VIEW": "Ver"
+  "VIEW": "Ver",
+  "DELETE_FOLDER": "Eliminar carpeta",
+  "DELETE_FOLDER_CONFIRMATION": "¿Estás seguro de que deseas eliminar esta carpeta?"
 }

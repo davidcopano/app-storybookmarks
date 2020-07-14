@@ -60,5 +60,7 @@
   "CREATE_THIS_BOOKMARK_AS_PUBLIC": "Create this bookmark as public",
   "WHEN_DOES_THE_PUBLIC_BOOKMARK_EXPIRE": "When does the public bookmark expire?",
   "SAVE": "Save",
-  "VIEW": "View"
+  "VIEW": "View",
+  "DELETE_FOLDER": "Delete folder",
+  "DELETE_FOLDER_CONFIRMATION": "Are you sure do you want to delete this folder?"
 }
