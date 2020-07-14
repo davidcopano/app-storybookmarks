@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-bookmark',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddBookmarkPage implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      title: ['', Validators.required],
+      url: ['', Validators.required],
+      color: ['', Validators.required],
+      note: [''],
+      folder_id: [''],
+      public: [''],
+      expiration_date: ['']
+    })
   }
 
+  submitForm() {
+    console.log('submitForm()');
+    console.log(this.form.value);
+  }
 }

@@ -3,10 +3,15 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'CREATE' | translate }} {{ 'BOOKMARK' | translate }}</ion-title>
+    <ion-title>{{ 'CREATE' | translate }} {{ 'BOOKMARK' | translate | lowercase }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <form [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
+    <ion-item class="with-light-input" lines="none">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+  </form>
 </ion-content>
