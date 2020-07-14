@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     },
     {
       translationKey: 'FOLDERS',
-      link: '/bookmarks',
+      link: '/folders',
       icon: 'folder'
     },
     {
