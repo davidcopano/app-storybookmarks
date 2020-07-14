@@ -63,7 +63,7 @@ export class BookmarkOptionsComponent implements OnInit {
       state: {
         bookmark: this.item
       }
-    })
+    });
   }
 
   async delete() {
