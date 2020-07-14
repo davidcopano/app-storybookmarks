@@ -14,6 +14,8 @@ export class FolderOptionsComponent implements OnInit {
 
   item: Folder;
 
+  private viewText: string;
+  private bookmarksText: string;
   private yesDeleteText: string;
   private cancelText: string;
   private editDataText: string;
@@ -25,6 +27,8 @@ export class FolderOptionsComponent implements OnInit {
     this.item = this.navParams.get('item');
     let translationTexts = this.getTranslationValues();
     translationTexts.subscribe(translations => {
+      this.viewText = translations.viewText;
+      this.bookmarksText = translations.bookmarksText;
       this.yesDeleteText = translations.yesDeleteText;
       this.cancelText = translations.cancelText;
       this.editDataText = translations.editDataText;
@@ -34,13 +38,17 @@ export class FolderOptionsComponent implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
+      this.translateService.get('VIEW'),
+      this.translateService.get('BOOKMARKS'),
       this.translateService.get('YES_DELETE'),
       this.translateService.get('CANCEL'),
       this.translateService.get('EDIT_DATA'),
       this.translateService.get('DELETE'),
     ).pipe(
-      map(([yesDeleteText, cancelText, editDataText, deleteText]) => {
+      map(([viewText, bookmarksText, yesDeleteText, cancelText, editDataText, deleteText]) => {
         return {
+          viewText,
+          bookmarksText,
           yesDeleteText,
           cancelText,
           editDataText,
