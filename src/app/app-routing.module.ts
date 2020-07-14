@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'bookmarks',
     loadChildren: () => import('./pages/bookmarks/bookmarks.module').then( m => m.BookmarksPageModule)
   },
+  {
+    path: 'add-bookmark',
+    loadChildren: () => import('./pages/add-bookmark/add-bookmark.module').then( m => m.AddBookmarkPageModule)
+  },
 ];
 
 @NgModule({

@@ -47,5 +47,9 @@
   "EDIT_PROFILE": "Editar perfil",
   "LOGOUT": "Cerrar sesión",
   "FOLDERS": "Carpetas",
-  "OPTIONS": "Opciones"
+  "OPTIONS": "Opciones",
+  "CREATE": "Crear",
+  "EDIT": "Editar",
+  "BOOKMARK": "Marcador",
+  "FOLDER": "Carpeta"
 }

@@ -47,5 +47,9 @@
   "EDIT_PROFILE": "Edit profile",
   "LOGOUT": "Log out",
   "FOLDERS": "Folders",
-  "OPTIONS": "Options"
+  "OPTIONS": "Options",
+  "CREATE": "Create",
+  "EDIT": "Edit",
+  "BOOKMARK": "Bookmark",
+  "FOLDER": "Folder"
 }
