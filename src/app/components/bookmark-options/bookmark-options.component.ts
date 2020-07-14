@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bookmark } from '../../interfaces';
-import { NavParams, PopoverController, AlertController } from '@ionic/angular';
+import { NavParams, PopoverController, AlertController, NavController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -27,7 +27,7 @@ export class BookmarkOptionsComponent implements OnInit {
   private editDataText: string;
   private deleteText: string;
 
-  constructor(private navParams: NavParams, private utilities: UtilitiesService, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController, private translateService: TranslateService, private alertCtrl: AlertController) { }
+  constructor(private navCtrl: NavController, private navParams: NavParams, private utilities: UtilitiesService, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController, private translateService: TranslateService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
@@ -55,6 +55,15 @@ export class BookmarkOptionsComponent implements OnInit {
     this.utilities.copyToClipboard(this.item.url);
     this.closeSelf();
     this.utilities.showToast(this.linkCopiedToClipboardText);
+  }
+
+  async editData() {
+    this.closeSelf();
+    this.navCtrl.navigateForward('/bookmarks/edit', {
+      state: {
+        bookmark: this.item
+      }
+    })
   }
 
   async delete() {

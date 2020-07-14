@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-bookmark',
-  templateUrl: './add-bookmark.page.html',
-  styleUrls: ['./add-bookmark.page.scss'],
+  selector: 'app-edit-bookmark',
+  templateUrl: './edit-bookmark.page.html',
+  styleUrls: ['./edit-bookmark.page.scss'],
 })
-export class AddBookmarkPage implements OnInit {
+export class EditBookmarkPage implements OnInit {
 
   form: FormGroup;
 
@@ -28,5 +28,5 @@ export class AddBookmarkPage implements OnInit {
     console.log('submitForm()');
     console.log(this.form.value);
   }
-  
+
 }
