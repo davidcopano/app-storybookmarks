@@ -21,7 +21,7 @@ export class FoldersPage implements OnInit {
     for (let i = 1; i <= 5; i++) {
       this.folders.push({
         id: i.toString(),
-        name: `Carpeta ${i + 1}`,
+        name: `Carpeta ${i}`,
         color: 'red',
         created_at: new Date().toISOString(),
         user_id: 1
@@ -29,4 +29,38 @@ export class FoldersPage implements OnInit {
     }
   }
 
+  loadMoreBookmarks($event) {
+    setTimeout(() => {
+      for (let i = 1; i <= 5; i++) {
+        this.folders.push({
+          id: i.toString(),
+          name: `Carpeta ${i}`,
+          color: 'red',
+          created_at: new Date().toISOString(),
+          user_id: 1
+        });
+      }
+      $event.target.complete();
+
+      if (this.folders.length == 50) {
+        this.infiniteScroll.disabled = true;
+      }
+    }, 500);
+  }
+
+  search($event) {
+    let value = $event.target.value;
+
+    console.log('search()');
+    console.log(value);
+  }
+
+  showSearchbar() {
+    this.isSearching = true;
+    this.searchBar.setFocus();
+  }
+
+  hideSearchbar() {
+    this.isSearching = false;
+  }
 }

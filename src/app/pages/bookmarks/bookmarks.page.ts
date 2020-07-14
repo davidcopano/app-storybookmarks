@@ -61,10 +61,10 @@ export class BookmarksPage implements OnInit {
     }, 500);
   }
 
-  searchBookmarks($event) {
+  search($event) {
     let value = $event.target.value;
     
-    console.log('searchBookmarks()');
+    console.log('search()');
     console.log(value);
   }
 

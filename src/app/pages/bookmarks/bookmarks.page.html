@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-searchbar [placeholder]="'SEARCH' | translate" showCancelButton="always" cancelButtonIcon="close" clearIcon="trash" enterkeyhint="search" [hidden]="!isSearching" (ionInput)="searchBookmarks($event)" (ionCancel)="hideSearchbar()"></ion-searchbar>
+    <ion-searchbar [placeholder]="'SEARCH' | translate" showCancelButton="always" cancelButtonIcon="close" clearIcon="trash" enterkeyhint="search" [hidden]="!isSearching" (ionInput)="search($event)" (ionCancel)="hideSearchbar()"></ion-searchbar>
     <ion-title [hidden]="isSearching">{{ 'BOOKMARKS' | translate }}</ion-title>
     <ion-buttons [hidden]="isSearching" slot="end">
       <ion-button (click)="showSearchbar()">
