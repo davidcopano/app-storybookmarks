@@ -1,9 +1,16 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>view-folder-bookmarks</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'BOOKMARKS' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <app-bookmark [item]="bookmark" *ngFor="let bookmark of bookmarks"></app-bookmark>
+  <ion-infinite-scroll class="ion-margin-top" threshold="100px" (ionInfinite)="loadMoreBookmarks($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
