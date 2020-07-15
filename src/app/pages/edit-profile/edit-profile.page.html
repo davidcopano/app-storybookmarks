@@ -9,7 +9,7 @@
 
 <ion-content class="ion-padding">
   <form [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
-    <ion-item class="with-light-input" lines="none">
+    <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'USER' | translate }}</ion-label>
       <ion-input class="light-input" type="text" formControlName="user"></ion-input>
     </ion-item>
