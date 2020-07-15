@@ -14,16 +14,16 @@ export class FolderOptionsComponent implements OnInit {
 
   item: Folder;
 
-  private viewText: string;
-  private bookmarksText: string;
-  private yesDeleteText: string;
-  private cancelText: string;
-  private editDataText: string;
-  private deleteText: string;
-  private deleteFolderText: string;
-  private deleteFolderConfirmationText: string;
+  public viewText: string;
+  public bookmarksText: string;
+  public yesDeleteText: string;
+  public cancelText: string;
+  public editDataText: string;
+  public deleteText: string;
+  public deleteFolderText: string;
+  public deleteFolderConfirmationText: string;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private translateService: TranslateService, private popoverCtrl: PopoverController, private alertCtrl: AlertController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public translateService: TranslateService, public popoverCtrl: PopoverController, public alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
@@ -81,11 +81,11 @@ export class FolderOptionsComponent implements OnInit {
     await alert.present();
   }
 
-  private closeSelf() {
+  public closeSelf() {
     return this.popoverCtrl.dismiss();
   }
 
-  private getTranslationValues() {
+  public getTranslationValues() {
     return forkJoin(
       this.translateService.get('VIEW'),
       this.translateService.get('BOOKMARKS'),

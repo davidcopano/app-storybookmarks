@@ -33,10 +33,10 @@ export class AppComponent implements OnInit {
   ]
 
   constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private translateService: TranslateService,
-    private langService: LangService
+    public platform: Platform,
+    public splashScreen: SplashScreen,
+    public translateService: TranslateService,
+    public langService: LangService
   ) {
     this.initializeApp();
   }

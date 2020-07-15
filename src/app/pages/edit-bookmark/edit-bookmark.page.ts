@@ -12,7 +12,7 @@ export class EditBookmarkPage implements OnInit {
   bookmark: Bookmark;
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.bookmark = history.state.bookmark;

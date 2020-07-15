@@ -12,9 +12,9 @@ export class FolderComponent implements OnInit {
 
   @Input() item: Folder;
 
-  private itemDefaultBorderColor: string = 'black';
+  public itemDefaultBorderColor: string = 'black';
 
-  constructor(private popoverCtrl: PopoverController) { }
+  constructor(public popoverCtrl: PopoverController) { }
 
   ngOnInit() {}
 

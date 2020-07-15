@@ -16,18 +16,18 @@ export class BookmarkOptionsComponent implements OnInit {
 
   item: Bookmark;
 
-  private linkCopiedToClipboardText: string;
-  private deleteBookmarkText: string;
-  private deleteBookmarkConfirmationText: string;
-  private yesDeleteText: string;
-  private cancelText: string;
+  public linkCopiedToClipboardText: string;
+  public deleteBookmarkText: string;
+  public deleteBookmarkConfirmationText: string;
+  public yesDeleteText: string;
+  public cancelText: string;
 
-  private openLinkText: string;
-  private copyLinkText: string;
-  private editDataText: string;
-  private deleteText: string;
+  public openLinkText: string;
+  public copyLinkText: string;
+  public editDataText: string;
+  public deleteText: string;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private utilities: UtilitiesService, private inAppBrowser: InAppBrowser, private popoverCtrl: PopoverController, private translateService: TranslateService, private alertCtrl: AlertController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public utilities: UtilitiesService, public inAppBrowser: InAppBrowser, public popoverCtrl: PopoverController, public translateService: TranslateService, public alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
@@ -89,11 +89,11 @@ export class BookmarkOptionsComponent implements OnInit {
     await alert.present();
   }
 
-  private closeSelf() {
+  public closeSelf() {
     return this.popoverCtrl.dismiss();
   }
 
-  private getTranslationValues() {
+  public getTranslationValues() {
     return forkJoin(
       this.translateService.get('LINK_COPIED_TO_CLIPBOARD'),
       this.translateService.get('DELETE_BOOKMARK'),

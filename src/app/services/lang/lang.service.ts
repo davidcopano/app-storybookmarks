@@ -7,9 +7,9 @@ import { Storage } from '@ionic/storage';
 export class LangService {
 
   public currentLang: string;
-  private supportedLangs = ['es', 'en'];
+  public supportedLangs = ['es', 'en'];
 
-  constructor(private storage: Storage) { }
+  constructor(public storage: Storage) { }
 
   async loadSavedLang() {
     this.currentLang = await this.storage.get('lang');

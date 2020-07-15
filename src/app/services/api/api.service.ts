@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  private API_URL = 'https://api.storybookmarks.dcopano.xyz/'
+  public API_URL = 'https://api.storybookmarks.dcopano.xyz/'
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(public httpClient: HttpClient) { }
 
   login(email: string, password: string) {
     return this.httpClient.post(this.API_URL + 'login', { email: email, password: password });

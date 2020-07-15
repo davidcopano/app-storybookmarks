@@ -12,7 +12,7 @@ export class EditFolderPage implements OnInit {
   folder: Folder;
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.folder = history.state.folder;

@@ -5,10 +5,12 @@ import { FolderComponent } from './folder/folder.component';
 import { FolderOptionsComponent } from './folder-options/folder-options.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { IonicModule } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
-        IonicModule
+        IonicModule,
+        TranslateModule
     ],
     declarations: [
         BookmarkComponent,

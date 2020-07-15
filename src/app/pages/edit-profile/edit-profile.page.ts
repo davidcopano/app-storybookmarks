@@ -10,7 +10,7 @@ export class EditProfilePage implements OnInit {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

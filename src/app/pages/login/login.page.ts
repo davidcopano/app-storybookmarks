@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   public passwordTypeInput = 'password';
   public form: FormGroup;
 
-  constructor(private navCtrl: NavController, private formBuilder: FormBuilder, private apiService: ApiService, private utilitiesService: UtilitiesService, private facebook: Facebook, private google: GooglePlus) { }
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public apiService: ApiService, public utilitiesService: UtilitiesService, public facebook: Facebook, public google: GooglePlus) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

@@ -10,8 +10,8 @@ export class SearchResultsComponent implements OnInit {
 
   @Input() query: string;
 
-  private bookmarks: Bookmark[] = [];
-  private folders: Folder[] = [];
+  public bookmarks: Bookmark[] = [];
+  public folders: Folder[] = [];
 
   constructor() { }
 

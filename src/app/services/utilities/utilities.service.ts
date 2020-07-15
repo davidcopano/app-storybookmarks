@@ -12,9 +12,9 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
 })
 export class UtilitiesService {
 
-  private loading: HTMLIonLoadingElement;
+  public loading: HTMLIonLoadingElement;
 
-  constructor(private loadingCtrl: LoadingController, private alertCtrl: AlertController, private platform: Platform, private toast: ToastController, private storage: Storage, private langService: LangService, private translateService: TranslateService, private spinnerDialog: SpinnerDialog, private clipboard: Clipboard) { }
+  constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, public platform: Platform, public toast: ToastController, public storage: Storage, public langService: LangService, public translateService: TranslateService, public spinnerDialog: SpinnerDialog, public clipboard: Clipboard) { }
 
   /**
    * Cierra la sesión borrando todos los datos del usuario actual
@@ -145,7 +145,7 @@ export class UtilitiesService {
    * Devuelve un array conteniendo los errores totales de una petición HTTP
    * @param httpErrorResponse Error HTTP
    */
-  private getArrayOfHttpErrors(httpErrorResponse: HttpErrorResponse) {
+  public getArrayOfHttpErrors(httpErrorResponse: HttpErrorResponse) {
     let keys = Object.keys(httpErrorResponse.error.errors);
     let errorMessages: string[] = [];
     for (let key of keys) {

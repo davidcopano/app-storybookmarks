@@ -9,7 +9,7 @@ import { LangService } from '../../services/lang/lang.service';
 })
 export class TutorialPage implements OnInit {
 
-  constructor(public translateService: TranslateService, private langService: LangService) { }
+  constructor(public translateService: TranslateService, public langService: LangService) { }
 
   ngOnInit() {
   }
