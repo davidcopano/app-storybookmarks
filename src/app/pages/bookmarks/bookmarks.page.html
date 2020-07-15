@@ -36,7 +36,7 @@
     </ion-infinite-scroll>
   </div>
   <app-search-results [query]="searchTerm" [hidden]="!isSearching"></app-search-results>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" [hidden]="isSearching">
     <ion-fab-button color="primary" routerLink="/bookmarks/add">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

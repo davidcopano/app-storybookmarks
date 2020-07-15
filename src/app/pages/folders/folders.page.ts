@@ -14,6 +14,7 @@ export class FoldersPage implements OnInit {
 
   folders: Folder[] = [];
   private isSearching: boolean = false;
+  private searchTerm: string;
 
   constructor() { }
 
@@ -50,9 +51,7 @@ export class FoldersPage implements OnInit {
 
   search($event) {
     let value = $event.target.value;
-
-    console.log('search()');
-    console.log(value);
+    this.searchTerm = value;
   }
 
   showSearchbar() {
