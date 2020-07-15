@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FoldersPage } from './folders.page';
 import { AddFolderPage } from '../add-folder/add-folder.page';
+import { EditFolderPage } from '../edit-folder/edit-folder.page';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddFolderPage
+  },
+  {
+    path: 'edit',
+    component: EditFolderPage
   }
 ];
 

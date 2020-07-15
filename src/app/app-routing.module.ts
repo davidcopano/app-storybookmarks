@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'add-folder',
     loadChildren: () => import('./pages/add-folder/add-folder.module').then( m => m.AddFolderPageModule)
   },
+  {
+    path: 'edit-folder',
+    loadChildren: () => import('./pages/edit-folder/edit-folder.module').then( m => m.EditFolderPageModule)
+  },
 ];
 
 @NgModule({

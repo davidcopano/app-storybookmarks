@@ -40,6 +40,15 @@ export class FolderOptionsComponent implements OnInit {
     });
   }
 
+  async editData() {
+    this.closeSelf();
+    this.navCtrl.navigateForward('/folders/edit', {
+      state: {
+        folder: this.item
+      }
+    });
+  }
+
   async delete() {
     let alert = await this.alertCtrl.create({
       header: this.deleteFolderText,

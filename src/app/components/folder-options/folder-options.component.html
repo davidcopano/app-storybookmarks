@@ -1,7 +1,7 @@
 <ion-item button lines="none">
   <ion-label>{{ viewText }} <span class="ion-text-lowercase">{{ bookmarksText }}</span></ion-label>
 </ion-item>
-<ion-item button lines="none">
+<ion-item button lines="none" (click)="editData()">
   <ion-label>{{ editDataText }}</ion-label>
 </ion-item>
 <ion-item button lines="none" (click)="delete()">
