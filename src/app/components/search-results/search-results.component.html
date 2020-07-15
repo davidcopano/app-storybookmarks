@@ -1,3 +1,11 @@
-<div class="no-query" *ngIf="!query">
+<div class="no-query" [hidden]="query">
   {{ 'SEARCH_RESULTS_ENTER_TEXT' | translate }}
+</div>
+<div class="search-results" [hidden]="!query">
+  <div class="bookmarks">
+    <h4>{{ 'BOOKMARKS' | translate }}</h4>
+  </div>
+  <div class="folders">
+    <h4>{{ 'FOLDERS' | translate }}</h4>
+  </div>
 </div>

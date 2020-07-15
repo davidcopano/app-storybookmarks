@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Bookmark, Folder } from '../../interfaces';
 
 @Component({
   selector: 'app-search-results',
@@ -9,11 +10,37 @@ export class SearchResultsComponent implements OnInit {
 
   @Input() query: string;
 
+  private bookmarks: Bookmark[] = [];
+  private folders: Folder[] = [];
+
   constructor() { }
 
   ngOnInit() {
-    console.log('query en search-results = ');
-    console.log(this.query);
+    for (let i = 1; i <= 5; i++) {
+      this.bookmarks.push({
+        id: i.toString(),
+        color: 'red',
+        created_at: new Date().toISOString(),
+        folder_id: null,
+        public: false,
+        title: `Carpeta ${i}`,
+        url: 'https://www.google.es',
+        user_id: 2,
+        expiration_date: null,
+        note: null,
+        tag_id: null
+      });
+    }
+
+    for (let i = 1; i <= 5; i++) {
+      this.folders.push({
+        id: i.toString(),
+        name: `Carpeta ${i}`,
+        color: 'red',
+        created_at: new Date().toISOString(),
+        user_id: 1
+      });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
