@@ -12,9 +12,9 @@ export class FoldersPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonSearchbar) searchBar: IonSearchbar;
 
-  folders: Folder[] = [];
-  private isSearching: boolean = false;
-  private searchTerm: string;
+  public folders: Folder[] = [];
+  public isSearching: boolean = false;
+  public searchTerm: string;
 
   constructor() { }
 
@@ -30,7 +30,7 @@ export class FoldersPage implements OnInit {
     }
   }
 
-  loadMoreBookmarks($event) {
+  public loadMoreBookmarks($event) {
     setTimeout(() => {
       for (let i = 1; i <= 5; i++) {
         this.folders.push({

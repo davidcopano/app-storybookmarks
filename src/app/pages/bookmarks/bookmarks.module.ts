@@ -8,6 +8,7 @@ import { BookmarksPage } from './bookmarks.page';
 import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.component';
 import { SearchResultsComponent } from 'src/app/components/search-results/search-results.component';
 import { FolderComponent } from 'src/app/components/folder/folder.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -16,9 +17,9 @@ import { FolderComponent } from 'src/app/components/folder/folder.component';
     ReactiveFormsModule,
     IonicModule,
     BookmarksPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    ComponentsModule
   ],
-  entryComponents: [BookmarkComponent, FolderComponent, SearchResultsComponent],
-  declarations: [BookmarksPage, BookmarkComponent, FolderComponent, SearchResultsComponent]
+  declarations: [BookmarksPage]
 })
 export class BookmarksPageModule { }

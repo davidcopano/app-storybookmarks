@@ -12,10 +12,10 @@ export class BookmarksPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonSearchbar) searchBar: IonSearchbar;
 
-  bookmarks: Bookmark[] = [];
-  private bookmarksOrder: string = 'default';
-  private isSearching: boolean = false;
-  private searchTerm: string;
+  public bookmarks: Bookmark[] = [];
+  public bookmarksOrder: string = 'default';
+  public isSearching: boolean = false;
+  public searchTerm: string;
 
   constructor() { }
 
