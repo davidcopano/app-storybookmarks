@@ -74,5 +74,6 @@
   "DARK_MODE": "Dark mode",
   "ENABLE_MULTIMEDIA_DESCRIPTION": "By enabling this option, the URLs you have, if they are images or videos, will be displayed inside the bookmark, being able to see the content without having to go to the link.",
   "ENABLE_MULTIMEDIA_WARNING": "If you enable this option, the bookmark list may consume more data",
-  "ENABLE_DARK_MODE_DESCRIPTION": "Enabling this option will activate the dark mode in all sections of the app."
+  "ENABLE_DARK_MODE_DESCRIPTION": "Enabling this option will activate the dark mode in all sections of the app.",
+  "LEAVE_PASSWORD_EMPTY": "Leave empty to not change it"
 }

@@ -15,15 +15,15 @@
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">Email</ion-label>
-      <ion-input class="light-input" type="text" formControlName="email"></ion-input>
+      <ion-input class="light-input" type="email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'PASSWORD' | translate }}</ion-label>
-      <ion-input class="light-input" type="password" formControlName="password"></ion-input>
+      <ion-input class="light-input" type="password" [placeholder]="'LEAVE_PASSWORD_EMPTY' | translate" formControlName="password"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'REPEAT_PASSWORD' | translate }}</ion-label>
-      <ion-input class="light-input" type="password" formControlName="password_confirmation"></ion-input>
+      <ion-input class="light-input" type="password" [placeholder]="'LEAVE_PASSWORD_EMPTY' | translate" formControlName="password_confirmation"></ion-input>
     </ion-item>
     <ion-button type="submit" class="clear-both save-button" expand="full" color="primary" [disabled]="!form.valid">
       {{'SAVE' | translate}}
