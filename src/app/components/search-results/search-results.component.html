@@ -6,14 +6,14 @@
     <h4 class="title">{{ 'BOOKMARKS' | translate }}</h4>
     <h5 class="subtitle ion-text-lowercase" [hidden]="bookmarks?.length === 0">{{ bookmarks?.length }}
       {{ 'RESULTS' | translate }}</h5>
-    <h5 class="subtitle ion-text-lowercase" [hidden]="bookmarks?.length > 0">{{ 'NO_RESULTS_FOUND' | translate }}</h5>
+    <h5 class="subtitle" [hidden]="bookmarks?.length > 0">{{ 'NO_RESULTS_FOUND' | translate }}</h5>
     <app-bookmark [item]="bookmark" *ngFor="let bookmark of bookmarks"></app-bookmark>
   </div>
   <div class="folders ion-margin-top">
     <h4 class="title">{{ 'FOLDERS' | translate }}</h4>
     <h5 class="subtitle ion-text-lowercase" [hidden]="folders?.length === 0">{{ folders?.length }}
       {{ 'RESULTS' | translate }}</h5>
-    <h5 class="subtitle ion-text-lowercase" [hidden]="folders?.length > 0">{{ 'NO_RESULTS_FOUND' | translate }}</h5>
+    <h5 class="subtitle" [hidden]="folders?.length > 0">{{ 'NO_RESULTS_FOUND' | translate }}</h5>
     <app-folder [item]="folder" *ngFor="let folder of folders"></app-folder>
   </div>
 </div>
