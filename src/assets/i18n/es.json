@@ -64,5 +64,6 @@
   "DELETE_FOLDER": "Eliminar carpeta",
   "DELETE_FOLDER_CONFIRMATION": "¿Estás seguro de que deseas eliminar esta carpeta?",
   "FOLDER_COLOR": "Color de la carpeta",
-  "NAME": "Nombre"
+  "NAME": "Nombre",
+  "BOOKMARKS_OF_FOLDER": "Marcadores de la carpeta"
 }

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'BOOKMARKS' | translate }}</ion-title>
+    <ion-title>{{ 'BOOKMARKS_OF_FOLDER' | translate }} <span *ngIf="folder">"{{ folder?.name }}"</span></ion-title>
   </ion-toolbar>
 </ion-header>
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { Bookmark } from 'src/app/interfaces';
+import { Bookmark, Folder } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-view-folder-bookmarks',
@@ -11,11 +11,13 @@ export class ViewFolderBookmarksPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
+  folder: Folder;
   bookmarks: Bookmark[] = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.folder = history.state.folder;
     for (let i = 1; i <= 5; i++) {
       this.bookmarks.push({
         id: i.toString(),
