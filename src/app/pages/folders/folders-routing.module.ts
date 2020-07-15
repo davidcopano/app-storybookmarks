@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FoldersPage } from './folders.page';
 import { AddFolderPage } from '../add-folder/add-folder.page';
 import { EditFolderPage } from '../edit-folder/edit-folder.page';
+import { ViewFolderBookmarksPage } from '../view-folder-bookmarks/view-folder-bookmarks.page';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'edit',
     component: EditFolderPage
+  },
+  {
+    path: 'view-bookmarks',
+    component: ViewFolderBookmarksPage
   }
 ];
 

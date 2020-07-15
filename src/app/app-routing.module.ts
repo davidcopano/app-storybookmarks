@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'edit-folder',
     loadChildren: () => import('./pages/edit-folder/edit-folder.module').then( m => m.EditFolderPageModule)
   },
+  {
+    path: 'view-folder-bookmarks',
+    loadChildren: () => import('./pages/view-folder-bookmarks/view-folder-bookmarks.module').then( m => m.ViewFolderBookmarksPageModule)
+  },
 ];
 
 @NgModule({

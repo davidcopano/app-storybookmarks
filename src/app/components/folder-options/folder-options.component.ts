@@ -40,6 +40,15 @@ export class FolderOptionsComponent implements OnInit {
     });
   }
 
+  async viewFolderBookmarks() {
+    this.closeSelf();
+    this.navCtrl.navigateForward('/folders/view-bookmarks', {
+      state: {
+        folder: this.item
+      }
+    });
+  }
+
   async editData() {
     this.closeSelf();
     this.navCtrl.navigateForward('/folders/edit', {
