@@ -29,7 +29,7 @@
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label ion-padding-top" position="stacked">{{ 'FOLDER' | translate }}
         ({{ 'OPTIONAL' | translate | lowercase }})</ion-label>
-      <ion-select class="light-select" formControlName="folder_id">
+      <ion-select class="light-select" [cancelText]="'CANCEL' | translate" formControlName="folder_id">
         <ion-select-option value="1">fdsfds</ion-select-option>
       </ion-select>
     </ion-item>
