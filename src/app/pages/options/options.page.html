@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'OPTIONS' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
+    <ion-item class="with-light-input ion-margin-top" lines="none">
+      <ion-toggle color="primary" slot="start" formControlName="enable_multimedia"></ion-toggle>
+      <ion-label class="dark-label" position="stacked">{{ 'ENABLE' | translate }} {{ 'MULTIMEDIA' | translate | lowercase }}</ion-label>
+    </ion-item>
+    <ion-item class="with-light-input ion-margin-top" lines="none">
+      <ion-toggle color="primary" slot="start" formControlName="enable_dark_mode"></ion-toggle>
+      <ion-label class="dark-label" position="stacked">{{ 'ENABLE' | translate }} {{ 'DARK_MODE' | translate | lowercase }}</ion-label>
+    </ion-item>
+    <ion-button type="submit" class="clear-both save-button" expand="full" color="primary">
+      {{'SAVE' | translate}}
+    </ion-button>
+  </form>
+</ion-content>

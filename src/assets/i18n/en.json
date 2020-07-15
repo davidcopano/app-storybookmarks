@@ -68,5 +68,8 @@
   "BOOKMARKS_OF_FOLDER": "Bookmarks of folder",
   "SEARCH_RESULTS_ENTER_TEXT": "Enter a search term...",
   "RESULTS": "Result/s",
-  "NO_RESULTS_FOUND": "No results found"
+  "NO_RESULTS_FOUND": "No results found",
+  "ENABLE": "Enable",
+  "MULTIMEDIA": "Multimedia",
+  "DARK_MODE": "Dark mode"
 }

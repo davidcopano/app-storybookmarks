@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     },
     {
       translationKey: 'OPTIONS',
-      link: '/bookmarks',
+      link: '/options',
       icon: 'settings'
     },
   ]

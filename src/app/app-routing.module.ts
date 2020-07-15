@@ -50,7 +50,11 @@ const routes: Routes = [
   {
     path: 'view-folder-bookmarks',
     loadChildren: () => import('./pages/view-folder-bookmarks/view-folder-bookmarks.module').then( m => m.ViewFolderBookmarksPageModule)
+  },  {
+    path: 'options',
+    loadChildren: () => import('./pages/options/options.module').then( m => m.OptionsPageModule)
   },
+
 ];
 
 @NgModule({
