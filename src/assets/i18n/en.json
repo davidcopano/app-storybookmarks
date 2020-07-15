@@ -65,5 +65,6 @@
   "DELETE_FOLDER_CONFIRMATION": "Are you sure do you want to delete this folder?",
   "FOLDER_COLOR": "Folder color",
   "NAME": "Name",
-  "BOOKMARKS_OF_FOLDER": "Bookmarks of folder"
+  "BOOKMARKS_OF_FOLDER": "Bookmarks of folder",
+  "SEARCH_RESULTS_ENTER_TEXT": "Enter a search term..."
 }

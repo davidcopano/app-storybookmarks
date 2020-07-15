@@ -1,2 +1,3 @@
-<p *ngIf="!query">introduce un termino</p>
-<p *ngIf="query">{{query}}</p>
+<div class="no-query" *ngIf="!query">
+  {{ 'SEARCH_RESULTS_ENTER_TEXT' | translate }}
+</div>
