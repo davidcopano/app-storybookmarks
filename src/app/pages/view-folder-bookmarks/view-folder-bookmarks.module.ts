@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ViewFolderBookmarksPageRoutingModule } from './view-folder-bookmarks-routing.module';
 import { ViewFolderBookmarksPage } from './view-folder-bookmarks.page';
 import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -13,9 +14,9 @@ import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.componen
     FormsModule,
     IonicModule,
     ViewFolderBookmarksPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    ComponentsModule
   ],
-  entryComponents: [BookmarkComponent],
-  declarations: [ViewFolderBookmarksPage, BookmarkComponent]
+  declarations: [ViewFolderBookmarksPage]
 })
 export class ViewFolderBookmarksPageModule {}

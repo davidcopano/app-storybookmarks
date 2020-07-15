@@ -4,8 +4,12 @@ import { BookmarkOptionsComponent } from './bookmark-options/bookmark-options.co
 import { FolderComponent } from './folder/folder.component';
 import { FolderOptionsComponent } from './folder-options/folder-options.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
+    imports: [
+        IonicModule
+    ],
     declarations: [
         BookmarkComponent,
         BookmarkOptionsComponent,
