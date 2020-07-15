@@ -62,5 +62,7 @@
   "SAVE": "Guardar",
   "VIEW": "Ver",
   "DELETE_FOLDER": "Eliminar carpeta",
-  "DELETE_FOLDER_CONFIRMATION": "¿Estás seguro de que deseas eliminar esta carpeta?"
+  "DELETE_FOLDER_CONFIRMATION": "¿Estás seguro de que deseas eliminar esta carpeta?",
+  "FOLDER_COLOR": "Color de la carpeta",
+  "NAME": "Nombre"
 }

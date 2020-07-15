@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { FoldersPageRoutingModule } from './folders-routing.module';
-import { FoldersPage } from './folders.page';
-import { FolderComponent } from 'src/app/components/folder/folder.component';
+import { AddFolderPageRoutingModule } from './add-folder-routing.module';
+import { AddFolderPage } from './add-folder.page';
 
 @NgModule({
   imports: [
@@ -13,10 +12,9 @@ import { FolderComponent } from 'src/app/components/folder/folder.component';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    FoldersPageRoutingModule,
+    AddFolderPageRoutingModule,
     TranslateModule
   ],
-  entryComponents: [FolderComponent],
-  declarations: [FoldersPage, FolderComponent]
+  declarations: [AddFolderPage]
 })
-export class FoldersPageModule {}
+export class AddFolderPageModule {}
