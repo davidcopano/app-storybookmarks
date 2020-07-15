@@ -30,7 +30,7 @@ export class FoldersPage implements OnInit {
     }
   }
 
-  public loadMoreBookmarks($event) {
+  public loadMoreFolders($event) {
     setTimeout(() => {
       for (let i = 1; i <= 5; i++) {
         this.folders.push({

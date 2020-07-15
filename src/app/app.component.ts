@@ -13,8 +13,8 @@ import { MenuRoute } from './interfaces';
 })
 export class AppComponent implements OnInit {
 
-  private showUserOptions: boolean = false;
-  private menuRoutes: MenuRoute[] = [
+  public showUserOptions: boolean = false;
+  public menuRoutes: MenuRoute[] = [
     {
       translationKey: 'BOOKMARKS',
       link: '/bookmarks',
