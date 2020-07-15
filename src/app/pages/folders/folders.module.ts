@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FoldersPageRoutingModule } from './folders-routing.module';
 import { FoldersPage } from './folders.page';
 import { FolderComponent } from 'src/app/components/folder/folder.component';
+import { SearchResultsComponent } from 'src/app/components/search-results/search-results.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { FolderComponent } from 'src/app/components/folder/folder.component';
     FoldersPageRoutingModule,
     TranslateModule
   ],
-  entryComponents: [FolderComponent],
-  declarations: [FoldersPage, FolderComponent]
+  entryComponents: [FolderComponent, SearchResultsComponent],
+  declarations: [FoldersPage, FolderComponent, SearchResultsComponent]
 })
 export class FoldersPageModule {}

@@ -15,6 +15,7 @@ export class BookmarksPage implements OnInit {
   bookmarks: Bookmark[] = [];
   private bookmarksOrder: string = 'default';
   private isSearching: boolean = false;
+  private searchTerm: string;
 
   constructor() { }
 
@@ -63,9 +64,7 @@ export class BookmarksPage implements OnInit {
 
   search($event) {
     let value = $event.target.value;
-    
-    console.log('search()');
-    console.log(value);
+    this.searchTerm = value;
   }
 
   showSearchbar() {

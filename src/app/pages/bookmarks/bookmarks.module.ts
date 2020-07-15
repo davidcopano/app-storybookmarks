@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BookmarksPageRoutingModule } from './bookmarks-routing.module';
 import { BookmarksPage } from './bookmarks.page';
 import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.component';
+import { SearchResultsComponent } from 'src/app/components/search-results/search-results.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.componen
     BookmarksPageRoutingModule,
     TranslateModule
   ],
-  entryComponents: [BookmarkComponent],
-  declarations: [BookmarksPage, BookmarkComponent]
+  entryComponents: [BookmarkComponent, SearchResultsComponent],
+  declarations: [BookmarksPage, BookmarkComponent, SearchResultsComponent]
 })
 export class BookmarksPageModule {}
