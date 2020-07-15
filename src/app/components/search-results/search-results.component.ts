@@ -23,7 +23,7 @@ export class SearchResultsComponent implements OnInit {
         created_at: new Date().toISOString(),
         folder_id: null,
         public: false,
-        title: `Carpeta ${i}`,
+        title: `Marcador ${i}`,
         url: 'https://www.google.es',
         user_id: 2,
         expiration_date: null,

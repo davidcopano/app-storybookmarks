@@ -66,5 +66,7 @@
   "FOLDER_COLOR": "Color de la carpeta",
   "NAME": "Nombre",
   "BOOKMARKS_OF_FOLDER": "Marcadores de la carpeta",
-  "SEARCH_RESULTS_ENTER_TEXT": "Introduce un término de búsqueda..."
+  "SEARCH_RESULTS_ENTER_TEXT": "Introduce un término de búsqueda...",
+  "RESULTS": "Resultado/s",
+  "NO_RESULTS_FOUND": "No se han encontrado resultados"
 }

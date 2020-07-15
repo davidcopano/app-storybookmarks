@@ -7,6 +7,7 @@ import { BookmarksPageRoutingModule } from './bookmarks-routing.module';
 import { BookmarksPage } from './bookmarks.page';
 import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.component';
 import { SearchResultsComponent } from 'src/app/components/search-results/search-results.component';
+import { FolderComponent } from 'src/app/components/folder/folder.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { SearchResultsComponent } from 'src/app/components/search-results/search
     BookmarksPageRoutingModule,
     TranslateModule
   ],
-  entryComponents: [BookmarkComponent, SearchResultsComponent],
-  declarations: [BookmarksPage, BookmarkComponent, SearchResultsComponent]
+  entryComponents: [BookmarkComponent, FolderComponent, SearchResultsComponent],
+  declarations: [BookmarksPage, BookmarkComponent, FolderComponent, SearchResultsComponent]
 })
-export class BookmarksPageModule {}
+export class BookmarksPageModule { }

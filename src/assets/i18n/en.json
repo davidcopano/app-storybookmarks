@@ -66,5 +66,7 @@
   "FOLDER_COLOR": "Folder color",
   "NAME": "Name",
   "BOOKMARKS_OF_FOLDER": "Bookmarks of folder",
-  "SEARCH_RESULTS_ENTER_TEXT": "Enter a search term..."
+  "SEARCH_RESULTS_ENTER_TEXT": "Enter a search term...",
+  "RESULTS": "Result/s",
+  "NO_RESULTS_FOUND": "No results found"
 }

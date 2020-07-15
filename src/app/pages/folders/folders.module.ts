@@ -7,6 +7,7 @@ import { FoldersPageRoutingModule } from './folders-routing.module';
 import { FoldersPage } from './folders.page';
 import { FolderComponent } from 'src/app/components/folder/folder.component';
 import { SearchResultsComponent } from 'src/app/components/search-results/search-results.component';
+import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { SearchResultsComponent } from 'src/app/components/search-results/search
     FoldersPageRoutingModule,
     TranslateModule
   ],
-  entryComponents: [FolderComponent, SearchResultsComponent],
-  declarations: [FoldersPage, FolderComponent, SearchResultsComponent]
+  entryComponents: [BookmarkComponent, FolderComponent, SearchResultsComponent],
+  declarations: [FoldersPage, BookmarkComponent, FolderComponent, SearchResultsComponent]
 })
-export class FoldersPageModule {}
+export class FoldersPageModule { }
