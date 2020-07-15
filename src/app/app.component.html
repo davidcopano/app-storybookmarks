@@ -16,12 +16,14 @@
             </ion-button>
           </ion-item>
           <div class="user-options" [hidden]="!showUserOptions">
-            <ion-item button color="primary" lines="none">
-              <ion-label>
-                <ion-icon name="create"></ion-icon>
-                {{ 'EDIT_PROFILE' | translate }}
-              </ion-label>
-            </ion-item>
+            <ion-menu-toggle>
+              <ion-item button color="primary" lines="none" routerLink="/edit-profile">
+                <ion-label>
+                  <ion-icon name="create"></ion-icon>
+                  {{ 'EDIT_PROFILE' | translate }}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
             <ion-item button color="primary" lines="none">
               <ion-label>
                 <ion-icon name="exit"></ion-icon>
@@ -32,7 +34,8 @@
         </div>
         <div class="divider"></div>
         <ion-menu-toggle *ngFor="let menuRoute of menuRoutes">
-          <ion-item class="menu-route" color="primary" button lines="none" [routerLink]="menuRoute?.link" routerDirection="root">
+          <ion-item class="menu-route" color="primary" button lines="none" [routerLink]="menuRoute?.link"
+            routerDirection="root">
             <ion-label>
               <ion-icon [name]="menuRoute?.icon"></ion-icon>
               {{ menuRoute?.translationKey | translate }}
