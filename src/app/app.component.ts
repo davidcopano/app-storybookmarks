@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from './services/lang/lang.service';
 import { MenuRoute } from './interfaces';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -35,8 +36,10 @@ export class AppComponent implements OnInit {
   constructor(
     public platform: Platform,
     public splashScreen: SplashScreen,
+    public navCtrl: NavController,
     public translateService: TranslateService,
-    public langService: LangService
+    public langService: LangService,
+    public userService: UserService
   ) {
     this.initializeApp();
   }
@@ -46,7 +49,8 @@ export class AppComponent implements OnInit {
 
   initializeApp() {
     this.initTranslations();
-    this.platform.ready().then(() => {
+    this.platform.ready().then(async () => {
+      await this.checkForLoggedUser();
       this.splashScreen.hide();
     });
   }
@@ -55,6 +59,14 @@ export class AppComponent implements OnInit {
     await this.langService.loadSavedLang();
     this.translateService.setDefaultLang(this.langService.currentLang);
     this.translateService.use(this.langService.currentLang);
+  }
+
+  async checkForLoggedUser() {
+    let loggedUser = await this.userService.getFromLocal();
+    if(loggedUser) {
+      this.userService.loggedUser = loggedUser;
+      this.navCtrl.navigateRoot('/bookmarks');
+    }
   }
 
   toggleUserOptions() {

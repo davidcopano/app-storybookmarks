@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/services/api/api.service';
 import { User, FacebookProfile, GoogleLoginResponse } from "../../models";
 import { HttpErrorResponse } from '@angular/common/http';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { NavController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -20,29 +20,32 @@ export class LoginPage implements OnInit {
   public passwordTypeInput = 'password';
   public form: FormGroup;
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public apiService: ApiService, public utilitiesService: UtilitiesService, public facebook: Facebook, public google: GooglePlus) { }
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public userService: UserService, public utilitiesService: UtilitiesService, public facebook: Facebook, public google: GooglePlus) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      email: ['info@ejemplo.com', [Validators.required, Validators.email]],
-      password: ['123456', Validators.required]
+      email: ['davidcopano96@outlook.com', [Validators.required, Validators.email]],
+      password: ['Copano1996', Validators.required]
     });
   }
 
   async submitForm() {
+    await this.utilitiesService.showLoading('Iniciando sesión...');
+    const values = this.form.value;
+    this.userService.login(values.email, values.password).subscribe(async (user) => {
 
-    this.navCtrl.navigateRoot('/bookmarks');
+      await this.utilitiesService.dismissLoading();
 
-    // await this.utilitiesService.showLoading('Iniciando sesión...');
-    // let values = this.form.value;
-    // this.apiService.login(values.email, values.password).subscribe(async (response) => {
-    //   await this.utilitiesService.dismissLoading();
-    //   console.log('response = ');
-    //   console.log(response);
-    // }, async (error: HttpErrorResponse) => {
-    //   await this.utilitiesService.dismissLoading();
-    //   this.utilitiesService.handleHttpErrorResponse(error);
-    // })
+      // save current user across the app and in local storage
+      this.userService.loggedUser = user;
+      this.userService.saveInLocal(user);
+
+      this.navCtrl.navigateRoot('/bookmarks');
+
+    }, async (error: HttpErrorResponse) => {
+      await this.utilitiesService.dismissLoading();
+      this.utilitiesService.handleHttpErrorResponse(error);
+    });
   }
 
   togglePasswordMode() {
@@ -63,7 +66,7 @@ export class LoginPage implements OnInit {
       console.log('facebookProfile = ');
       console.log(facebookProfile);
     }
-    catch(err) {
+    catch (err) {
       console.log('err');
       console.log(err);
     }
@@ -76,7 +79,7 @@ export class LoginPage implements OnInit {
       console.log('googleLoginResponse =');
       console.log(googleLoginResponse);
     }
-    catch(err) {
+    catch (err) {
       console.log('err');
       console.log(err);
     }
