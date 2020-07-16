@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform, NavController } from '@ionic/angular';
+import { Platform, NavController, AlertController, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from './services/lang/lang.service';
 import { MenuRoute } from './interfaces';
 import { UserService } from './services/user/user.service';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -31,12 +33,17 @@ export class AppComponent implements OnInit {
       link: '/options',
       icon: 'settings'
     },
-  ]
+  ];
+  public logoutText: string;
+  public logoutConfirmationText: string;
+  public cancelText: string;
 
   constructor(
     public platform: Platform,
     public splashScreen: SplashScreen,
     public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    public menuCtrl: MenuController,
     public translateService: TranslateService,
     public langService: LangService,
     public userService: UserService
@@ -61,6 +68,11 @@ export class AppComponent implements OnInit {
     await this.langService.loadSavedLang();
     this.translateService.setDefaultLang(this.langService.currentLang);
     this.translateService.use(this.langService.currentLang);
+    this.getTranslationValues().subscribe(values => {
+      this.logoutText = values.logoutText;
+      this.logoutConfirmationText = values.logoutConfirmationText;
+      this.cancelText = values.cancelText;
+    })
   }
 
   async checkForLoggedUser() {
@@ -69,9 +81,52 @@ export class AppComponent implements OnInit {
       this.userService.loggedUser = loggedUser;
       this.navCtrl.navigateRoot('/bookmarks');
     }
+    else {
+      this.menuCtrl.swipeGesture(false);
+    }
   }
 
   toggleUserOptions() {
     this.showUserOptions = !this.showUserOptions;
+  }
+
+  async logout() {
+    let alert = await this.alertCtrl.create({
+      header: this.logoutText,
+      message: this.logoutConfirmationText,
+      buttons: [
+        {
+          text: this.cancelText,
+          role: 'cancel'
+        },
+        {
+          text: this.logoutText,
+          role: 'destructive',
+          cssClass: 'text-danger',
+          handler: async () => {
+            this.userService.logout();
+            await this.menuCtrl.close();
+            this.navCtrl.navigateRoot('/login');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  private getTranslationValues() {
+    return forkJoin(
+      this.translateService.get('LOGOUT'),
+      this.translateService.get('LOGOUT_CONFIRMATION'),
+      this.translateService.get('CANCEL'),
+    ).pipe(
+      map(([logoutText, logoutConfirmationText, cancelText]) => {
+        return {
+          logoutText,
+          logoutConfirmationText,
+          cancelText,
+        };
+      })
+    );
   }
 }

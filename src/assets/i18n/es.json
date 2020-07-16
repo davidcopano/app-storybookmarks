@@ -75,5 +75,6 @@
   "ENABLE_MULTIMEDIA_DESCRIPTION": "Al habilitar esta opción, las URLs que tengas, si son imágenes o vídeos, se mostrarán dentro del marcador, pudiendo ver el contenido sin necesidad de ir al enlace.",
   "ENABLE_MULTIMEDIA_WARNING": "Si habilitas esta opción, el listado de marcadores puede que consuma más datos",
   "ENABLE_DARK_MODE_DESCRIPTION": "Al habilitar esta opción, activarás el modo oscuro en todas las secciones de la aplicación.",
-  "LEAVE_PASSWORD_EMPTY": "Dejar vacío para no cambiarla"
+  "LEAVE_PASSWORD_EMPTY": "Dejar vacío para no cambiarla",
+  "LOGOUT_CONFIRMATION": "¿Estás seguro de que quieres cerrar sesión?"
 }

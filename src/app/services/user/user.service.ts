@@ -25,4 +25,9 @@ export class UserService {
   public getFromLocal(): Promise<User> {
     return this.storage.get(this.USER_STORAGE_KEY);
   }
+
+  public logout() {
+    this.loggedUser = null;
+    this.storage.remove(this.USER_STORAGE_KEY);
+  }
 }
