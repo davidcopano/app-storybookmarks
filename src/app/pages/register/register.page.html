@@ -9,25 +9,25 @@
       <h2>{{'REGISTER' | translate}}</h2>
     </ion-text>
   </div>
-  <form class="form">
+  <form class="form" [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
     <ion-item class="with-light-input" lines="none">
       <ion-label position="stacked">Email</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label position="stacked">{{'USER' | translate}}</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" formControlName="username"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label position="stacked">{{'PASSWORD' | translate}}</ion-label>
-      <ion-input type="password" #passwordInput [type]="passwordTypeInput"></ion-input>
+      <ion-input type="password" #passwordInput [type]="passwordTypeInput" formControlName="password"></ion-input>
       <button slot="end" class="toggle-password-mode" (click)="togglePasswordMode()">
         <ion-icon [name]="(passwordTypeInput === 'text') ? 'eye-off' : 'eye'"></ion-icon>
       </button>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label position="stacked">{{'REPEAT_PASSWORD' | translate}}</ion-label>
-      <ion-input type="password" #passwordInput [type]="passwordTypeInput"></ion-input>
+      <ion-input type="password" #passwordInput [type]="passwordTypeInput" formControlName="password_confirmation"></ion-input>
       <button slot="end" class="toggle-password-mode" (click)="togglePasswordMode()">
         <ion-icon [name]="(passwordTypeInput === 'text') ? 'eye-off' : 'eye'"></ion-icon>
       </button>

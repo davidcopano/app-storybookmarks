@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -9,11 +10,24 @@ export class RegisterPage implements OnInit {
 
   @ViewChild('passwordInput', { read: ElementRef }) passwordEye: ElementRef;
 
+  public form: FormGroup;
+
   passwordTypeInput = 'password';
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      password_confirmation: ['', Validators.required],
+    })
+  }
+
+  submitForm() {
+    console.log('submitForm()');
+    console.log(this.form.value);
   }
 
   togglePasswordMode() {
