@@ -22,6 +22,8 @@ export class RegisterPage implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       password_confirmation: ['', Validators.required],
+    }, {
+      validator: this.checkPasswords
     })
   }
 
@@ -38,6 +40,12 @@ export class RegisterPage implements OnInit {
     setTimeout(() => {
       nativeEl.setSelectionRange(inputSelection, inputSelection);
     }, 1);
+  }
+
+  checkPasswords(group: FormGroup) {
+    let pass = group.get('password').value;
+    let confirmPass = group.get('password_confirmation').value;
+    return pass === confirmPass ? null : { notSame: true }
   }
 
   get email() { return this.form.get('email'); }

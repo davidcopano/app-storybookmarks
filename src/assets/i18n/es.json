@@ -76,5 +76,6 @@
   "ENABLE_MULTIMEDIA_WARNING": "Si habilitas esta opción, el listado de marcadores puede que consuma más datos",
   "ENABLE_DARK_MODE_DESCRIPTION": "Al habilitar esta opción, activarás el modo oscuro en todas las secciones de la aplicación.",
   "LEAVE_PASSWORD_EMPTY": "Dejar vacío para no cambiarla",
-  "LOGOUT_CONFIRMATION": "¿Estás seguro de que quieres cerrar sesión?"
+  "LOGOUT_CONFIRMATION": "¿Estás seguro de que quieres cerrar sesión?",
+  "PASSWORDS_NOT_MATCHING": "Las contraseñas no coinciden"
 }
