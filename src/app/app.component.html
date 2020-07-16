@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="overlay" (ionDidClose)="hideUserOptions()">
       <ion-content>
         <div class="menu-header">
           <ion-text color="secondary">

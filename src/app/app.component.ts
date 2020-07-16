@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Platform, NavController, AlertController, MenuController } from '@ionic/angular';
+import { Platform, NavController, AlertController, MenuController, IonMenu } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from './services/lang/lang.service';
@@ -92,6 +91,10 @@ export class AppComponent implements OnInit {
 
   toggleUserOptions() {
     this.showUserOptions = !this.showUserOptions;
+  }
+
+  hideUserOptions() {
+    this.showUserOptions = false;
   }
 
   async logout() {
