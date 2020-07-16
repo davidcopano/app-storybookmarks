@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Bookmark } from '../../interfaces';
 import { IonInfiniteScroll, IonSearchbar } from '@ionic/angular';
+import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
 
 @Component({
   selector: 'app-bookmarks',
@@ -17,9 +18,12 @@ export class BookmarksPage implements OnInit {
   public isSearching: boolean = false;
   public searchTerm: string;
 
-  constructor() { }
+  constructor(public bookmarksService: BookmarksService) { }
 
   ngOnInit() {
+
+    this.bookmarksService.getBookmarks();
+
     for (let i = 1; i <= 5; i++) {
       this.bookmarks.push({
         id: i.toString(),
