@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
+import { User } from '../../models';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +19,7 @@ export class RegisterPage implements OnInit {
 
   passwordTypeInput = 'password';
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -27,9 +32,22 @@ export class RegisterPage implements OnInit {
     })
   }
 
-  submitForm() {
-    console.log('submitForm()');
-    console.log(this.form.value);
+  async submitForm() {
+    await this.utilitiesService.showLoading('Cargando...');
+    const user: User = this.form.value;
+    this.userService.register(user).subscribe(async (user) => {
+      await this.utilitiesService.dismissLoading();
+
+      // save current user across the app and in local storage
+      this.userService.loggedUser = user;
+      this.userService.saveInLocal(user);
+      this.userService.loginSuccessful(user);
+
+      this.navCtrl.navigateRoot('/bookmarks');
+    }, async (error: HttpErrorResponse) => {
+      await this.utilitiesService.dismissLoading();
+      this.utilitiesService.handleHttpErrorResponse(error);
+    })
   }
 
   togglePasswordMode() {

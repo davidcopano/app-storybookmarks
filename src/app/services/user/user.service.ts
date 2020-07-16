@@ -20,6 +20,10 @@ export class UserService {
     return this.httpClient.post<User>(environment.apiUrl + 'login', { email: email, password: password });
   }
 
+  public register(user: User) {
+    return this.httpClient.post<User>(environment.apiUrl + 'register', user);
+  }
+
   public loginSuccessful(user: User) {
     this.$userLoginsSubject.next(user);
   }
