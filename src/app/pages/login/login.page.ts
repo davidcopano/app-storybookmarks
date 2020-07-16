@@ -39,6 +39,7 @@ export class LoginPage implements OnInit {
       // save current user across the app and in local storage
       this.userService.loggedUser = user;
       this.userService.saveInLocal(user);
+      this.userService.loginSuccessful(user);
 
       this.navCtrl.navigateRoot('/bookmarks');
 

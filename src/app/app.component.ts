@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LangService } from './services/lang/lang.service';
 import { MenuRoute } from './interfaces';
 import { UserService } from './services/user/user.service';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
   public logoutText: string;
   public logoutConfirmationText: string;
   public cancelText: string;
+  public loginSubscription: Subscription;
 
   constructor(
     public platform: Platform,
@@ -61,6 +62,9 @@ export class AppComponent implements OnInit {
       setTimeout(() => {
         this.splashScreen.hide();
       }, 225);
+    });
+    this.loginSubscription = this.userService.onLoginSuccessful().subscribe(user => {
+      this.menuCtrl.swipeGesture(true);
     });
   }
 
@@ -105,6 +109,7 @@ export class AppComponent implements OnInit {
           cssClass: 'text-danger',
           handler: async () => {
             this.userService.logout();
+            this.menuCtrl.swipeGesture(false);
             await this.menuCtrl.close();
             this.navCtrl.navigateRoot('/login');
           }
