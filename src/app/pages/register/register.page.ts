@@ -39,4 +39,9 @@ export class RegisterPage implements OnInit {
       nativeEl.setSelectionRange(inputSelection, inputSelection);
     }, 1);
   }
+
+  get email() { return this.form.get('email'); }
+  get username() { return this.form.get('username'); }
+  get password() { return this.form.get('password'); }
+  get password_confirmation() { return this.form.get('password_confirmation'); }
 }
