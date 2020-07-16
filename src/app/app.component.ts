@@ -44,14 +44,16 @@ export class AppComponent implements OnInit {
     this.initializeApp();
   }
 
-  ngOnInit() { 
+  ngOnInit() {
   }
 
   initializeApp() {
     this.initTranslations();
     this.platform.ready().then(async () => {
       await this.checkForLoggedUser();
-      this.splashScreen.hide();
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 225);
     });
   }
 
@@ -63,7 +65,7 @@ export class AppComponent implements OnInit {
 
   async checkForLoggedUser() {
     let loggedUser = await this.userService.getFromLocal();
-    if(loggedUser) {
+    if (loggedUser) {
       this.userService.loggedUser = loggedUser;
       this.navCtrl.navigateRoot('/bookmarks');
     }
