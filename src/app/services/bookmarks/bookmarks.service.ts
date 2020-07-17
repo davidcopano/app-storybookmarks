@@ -3,7 +3,8 @@ import { UserService } from '../user/user.service';
 import { Bookmark, BookmarkPagination } from '../../interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class BookmarksService {
 
   public bookmarks: Bookmark[] = [];
+  public isLoading: boolean = true;
   private httpOptions: {
     headers: HttpHeaders
   }
@@ -34,6 +36,7 @@ export class BookmarksService {
     const bookmarksObservable = bookmarkPagination.pipe(map(value => value.data));
     bookmarksObservable.subscribe(bookmarks => {
       this.bookmarks.push(...bookmarks);
+      this.isLoading = false;
     });
   }
 }
