@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Bookmark } from '../../interfaces';
 import { IonInfiniteScroll, IonSearchbar } from '@ionic/angular';
 import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-bookmarks',
@@ -15,6 +16,7 @@ export class BookmarksPage implements OnInit {
 
   public bookmarks: Bookmark[] = [];
   public bookmarksOrder: string = 'default';
+  public onBookmarksLoadedSubscription: Subscription;
   public isSearching: boolean = false;
   public searchTerm: string;
   private bookmarkPage: number = 1;
@@ -28,6 +30,10 @@ export class BookmarksPage implements OnInit {
   loadMoreBookmarks($event) {
     this.bookmarkPage++;
     this.bookmarksService.getBookmarks(this.bookmarkPage);
+    this.onBookmarksLoadedSubscription = this.bookmarksService.onBookmarksLoaded().subscribe(() => {
+      $event.target.complete();
+      this.onBookmarksLoadedSubscription.unsubscribe();
+    });
 
     // setTimeout(() => {
     //   for (let i = 1; i <= 5; i++) {

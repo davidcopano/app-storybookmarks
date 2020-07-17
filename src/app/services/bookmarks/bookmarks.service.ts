@@ -13,6 +13,7 @@ export class BookmarksService {
 
   public bookmarks: Bookmark[] = [];
   public isLoading: boolean = true;
+  private $bookmarksLoaded = new Subject();
   private httpOptions: {
     headers: HttpHeaders
   }
@@ -32,11 +33,21 @@ export class BookmarksService {
   }
 
   public getBookmarks(page = 1) {
+
+    console.log('getBoomarks()');
+    console.log(page);
+
     const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${page}`, this.httpOptions);
     const bookmarksObservable = bookmarkPagination.pipe(map(value => value.data));
     bookmarksObservable.subscribe(bookmarks => {
+      console.log('subscribe de bookmarksObservable');
       this.bookmarks.push(...bookmarks);
       this.isLoading = false;
+      this.$bookmarksLoaded.next();
     });
+  }
+
+  public onBookmarksLoaded() {
+    return this.$bookmarksLoaded.asObservable();
   }
 }
