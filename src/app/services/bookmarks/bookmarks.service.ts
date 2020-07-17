@@ -13,6 +13,8 @@ export class BookmarksService {
 
   public bookmarks: Bookmark[] = [];
   public isLoading: boolean = true;
+  public loadedBookmarksFirstTime: boolean = false;
+  private bookmarkPage: number = 1;
   private $bookmarksLoaded = new Subject();
   private httpOptions: {
     headers: HttpHeaders
@@ -28,23 +30,22 @@ export class BookmarksService {
       };
     }
     else {
-      console.error('No hay usuario logeado actualmente - bookamrks.service.ts');
+      console.error('No hay usuario logeado actualmente - bookmarks.service.ts');
     }
   }
 
-  public getBookmarks(page = 1) {
-
-    console.log('getBoomarks()');
-    console.log(page);
-
-    const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${page}`, this.httpOptions);
-    const bookmarksObservable = bookmarkPagination.pipe(map(value => value.data));
-    bookmarksObservable.subscribe(bookmarks => {
-      console.log('subscribe de bookmarksObservable');
-      this.bookmarks.push(...bookmarks);
-      this.isLoading = false;
-      this.$bookmarksLoaded.next();
-    });
+  public getBookmarks() {
+    if (!this.loadedBookmarksFirstTime || this.bookmarkPage != 1) {
+      const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${this.bookmarkPage}`, this.httpOptions);
+      const bookmarksObservable = bookmarkPagination.pipe(map(value => value.data));
+      bookmarksObservable.subscribe(bookmarks => {
+        this.bookmarks.push(...bookmarks);
+        this.isLoading = false;
+        this.loadedBookmarksFirstTime = true;
+        this.bookmarkPage++;
+        this.$bookmarksLoaded.next();
+      });
+    }
   }
 
   public onBookmarksLoaded() {

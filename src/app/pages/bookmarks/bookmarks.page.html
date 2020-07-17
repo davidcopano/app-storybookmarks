@@ -29,7 +29,7 @@
         <ion-select-option value="z_to_a">{{ 'Z_TO_A' | translate }}</ion-select-option>
       </ion-select>
     </ion-item>
-    <app-bookmark [item]="bookmark" *ngFor="let bookmark of bookmarksService?.bookmarks"></app-bookmark>
+    <app-bookmark [item]="bookmark" *ngFor="let bookmark of bookmarksService?.bookmarks; trackBy: identifyBookmark"></app-bookmark>
     <ion-infinite-scroll class="ion-margin-top" threshold="100px" (ionInfinite)="loadMoreBookmarks($event)">
       <ion-infinite-scroll-content loadingSpinner="bubbles">
       </ion-infinite-scroll-content>

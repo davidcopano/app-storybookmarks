@@ -19,17 +19,17 @@ export class BookmarksPage implements OnInit {
   public onBookmarksLoadedSubscription: Subscription;
   public isSearching: boolean = false;
   public searchTerm: string;
-  private bookmarkPage: number = 1;
 
   constructor(public bookmarksService: BookmarksService) { }
 
   ngOnInit() {
-    this.bookmarksService.getBookmarks(this.bookmarkPage);
+    if (!this.bookmarksService.loadedBookmarksFirstTime) {
+      this.bookmarksService.getBookmarks();
+    }
   }
 
   loadMoreBookmarks($event) {
-    this.bookmarkPage++;
-    this.bookmarksService.getBookmarks(this.bookmarkPage);
+    this.bookmarksService.getBookmarks();
     this.onBookmarksLoadedSubscription = this.bookmarksService.onBookmarksLoaded().subscribe(() => {
       $event.target.complete();
       this.onBookmarksLoadedSubscription.unsubscribe();
@@ -71,5 +71,9 @@ export class BookmarksPage implements OnInit {
 
   hideSearchbar() {
     this.isSearching = false;
+  }
+
+  identifyBookmark(index, item: Bookmark) {
+    return item.id;
   }
 }
