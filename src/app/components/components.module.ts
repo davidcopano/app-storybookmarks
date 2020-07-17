@@ -6,6 +6,7 @@ import { FolderOptionsComponent } from './folder-options/folder-options.componen
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
     imports: [
@@ -18,13 +19,15 @@ import { TranslateModule } from '@ngx-translate/core';
         FolderComponent,
         FolderOptionsComponent,
         SearchResultsComponent,
+        LoadingComponent
     ],
     exports: [
         BookmarkComponent,
         BookmarkOptionsComponent,
         FolderComponent,
         FolderOptionsComponent,
-        SearchResultsComponent
+        SearchResultsComponent,
+        LoadingComponent
     ],
 })
 export class ComponentsModule { }
