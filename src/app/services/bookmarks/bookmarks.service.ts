@@ -30,6 +30,10 @@ export class BookmarksService {
   }
 
   public getBookmarks(page = 1) {
+
+    console.log('getBookmarks(), httpOptions = ');
+    console.log(this.httpOptions);
+
     const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${page}`, this.httpOptions);
     const bookmarksObservable = bookmarkPagination.pipe(map(value => value.data));
     bookmarksObservable.subscribe(bookmarks => {
