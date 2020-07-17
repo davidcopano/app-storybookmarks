@@ -16,7 +16,7 @@ export class BookmarksService {
   }
 
   constructor(private httpClient: HttpClient, public userService: UserService) {
-    if(userService.loggedUser) {
+    if (userService.loggedUser) {
       this.httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -30,17 +30,10 @@ export class BookmarksService {
   }
 
   public getBookmarks(page = 1) {
-
-    console.log('getBookmarks(), httpOptions = ');
-    console.log(this.httpOptions);
-
     const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${page}`, this.httpOptions);
     const bookmarksObservable = bookmarkPagination.pipe(map(value => value.data));
     bookmarksObservable.subscribe(bookmarks => {
       this.bookmarks.push(...bookmarks);
-
-      console.log('bookmarks = ');
-      console.log(this.bookmarks);
     });
   }
 }
