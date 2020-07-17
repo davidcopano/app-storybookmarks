@@ -20,6 +20,10 @@ export class UserService {
     return this.httpClient.post<User>(environment.apiUrl + 'login', { email: email, password: password });
   }
 
+  public socialLogin(email: string, username: string) {
+    return this.httpClient.post<User>(environment.apiUrl + 'social-login', { email: email, username: username });
+  }
+
   public register(user: User) {
     return this.httpClient.post<User>(environment.apiUrl + 'register', user);
   }

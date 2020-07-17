@@ -33,16 +33,7 @@ export class LoginPage implements OnInit {
     await this.utilitiesService.showLoading('Iniciando sesión...');
     const values = this.form.value;
     this.userService.login(values.email, values.password).subscribe(async (user) => {
-
-      await this.utilitiesService.dismissLoading();
-
-      // save current user across the app and in local storage
-      this.userService.loggedUser = user;
-      this.userService.saveInLocal(user);
-      this.userService.loginSuccessful(user);
-
-      this.navCtrl.navigateRoot('/bookmarks');
-
+      this.processSuccessfulLogin(user);
     }, async (error: HttpErrorResponse) => {
       await this.utilitiesService.dismissLoading();
       this.utilitiesService.handleHttpErrorResponse(error);
@@ -61,29 +52,54 @@ export class LoginPage implements OnInit {
 
   async loginWithFacebook() {
     try {
-      let facebookLoginResponse = await this.facebook.login(['public_profile', 'user_friends', 'email']);
+      await this.facebook.login(['public_profile', 'user_friends', 'email']);
       let facebookProfile: FacebookProfile = await this.facebook.api('me?fields=id,email,name', []);
-
-      console.log('facebookProfile = ');
-      console.log(facebookProfile);
+      await this.utilitiesService.showLoading('Iniciando sesión...');
+      this.userService.socialLogin(facebookProfile.email, facebookProfile.name).subscribe(async (user) => {
+        await this.utilitiesService.dismissLoading();
+        this.processSuccessfulLogin(user);
+      }, async (error: HttpErrorResponse) => {
+        await this.utilitiesService.dismissLoading();
+        this.utilitiesService.handleHttpErrorResponse(error);
+      });
     }
     catch (err) {
       console.log('err');
       console.log(err);
+
+      this.utilitiesService.showAlert('Error Facebook', 'Error Facebook');
     }
   }
 
   async loginWithGoogle() {
     try {
       let googleLoginResponse: GoogleLoginResponse = await this.google.login({});
-
-      console.log('googleLoginResponse =');
-      console.log(googleLoginResponse);
+      await this.utilitiesService.showLoading('Iniciando sesión...');
+      this.userService.socialLogin(googleLoginResponse.email, googleLoginResponse.displayName).subscribe(async (user) => {
+        await this.utilitiesService.dismissLoading();
+        this.processSuccessfulLogin(user);
+      }, async (error: HttpErrorResponse) => {
+        await this.utilitiesService.dismissLoading();
+        this.utilitiesService.handleHttpErrorResponse(error);
+      });
     }
     catch (err) {
       console.log('err');
       console.log(err);
+
+      this.utilitiesService.showAlert('Error Google', 'Error Google');
     }
+  }
+
+  async processSuccessfulLogin(user: User) {
+    await this.utilitiesService.dismissLoading();
+
+    // save current user across the app and in local storage
+    this.userService.loggedUser = user;
+    this.userService.saveInLocal(user);
+    this.userService.loginSuccessful(user);
+
+    this.navCtrl.navigateRoot('/bookmarks');
   }
 
   get email() { return this.form.get('email'); }
