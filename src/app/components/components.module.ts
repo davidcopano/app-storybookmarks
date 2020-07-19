@@ -6,13 +6,15 @@ import { FolderOptionsComponent } from './folder-options/folder-options.componen
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { MomentModule } from 'ngx-moment';
 import { LoadingComponent } from './loading/loading.component';
 import { NoResultsComponent } from './no-results/no-results.component';
 
 @NgModule({
     imports: [
         IonicModule,
-        TranslateModule
+        TranslateModule,
+        MomentModule
     ],
     declarations: [
         BookmarkComponent,

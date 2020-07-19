@@ -2,7 +2,7 @@
   <ion-label>
     <h2 class="title ion-text-wrap">{{ item?.title }}</h2>
     <a class="link ion-text-wrap" (click)="openLink(item?.url)">{{ item?.url }}</a>
-    <p class="created_at ion-text-wrap">{{ item?.created_at }}</p>
+    <p class="created_at ion-text-wrap">{{ item?.created_at | amLocale: langService.currentLang | amTimeAgo }}</p>
   </ion-label>
   <ion-button class="options ion-align-self-baseline" color="dark" fill="clear" shape="round" slot="end" (click)="showPopover($event, item)">
     <ion-icon name="ellipsis-vertical"></ion-icon>
