@@ -7,6 +7,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoadingComponent } from './loading/loading.component';
+import { NoResultsComponent } from './no-results/no-results.component';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { LoadingComponent } from './loading/loading.component';
         FolderComponent,
         FolderOptionsComponent,
         SearchResultsComponent,
-        LoadingComponent
+        LoadingComponent,
+        NoResultsComponent
     ],
     exports: [
         BookmarkComponent,
@@ -27,7 +29,8 @@ import { LoadingComponent } from './loading/loading.component';
         FolderComponent,
         FolderOptionsComponent,
         SearchResultsComponent,
-        LoadingComponent
+        LoadingComponent,
+        NoResultsComponent
     ],
 })
 export class ComponentsModule { }
