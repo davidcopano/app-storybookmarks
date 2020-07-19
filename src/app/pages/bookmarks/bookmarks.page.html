@@ -22,7 +22,7 @@
     </p>
     <ion-item lines="none">
       <ion-label>{{ 'ORDER_BY' | translate }}:</ion-label>
-      <ion-select interface="action-sheet" [cancelText]="'CANCEL' | translate" [(ngModel)]="bookmarksOrder" (ionChange)="loadBookmarksByOrder()">
+      <ion-select interface="action-sheet" [cancelText]="'CANCEL' | translate" [(ngModel)]="bookmarksService.order" (ionChange)="loadBookmarksByOrder()">
         <ion-select-option value="default">{{ 'ORDER_BY_DEFAULT_BOOKMARKS' | translate }}</ion-select-option>
         <ion-select-option value="oldest_to_newest">{{ 'ORDER_BY_OLDEST_BOOKMARKS' | translate }}</ion-select-option>
         <ion-select-option value="a_to_z">{{ 'A_TO_Z' | translate}}</ion-select-option>
@@ -31,8 +31,8 @@
     </ion-item>
     <app-bookmark [item]="bookmark" *ngFor="let bookmark of bookmarksService?.bookmarks; trackBy: identifyBookmark">
     </app-bookmark>
-    <app-no-results *ngIf="bookmarksService?.bookmarks.length === 0 && bookmarksService?.loadedBookmarksFirstTime"></app-no-results>
-    <app-loading [hidden]="bookmarksService?.loadedBookmarksFirstTime"></app-loading>
+    <app-no-results *ngIf="bookmarksService?.bookmarks.length === 0 && bookmarksService?.loadedFirstTime"></app-no-results>
+    <app-loading [hidden]="bookmarksService?.loadedFirstTime"></app-loading>
     <ion-infinite-scroll class="ion-margin-top" threshold="100px" (ionInfinite)="loadMoreBookmarks($event)">
       <ion-infinite-scroll-content loadingSpinner="bubbles">
       </ion-infinite-scroll-content>

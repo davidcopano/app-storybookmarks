@@ -15,7 +15,6 @@ export class BookmarksPage implements OnInit {
   @ViewChild(IonSearchbar) searchBar: IonSearchbar;
 
   public bookmarks: Bookmark[] = [];
-  public bookmarksOrder: string = 'default';
   public onBookmarksLoadedSubscription: Subscription;
   public isSearching: boolean = false;
   public searchTerm: string;
@@ -23,13 +22,13 @@ export class BookmarksPage implements OnInit {
   constructor(public bookmarksService: BookmarksService) { }
 
   ngOnInit() {
-    if (!this.bookmarksService.loadedBookmarksFirstTime) {
+    if (!this.bookmarksService.loadedFirstTime) {
       this.bookmarksService.getBookmarks();
     }
   }
 
   loadMoreBookmarks($event) {
-    this.bookmarksService.getBookmarks(this.bookmarksOrder);
+    this.bookmarksService.getBookmarks();
     this.onBookmarksLoadedSubscription = this.bookmarksService.onBookmarksLoaded().subscribe(() => {
       $event.target.complete();
       this.onBookmarksLoadedSubscription.unsubscribe();
@@ -38,7 +37,7 @@ export class BookmarksPage implements OnInit {
 
   loadBookmarksByOrder() {
     this.bookmarksService.reset();
-    this.bookmarksService.getBookmarks(this.bookmarksOrder);
+    this.bookmarksService.getBookmarks();
   }
 
   search($event) {

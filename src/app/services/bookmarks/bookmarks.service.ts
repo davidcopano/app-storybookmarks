@@ -13,9 +13,9 @@ export class BookmarksService {
 
   public bookmarks: Bookmark[] = [];
   public isLoading: boolean = true;
-  public loadedBookmarksFirstTime: boolean = false;
-  private bookmarkPage: number = 1;
-  private bookmarkOrder: string = 'default';
+  public loadedFirstTime: boolean = false;
+  public order: string = 'default';
+  private page: number = 1;
   private $bookmarksLoaded = new Subject();
   private httpOptions: {
     headers: HttpHeaders
@@ -35,17 +35,16 @@ export class BookmarksService {
     }
   }
 
-  public getBookmarks(order: string = 'default') {
-    this.bookmarkOrder = order;
-    if (!this.loadedBookmarksFirstTime || this.bookmarkPage != 1) {
+  public getBookmarks() {
+    if (!this.loadedFirstTime || this.page != 1) {
       this.isLoading = true;
-      const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${this.bookmarkPage}&order=${this.bookmarkOrder}`, this.httpOptions);
+      const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${this.page}&order=${this.order}`, this.httpOptions);
       const bookmarksObservable = bookmarkPagination.pipe(map(value => value.data));
       bookmarksObservable.subscribe(bookmarks => {
         this.bookmarks.push(...bookmarks);
         this.isLoading = false;
-        this.loadedBookmarksFirstTime = true;
-        this.bookmarkPage++;
+        this.loadedFirstTime = true;
+        this.page++;
         this.$bookmarksLoaded.next();
       });
     }
@@ -67,8 +66,8 @@ export class BookmarksService {
   public reset() {
     this.bookmarks = [];
     this.isLoading = true;
-    this.loadedBookmarksFirstTime = false;
-    this.bookmarkPage = 1;
+    this.loadedFirstTime = false;
+    this.page = 1;
     this.$bookmarksLoaded = new Subject();
   }
 }
