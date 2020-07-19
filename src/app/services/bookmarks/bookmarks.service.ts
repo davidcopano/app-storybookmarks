@@ -52,4 +52,21 @@ export class BookmarksService {
   public onBookmarksLoaded() {
     return this.$bookmarksLoaded.asObservable();
   }
+
+  public setAuthToken(api_token: string) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${api_token}`
+      })
+    };
+  }
+
+  public reset() {
+    this.bookmarks = [];
+    this.isLoading = true;
+    this.loadedBookmarksFirstTime = false;
+    this.bookmarkPage = 1;
+    this.$bookmarksLoaded = new Subject();
+  }
 }

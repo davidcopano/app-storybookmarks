@@ -1,0 +1,16 @@
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.icon {
+    font-size: 45px;
+    color: var(--ion-color-danger);
+}
+
+.title {
+    margin-top: 12px;
+}

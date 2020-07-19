@@ -7,6 +7,7 @@ import { Facebook } from '@ionic-native/facebook/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { NavController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user/user.service';
+import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginPage implements OnInit {
   public passwordTypeInput = 'password';
   public form: FormGroup;
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public userService: UserService, public utilitiesService: UtilitiesService, public facebook: Facebook, public google: GooglePlus) { }
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public userService: UserService, public utilitiesService: UtilitiesService, public facebook: Facebook, public google: GooglePlus, public bookmarksService: BookmarksService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -98,6 +99,8 @@ export class LoginPage implements OnInit {
     this.userService.loggedUser = user;
     this.userService.saveInLocal(user);
     this.userService.loginSuccessful(user);
+
+    this.bookmarksService.setAuthToken(user.api_token);
 
     this.navCtrl.navigateRoot('/bookmarks');
   }

@@ -7,6 +7,7 @@ import { MenuRoute } from './interfaces';
 import { UserService } from './services/user/user.service';
 import { forkJoin, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BookmarksService } from './services/bookmarks/bookmarks.service';
 
 @Component({
   selector: 'app-root',
@@ -46,7 +47,8 @@ export class AppComponent implements OnInit {
     public menuCtrl: MenuController,
     public translateService: TranslateService,
     public langService: LangService,
-    public userService: UserService
+    public userService: UserService,
+    public bookmarksService: BookmarksService
   ) {
     this.initializeApp();
   }
@@ -82,6 +84,7 @@ export class AppComponent implements OnInit {
     let loggedUser = await this.userService.getFromLocal();
     if (loggedUser) {
       this.userService.loggedUser = loggedUser;
+      this.bookmarksService.setAuthToken(loggedUser.api_token);
       this.navCtrl.navigateRoot('/bookmarks');
     }
     else {
@@ -112,6 +115,7 @@ export class AppComponent implements OnInit {
           cssClass: 'text-danger',
           handler: async () => {
             this.userService.logout();
+            this.bookmarksService.reset();
             this.menuCtrl.swipeGesture(false);
             await this.menuCtrl.close();
             this.navCtrl.navigateRoot('/login');

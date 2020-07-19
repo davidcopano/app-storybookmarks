@@ -5,6 +5,7 @@ import { User } from '../../models';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
+import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterPage implements OnInit {
 
   passwordTypeInput = 'password';
 
-  constructor(private formBuilder: FormBuilder, private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService) { }
+  constructor(private formBuilder: FormBuilder, private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService, private bookmarksService: BookmarksService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -36,18 +37,24 @@ export class RegisterPage implements OnInit {
     await this.utilitiesService.showLoading('Cargando...');
     const user: User = this.form.value;
     this.userService.register(user).subscribe(async (user) => {
-      await this.utilitiesService.dismissLoading();
-
-      // save current user across the app and in local storage
-      this.userService.loggedUser = user;
-      this.userService.saveInLocal(user);
-      this.userService.loginSuccessful(user);
-
-      this.navCtrl.navigateRoot('/bookmarks');
+      this.processSuccessfulLogin(user);
     }, async (error: HttpErrorResponse) => {
       await this.utilitiesService.dismissLoading();
       this.utilitiesService.handleHttpErrorResponse(error);
     })
+  }
+
+  async processSuccessfulLogin(user: User) {
+    await this.utilitiesService.dismissLoading();
+
+    // save current user across the app and in local storage
+    this.userService.loggedUser = user;
+    this.userService.saveInLocal(user);
+    this.userService.loginSuccessful(user);
+
+    this.bookmarksService.setAuthToken(user.api_token);
+
+    this.navCtrl.navigateRoot('/bookmarks');
   }
 
   togglePasswordMode() {
