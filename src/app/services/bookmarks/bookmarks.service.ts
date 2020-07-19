@@ -15,6 +15,7 @@ export class BookmarksService {
   public isLoading: boolean = true;
   public loadedBookmarksFirstTime: boolean = false;
   private bookmarkPage: number = 1;
+  private bookmarkOrder: string = 'default';
   private $bookmarksLoaded = new Subject();
   private httpOptions: {
     headers: HttpHeaders
@@ -34,10 +35,11 @@ export class BookmarksService {
     }
   }
 
-  public getBookmarks() {
+  public getBookmarks(order: string = 'default') {
+    this.bookmarkOrder = order;
     if (!this.loadedBookmarksFirstTime || this.bookmarkPage != 1) {
       this.isLoading = true;
-      const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${this.bookmarkPage}`, this.httpOptions);
+      const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${this.bookmarkPage}&order=${this.bookmarkOrder}`, this.httpOptions);
       const bookmarksObservable = bookmarkPagination.pipe(map(value => value.data));
       bookmarksObservable.subscribe(bookmarks => {
         this.bookmarks.push(...bookmarks);

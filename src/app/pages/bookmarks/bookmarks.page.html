@@ -22,9 +22,9 @@
     </p>
     <ion-item lines="none">
       <ion-label>{{ 'ORDER_BY' | translate }}:</ion-label>
-      <ion-select interface="action-sheet" [cancelText]="'CANCEL' | translate" [(ngModel)]="bookmarksOrder">
+      <ion-select interface="action-sheet" [cancelText]="'CANCEL' | translate" [(ngModel)]="bookmarksOrder" (ionChange)="loadBookmarksByOrder()">
         <ion-select-option value="default">{{ 'ORDER_BY_DEFAULT_BOOKMARKS' | translate }}</ion-select-option>
-        <ion-select-option value="oldest_to_lowest">{{ 'ORDER_BY_OLDEST_BOOKMARKS' | translate }}</ion-select-option>
+        <ion-select-option value="oldest_to_newest">{{ 'ORDER_BY_OLDEST_BOOKMARKS' | translate }}</ion-select-option>
         <ion-select-option value="a_to_z">{{ 'A_TO_Z' | translate}}</ion-select-option>
         <ion-select-option value="z_to_a">{{ 'Z_TO_A' | translate }}</ion-select-option>
       </ion-select>
