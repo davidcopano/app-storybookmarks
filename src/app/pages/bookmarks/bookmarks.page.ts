@@ -21,11 +21,7 @@ export class BookmarksPage implements OnInit {
 
   constructor(public bookmarksService: BookmarksService) { }
 
-  ngOnInit() {
-    if (!this.bookmarksService.loadedFirstTime) {
-      this.bookmarksService.get();
-    }
-  }
+  ngOnInit() { }
 
   loadMoreBookmarks($event) {
     this.bookmarksService.get();

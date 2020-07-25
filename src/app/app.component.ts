@@ -88,9 +88,11 @@ export class AppComponent implements OnInit {
       this.userService.loggedUser = loggedUser;
       
       this.bookmarksService.setAuthToken(loggedUser.api_token);
+      this.bookmarksService.get();
 
       this.foldersService.setAuthToken(loggedUser.api_token);
       this.foldersService.get();
+      
       this.navCtrl.navigateRoot('/bookmarks');
     }
     else {
