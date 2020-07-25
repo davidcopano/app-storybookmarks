@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { UserService } from '../user/user.service';
-import { Bookmark, BookmarkPagination } from '../../interfaces';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UtilitiesService } from '../utilities/utilities.service';
+import { Folder } from 'src/app/interfaces';
+import { Subject } from 'rxjs';
+import { FolderPagination } from 'src/app/interfaces/folders/FolderPagination';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { UtilitiesService } from '../utilities/utilities.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookmarksService {
+export class FoldersService {
 
-  public bookmarks: Bookmark[] = [];
+  public folders: Folder[] = [];
   public isLoading: boolean = true;
   public loadedFirstTime: boolean = false;
-  public order: string = 'default';
   private page: number = 1;
-  private $bookmarksLoaded = new Subject();
+  private $foldersLoaded = new Subject();
   private httpOptions: {
     headers: HttpHeaders
   }
@@ -32,38 +32,27 @@ export class BookmarksService {
       };
     }
     else {
-      console.error('No hay usuario logeado actualmente - bookmarks.service.ts');
+      console.error('No hay usuario logeado actualmente - folders.service.ts');
     }
   }
 
   public get() {
     if (!this.loadedFirstTime || this.page != 1) {
       this.isLoading = true;
-      const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${this.page}&order=${this.order}`, this.httpOptions);
-      const bookmarksObservable = bookmarkPagination.pipe(map(value => value.data));
-      bookmarksObservable.subscribe(bookmarks => {
-        this.bookmarks.push(...bookmarks);
+      const folderPagination = this.httpClient.get<FolderPagination>(`${environment.apiUrl}folders?page=${this.page}`, this.httpOptions);
+      const foldersObservable = folderPagination.pipe(map(value => value.data));
+      foldersObservable.subscribe(folders => {
+        this.folders.push(...folders);
         this.isLoading = false;
         this.loadedFirstTime = true;
         this.page++;
-        this.$bookmarksLoaded.next();
+        this.$foldersLoaded.next();
       });
     }
   }
 
-  public async add(bookmark: Bookmark) {
-    try {
-      await this.httpClient.post<Bookmark>(`${environment.apiUrl}bookmarks`, bookmark, this.httpOptions).toPromise();
-      this.bookmarks.unshift(bookmark);
-      return { success: true };
-    }
-    catch(error) {
-      return { success: false, error };
-    }
-  }
-
-  public onBookmarksLoaded() {
-    return this.$bookmarksLoaded.asObservable();
+  public onFoldersLoaded() {
+    return this.$foldersLoaded.asObservable();
   }
 
   public setAuthToken(api_token: string) {
@@ -76,10 +65,10 @@ export class BookmarksService {
   }
 
   public reset() {
-    this.bookmarks = [];
+    this.folders = [];
     this.isLoading = true;
     this.loadedFirstTime = false;
     this.page = 1;
-    this.$bookmarksLoaded = new Subject();
+    this.$foldersLoaded = new Subject();
   }
 }
