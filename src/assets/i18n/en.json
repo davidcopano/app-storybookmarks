@@ -79,5 +79,6 @@
   "LOGOUT_CONFIRMATION": "Are yo sure do you want to log out?",
   "PASSWORDS_NOT_MATCHING": "Passwords not matching",
   "ELEMENT_CREATED_SUCCESFULLY": "Element created succesfully",
-  "ELEMENT_EDITED_SUCCESFULLY": "Element edited succesfully"
+  "ELEMENT_EDITED_SUCCESFULLY": "Element edited succesfully",
+  "NO_FOLDER": "-No folder-"
 }

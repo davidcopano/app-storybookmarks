@@ -31,6 +31,7 @@
       <ion-label class="dark-label ion-padding-top" position="stacked">{{ 'FOLDER' | translate }}
         ({{ 'OPTIONAL' | translate | lowercase }})</ion-label>
       <ion-select class="light-select" [cancelText]="'CANCEL' | translate" formControlName="folder_id">
+        <ion-select-option value="">{{ 'NO_FOLDER' | translate }}</ion-select-option>
         <ion-select-option [value]="folder?.id" *ngFor="let folder of foldersService?.folders">{{ folder?.name }}
         </ion-select-option>
       </ion-select>

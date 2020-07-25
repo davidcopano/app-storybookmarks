@@ -79,5 +79,6 @@
   "LOGOUT_CONFIRMATION": "¿Estás seguro de que quieres cerrar sesión?",
   "PASSWORDS_NOT_MATCHING": "Las contraseñas no coinciden",
   "ELEMENT_CREATED_SUCCESFULLY": "Elemento creado con éxito",
-  "ELEMENT_EDITED_SUCCESFULLY": "Elemento editado con éxito"
+  "ELEMENT_EDITED_SUCCESFULLY": "Elemento editado con éxito",
+  "NO_FOLDER": "-Sin carpeta-"
 }
