@@ -77,5 +77,6 @@
   "ENABLE_DARK_MODE_DESCRIPTION": "Al habilitar esta opción, activarás el modo oscuro en todas las secciones de la aplicación.",
   "LEAVE_PASSWORD_EMPTY": "Dejar vacío para no cambiarla",
   "LOGOUT_CONFIRMATION": "¿Estás seguro de que quieres cerrar sesión?",
-  "PASSWORDS_NOT_MATCHING": "Las contraseñas no coinciden"
+  "PASSWORDS_NOT_MATCHING": "Las contraseñas no coinciden",
+  "ELEMENT_CREATED_SUCCESFULLY": "Elemento creado con éxito"
 }

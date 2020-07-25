@@ -77,5 +77,6 @@
   "ENABLE_DARK_MODE_DESCRIPTION": "Enabling this option will activate the dark mode in all sections of the app.",
   "LEAVE_PASSWORD_EMPTY": "Leave empty to not change it",
   "LOGOUT_CONFIRMATION": "Are yo sure do you want to log out?",
-  "PASSWORDS_NOT_MATCHING": "Passwords not matching"
+  "PASSWORDS_NOT_MATCHING": "Passwords not matching",
+  "ELEMENT_CREATED_SUCCESFULLY": "Element created succesfully"
 }

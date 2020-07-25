@@ -23,12 +23,12 @@ export class BookmarksPage implements OnInit {
 
   ngOnInit() {
     if (!this.bookmarksService.loadedFirstTime) {
-      this.bookmarksService.getBookmarks();
+      this.bookmarksService.get();
     }
   }
 
   loadMoreBookmarks($event) {
-    this.bookmarksService.getBookmarks();
+    this.bookmarksService.get();
     this.onBookmarksLoadedSubscription = this.bookmarksService.onBookmarksLoaded().subscribe(() => {
       $event.target.complete();
       this.onBookmarksLoadedSubscription.unsubscribe();
@@ -37,7 +37,7 @@ export class BookmarksPage implements OnInit {
 
   loadBookmarksByOrder() {
     this.bookmarksService.reset();
-    this.bookmarksService.getBookmarks();
+    this.bookmarksService.get();
   }
 
   search($event) {

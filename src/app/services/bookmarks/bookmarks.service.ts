@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../user/user.service';
 import { Bookmark, BookmarkPagination } from '../../interfaces';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map, takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
+import { UtilitiesService } from '../utilities/utilities.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class BookmarksService {
     headers: HttpHeaders
   }
 
-  constructor(private httpClient: HttpClient, public userService: UserService) {
+  constructor(private httpClient: HttpClient, public userService: UserService, private utilitiesService: UtilitiesService) {
     if (userService.loggedUser) {
       this.httpOptions = {
         headers: new HttpHeaders({
@@ -35,7 +36,7 @@ export class BookmarksService {
     }
   }
 
-  public getBookmarks() {
+  public get() {
     if (!this.loadedFirstTime || this.page != 1) {
       this.isLoading = true;
       const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}bookmarks?page=${this.page}&order=${this.order}`, this.httpOptions);
@@ -47,6 +48,17 @@ export class BookmarksService {
         this.page++;
         this.$bookmarksLoaded.next();
       });
+    }
+  }
+
+  public async add(bookmark: Bookmark) {
+    try {
+      await this.httpClient.post<Bookmark>(`${environment.apiUrl}bookmarks`, bookmark, this.httpOptions).toPromise();
+      this.bookmarks.unshift(bookmark);
+      return { success: true };
+    }
+    catch(error) {
+      return { success: false, error };
     }
   }
 
