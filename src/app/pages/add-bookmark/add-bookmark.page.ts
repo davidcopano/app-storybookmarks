@@ -20,6 +20,7 @@ export class AddBookmarkPage implements OnInit {
   public form: FormGroup;
   private elementCreatedSuccesfullyText: string;
   private unknownErrorText: string;
+  private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
   constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService) { }
 
@@ -31,8 +32,14 @@ export class AddBookmarkPage implements OnInit {
       note: [''],
       folder_id: [''],
       public: [false],
-      expiration_date: [moment().format('YYYY-MM-DD HH:mm:ss')]
+      expiration_date: [this.currentDatetime]
     });
+    this.form.get('public').valueChanges.subscribe(isPublic => {
+      this.form.patchValue({
+        expiration_date: isPublic ? this.currentDatetime : null
+      });
+    });
+
     let translationTexts = this.getTranslationValues();
     translationTexts.subscribe(translations => {
       this.elementCreatedSuccesfullyText = translations.elementCreatedSuccesfullyText;
