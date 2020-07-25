@@ -28,7 +28,7 @@ export class EditBookmarkPage implements OnInit {
   ngOnInit() {
     this.bookmark = history.state.bookmark;
     this.form = this.formBuilder.group({
-      title: [this.bookmark.title + '-EDIT', Validators.required],
+      title: [this.bookmark.title, Validators.required],
       url: [this.bookmark.url, Validators.required],
       color: [this.bookmark.color, Validators.required],
       note: [this.bookmark.note],

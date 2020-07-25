@@ -74,6 +74,18 @@ export class BookmarksService {
     }
   }
 
+  public async delete(bookmark: Bookmark) {
+    try {
+      await this.httpClient.delete<Bookmark>(`${environment.apiUrl}bookmarks/${bookmark.id}`, this.httpOptions).toPromise();
+      let index = this.bookmarks.findIndex(item => item.id == bookmark.id);
+      this.bookmarks.splice(index, 1);
+      return { success: true };
+    }
+    catch (error) {
+      return { success: false, error };
+    }
+  }
+
   public onBookmarksLoaded() {
     return this.$bookmarksLoaded.asObservable();
   }

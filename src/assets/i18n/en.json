@@ -80,5 +80,6 @@
   "PASSWORDS_NOT_MATCHING": "Passwords not matching",
   "ELEMENT_CREATED_SUCCESFULLY": "Element created succesfully",
   "ELEMENT_EDITED_SUCCESFULLY": "Element edited succesfully",
-  "NO_FOLDER": "-No folder-"
+  "NO_FOLDER": "-No folder-",
+  "ELEMENT_DELETED_SUCCESFULLY": "Element deleted succesfully"
 }

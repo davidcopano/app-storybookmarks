@@ -6,6 +6,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { TranslateService } from '@ngx-translate/core';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
 
 @Component({
   selector: 'app-bookmark-options',
@@ -26,8 +27,10 @@ export class BookmarkOptionsComponent implements OnInit {
   public copyLinkText: string;
   public editDataText: string;
   public deleteText: string;
+  public unknownErrorText: string;
+  public elementDeletedSuccesfullyText: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public utilities: UtilitiesService, public inAppBrowser: InAppBrowser, public popoverCtrl: PopoverController, public translateService: TranslateService, public alertCtrl: AlertController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public utilitiesService: UtilitiesService, public inAppBrowser: InAppBrowser, public popoverCtrl: PopoverController, public translateService: TranslateService, public alertCtrl: AlertController, private bookmarksService: BookmarksService) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
@@ -43,6 +46,8 @@ export class BookmarkOptionsComponent implements OnInit {
       this.copyLinkText = translations.copyLinkText;
       this.editDataText = translations.editDataText;
       this.deleteText = translations.deleteText;
+      this.elementDeletedSuccesfullyText = translations.elementDeletedSuccesfullyText;
+      this.unknownErrorText = translations.unknownErrorText;
     });
   }
 
@@ -52,9 +57,9 @@ export class BookmarkOptionsComponent implements OnInit {
   }
 
   async copyLink() {
-    this.utilities.copyToClipboard(this.item.url);
+    this.utilitiesService.copyToClipboard(this.item.url);
     this.closeSelf();
-    this.utilities.showToast(this.linkCopiedToClipboardText);
+    this.utilitiesService.showToast(this.linkCopiedToClipboardText);
   }
 
   async editData() {
@@ -79,9 +84,15 @@ export class BookmarkOptionsComponent implements OnInit {
           text: this.yesDeleteText,
           role: 'destructive',
           cssClass: 'text-danger',
-          handler: () => {
-            console.log('delete clicked');
-            this.closeSelf();
+          handler: async () => {
+            let result = await this.bookmarksService.delete(this.item);
+            if(result.success) {
+              this.utilitiesService.showToast(this.elementDeletedSuccesfullyText);
+              this.closeSelf();
+            }
+            else {
+              this.utilitiesService.showAlert('Error', this.unknownErrorText);
+            }
           }
         }
       ]
@@ -104,8 +115,10 @@ export class BookmarkOptionsComponent implements OnInit {
       this.translateService.get('COPY_LINK'),
       this.translateService.get('EDIT_DATA'),
       this.translateService.get('DELETE'),
+      this.translateService.get('ELEMENT_DELETED_SUCCESFULLY'),
+      this.translateService.get('UNKNOWN_PETITION_ERROR'),
     ).pipe(
-      map(([linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText, openLinkText, copyLinkText, editDataText, deleteText]) => {
+      map(([linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText, openLinkText, copyLinkText, editDataText, deleteText, elementDeletedSuccesfullyText, unknownErrorText]) => {
         return {
           linkCopiedToClipboardText,
           deleteBookmarkText,
@@ -115,7 +128,9 @@ export class BookmarkOptionsComponent implements OnInit {
           openLinkText,
           copyLinkText,
           editDataText,
-          deleteText
+          deleteText,
+          elementDeletedSuccesfullyText,
+          unknownErrorText
         };
       })
     );

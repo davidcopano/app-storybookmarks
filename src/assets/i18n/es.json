@@ -80,5 +80,6 @@
   "PASSWORDS_NOT_MATCHING": "Las contraseñas no coinciden",
   "ELEMENT_CREATED_SUCCESFULLY": "Elemento creado con éxito",
   "ELEMENT_EDITED_SUCCESFULLY": "Elemento editado con éxito",
-  "NO_FOLDER": "-Sin carpeta-"
+  "NO_FOLDER": "-Sin carpeta-",
+  "ELEMENT_DELETED_SUCCESFULLY": "Elemento eliminado con éxito"
 }
