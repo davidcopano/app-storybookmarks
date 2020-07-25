@@ -19,7 +19,7 @@ export class EditBookmarkPage implements OnInit {
 
   bookmark: Bookmark;
   public form: FormGroup;
-  private elementCreatedSuccesfullyText: string;
+  private elementEditedSuccesfullyText: string;
   private unknownErrorText: string;
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
@@ -28,7 +28,7 @@ export class EditBookmarkPage implements OnInit {
   ngOnInit() {
     this.bookmark = history.state.bookmark;
     this.form = this.formBuilder.group({
-      title: [this.bookmark.title, Validators.required],
+      title: [this.bookmark.title + '-EDIT', Validators.required],
       url: [this.bookmark.url, Validators.required],
       color: [this.bookmark.color, Validators.required],
       note: [this.bookmark.note],
@@ -44,24 +44,32 @@ export class EditBookmarkPage implements OnInit {
 
     let translationTexts = this.getTranslationValues();
     translationTexts.subscribe(translations => {
-      this.elementCreatedSuccesfullyText = translations.elementCreatedSuccesfullyText;
+      this.elementEditedSuccesfullyText = translations.elementEditedSuccesfullyText;
       this.unknownErrorText = translations.unknownErrorText;
     });
   }
 
-  submitForm() {
-    console.log('submitForm()');
-    console.log(this.form.value);
+  async submitForm() {
+    let bookmark: Bookmark = this.form.value;
+    bookmark.id = this.bookmark.id;
+    let result = await this.bookmarksService.edit(bookmark);
+    if (result.success) {
+      this.utilitiesService.showToast(this.elementEditedSuccesfullyText);
+      this.navCtrl.navigateRoot('/bookmarks');
+    }
+    else {
+      this.utilitiesService.showAlert('Error', this.unknownErrorText);
+    }
   }
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('ELEMENT_CREATED_SUCCESFULLY'),
+      this.translateService.get('ELEMENT_EDITED_SUCCESFULLY'),
       this.translateService.get('UNKNOWN_PETITION_ERROR'),
     ).pipe(
-      map(([elementCreatedSuccesfullyText, unknownErrorText]) => {
+      map(([elementEditedSuccesfullyText, unknownErrorText]) => {
         return {
-          elementCreatedSuccesfullyText,
+          elementEditedSuccesfullyText,
           unknownErrorText,
         };
       })

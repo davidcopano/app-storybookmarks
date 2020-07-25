@@ -57,7 +57,19 @@ export class BookmarksService {
       this.bookmarks.unshift(bookmark);
       return { success: true };
     }
-    catch(error) {
+    catch (error) {
+      return { success: false, error };
+    }
+  }
+
+  public async edit(bookmark: Bookmark) {
+    try {
+      await this.httpClient.patch<Bookmark>(`${environment.apiUrl}bookmarks/${bookmark.id}`, bookmark, this.httpOptions).toPromise();
+      let index = this.bookmarks.findIndex(item => item.id == bookmark.id);
+      this.bookmarks[index] = bookmark;
+      return { success: true };
+    }
+    catch (error) {
       return { success: false, error };
     }
   }
