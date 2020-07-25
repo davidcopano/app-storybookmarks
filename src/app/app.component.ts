@@ -8,6 +8,7 @@ import { UserService } from './services/user/user.service';
 import { forkJoin, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BookmarksService } from './services/bookmarks/bookmarks.service';
+import { FoldersService } from './services/folders/folders.service';
 
 @Component({
   selector: 'app-root',
@@ -48,7 +49,8 @@ export class AppComponent implements OnInit {
     public translateService: TranslateService,
     public langService: LangService,
     public userService: UserService,
-    public bookmarksService: BookmarksService
+    public bookmarksService: BookmarksService,
+    public foldersService: FoldersService
   ) {
     this.initializeApp();
   }
@@ -84,7 +86,11 @@ export class AppComponent implements OnInit {
     let loggedUser = await this.userService.getFromLocal();
     if (loggedUser) {
       this.userService.loggedUser = loggedUser;
+      
       this.bookmarksService.setAuthToken(loggedUser.api_token);
+
+      this.foldersService.setAuthToken(loggedUser.api_token);
+      this.foldersService.get();
       this.navCtrl.navigateRoot('/bookmarks');
     }
     else {

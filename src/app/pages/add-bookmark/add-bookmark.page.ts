@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { NavController } from '@ionic/angular';
+import { FoldersService } from 'src/app/services/folders/folders.service';
 
 @Component({
   selector: 'app-add-bookmark',
@@ -19,7 +20,7 @@ export class AddBookmarkPage implements OnInit {
   private elementCreatedSuccesfullyText: string;
   private unknownErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService) { }
+  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
