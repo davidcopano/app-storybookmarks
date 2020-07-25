@@ -59,7 +59,7 @@ export class AddBookmarkPage implements OnInit {
     }
   }
 
-  public getTranslationValues() {
+  private getTranslationValues() {
     return forkJoin(
       this.translateService.get('ELEMENT_CREATED_SUCCESFULLY'),
       this.translateService.get('UNKNOWN_PETITION_ERROR'),
