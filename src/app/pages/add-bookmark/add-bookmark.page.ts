@@ -30,26 +30,24 @@ export class AddBookmarkPage implements OnInit {
       folder_id: [''],
       public: [''],
       expiration_date: ['']
-    })
+    });
+    let translationTexts = this.getTranslationValues();
+    translationTexts.subscribe(translations => {
+      this.elementCreatedSuccesfullyText = translations.elementCreatedSuccesfullyText;
+      this.unknownErrorText = translations.unknownErrorText;
+    });
   }
 
   async submitForm() {
     let bookmark: Bookmark = this.form.value;
     let result = await this.bookmarksService.add(bookmark);
-    if(result.success) {
-
+    if (result.success) {
+      this.utilitiesService.showToast(this.elementCreatedSuccesfullyText);
+      this.navCtrl.navigateRoot('/bookmarks');
     }
     else {
-      
+      this.utilitiesService.showAlert('Error', this.unknownErrorText);
     }
-
-    // if (await this.bookmarksService.add(bookmark)) {
-    //   this.utilitiesService.showToast(this.elementCreatedSuccesfullyText);
-    //   this.navCtrl.navigateRoot('/bookmarks');
-    // }
-    // else {
-    //   this.utilitiesService.showAlert('Error', this.unknownErrorText);
-    // }
   }
 
   public getTranslationValues() {
