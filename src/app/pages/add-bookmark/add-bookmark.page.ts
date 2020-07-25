@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { NavController } from '@ionic/angular';
 import { FoldersService } from 'src/app/services/folders/folders.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-bookmark',
@@ -29,8 +30,8 @@ export class AddBookmarkPage implements OnInit {
       color: ['#000000', Validators.required],
       note: [''],
       folder_id: [''],
-      public: [''],
-      expiration_date: ['']
+      public: [false],
+      expiration_date: [moment().format('YYYY-MM-DD HH:mm:ss')]
     });
     let translationTexts = this.getTranslationValues();
     translationTexts.subscribe(translations => {

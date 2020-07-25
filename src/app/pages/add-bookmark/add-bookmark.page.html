@@ -37,7 +37,7 @@
       <ion-toggle color="primary" mode="ios" slot="start" formControlName="public"></ion-toggle>
       <ion-label class="dark-label" position="stacked">{{ 'CREATE_THIS_BOOKMARK_AS_PUBLIC' | translate }}</ion-label>
     </ion-item>
-    <ion-item class="with-light-input ion-margin-bottom" lines="none">
+    <ion-item class="with-light-input ion-margin-bottom" lines="none" [hidden]="!form?.get('public').value">
       <ion-label class="dark-label ion-padding-top" position="stacked">
         {{ 'WHEN_DOES_THE_PUBLIC_BOOKMARK_EXPIRE' | translate }}</ion-label>
       <ion-datetime color="primary" formControlName="expiration_date"></ion-datetime>
