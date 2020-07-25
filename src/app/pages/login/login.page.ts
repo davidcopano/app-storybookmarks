@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { User, FacebookProfile, GoogleLoginResponse } from "../../models";
+import { User, FacebookProfile, GoogleLoginResponse } from "../../interfaces";
 import { HttpErrorResponse } from '@angular/common/http';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { Facebook } from '@ionic-native/facebook/ngx';

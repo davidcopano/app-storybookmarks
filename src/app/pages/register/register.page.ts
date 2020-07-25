@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
-import { User } from '../../models';
+import { User } from '../../interfaces';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
