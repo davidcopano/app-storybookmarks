@@ -6,6 +6,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
+import { checkPasswords } from 'src/app/validators';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,7 @@ export class RegisterPage implements OnInit {
       password: ['', Validators.required],
       password_confirmation: ['', Validators.required],
     }, {
-      validator: this.checkPasswords
+      validator: checkPasswords
     })
   }
 
@@ -65,12 +66,6 @@ export class RegisterPage implements OnInit {
     setTimeout(() => {
       nativeEl.setSelectionRange(inputSelection, inputSelection);
     }, 1);
-  }
-
-  checkPasswords(group: FormGroup) {
-    let pass = group.get('password').value;
-    let confirmPass = group.get('password_confirmation').value;
-    return pass === confirmPass ? null : { notSame: true }
   }
 
   get email() { return this.form.get('email'); }

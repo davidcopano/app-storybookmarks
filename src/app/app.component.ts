@@ -3,7 +3,7 @@ import { Platform, NavController, AlertController, MenuController, IonMenu } fro
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from './services/lang/lang.service';
-import { MenuRoute } from './interfaces';
+import { MenuRoute, User } from './interfaces';
 import { UserService } from './services/user/user.service';
 import { forkJoin, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -67,6 +67,7 @@ export class AppComponent implements OnInit {
       }, 225);
     });
     this.loginSubscription = this.userService.onLoginSuccessful().subscribe(user => {
+      this.loadItemsFromServices(this.userService.loggedUser);
       this.menuCtrl.swipeGesture(true);
     });
   }
@@ -86,18 +87,20 @@ export class AppComponent implements OnInit {
     let loggedUser = await this.userService.getFromLocal();
     if (loggedUser) {
       this.userService.loggedUser = loggedUser;
-      
-      this.bookmarksService.setAuthToken(loggedUser.api_token);
-      this.bookmarksService.get();
-
-      this.foldersService.setAuthToken(loggedUser.api_token);
-      this.foldersService.get();
-      
+      this.loadItemsFromServices(loggedUser);
       this.navCtrl.navigateRoot('/bookmarks');
     }
     else {
       this.menuCtrl.swipeGesture(false);
     }
+  }
+
+  private loadItemsFromServices(loggedUser: User) {
+    this.bookmarksService.setAuthToken(loggedUser.api_token);
+    this.bookmarksService.get();
+
+    this.foldersService.setAuthToken(loggedUser.api_token);
+    this.foldersService.get();
   }
 
   toggleUserOptions() {

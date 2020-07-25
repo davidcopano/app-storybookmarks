@@ -26,8 +26,8 @@ export class AddBookmarkPage implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      title: ['Prueba desde aplicación', Validators.required],
-      url: ['http://www.google.es', Validators.required],
+      title: ['', Validators.required],
+      url: ['', Validators.required],
       color: ['#000000', Validators.required],
       note: [''],
       folder_id: [''],
@@ -72,4 +72,6 @@ export class AddBookmarkPage implements OnInit {
       })
     );
   }
+
+  get url() { return this.form.get('url'); }
 }

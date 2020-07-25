@@ -17,6 +17,11 @@
       <ion-label class="dark-label" position="stacked">{{ 'LINK' | translate }}</ion-label>
       <ion-input class="light-input" type="url" formControlName="url"></ion-input>
     </ion-item>
+    <div *ngIf="url.invalid && (url.dirty || url.touched)" class="errors">
+      <ion-text color="danger" *ngIf="url.errors.noProtocolInUrl">
+        <p>fkdjhd</p>
+      </ion-text>
+    </div>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'BOOKMARK_COLOR' | translate }}</ion-label>
       <ion-input class="light-input" type="color" formControlName="color"
