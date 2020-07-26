@@ -127,6 +127,19 @@ export class UtilitiesService {
   }
 
   /**
+   * Devuelve si una URL es un vídeo de YouTube o no. Si lo es, devuelve su ID
+   * @param url URL que se va a comprobar
+   */
+  public getYoutubeVideoId(url: string) {
+    let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+    let match = url.match(regExp);
+    if (match && match[2].length == 11) {
+      return match[2];
+    }
+    return false;
+  }
+
+  /**
    * Muestra un alert genérico para notificar algo (un error, éxito, etc)
    * @param title Título del alert
    * @param message Mensaje del alert

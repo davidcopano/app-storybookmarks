@@ -5,6 +5,7 @@ import { PopoverController } from '@ionic/angular';
 import { BookmarkOptionsComponent } from '../bookmark-options/bookmark-options.component';
 import { LangService } from 'src/app/services/lang/lang.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-bookmark',
@@ -17,7 +18,7 @@ export class BookmarkComponent implements OnInit {
 
   public itemDefaultBorderColor: string = 'black';
 
-  constructor(public inAppBrowser: InAppBrowser, public popoverCtrl: PopoverController, public langService: LangService, public utilitiesService: UtilitiesService) { }
+  constructor(public sanitizer: DomSanitizer, public inAppBrowser: InAppBrowser, public popoverCtrl: PopoverController, public langService: LangService, public utilitiesService: UtilitiesService) { }
 
   ngOnInit() { }
 
