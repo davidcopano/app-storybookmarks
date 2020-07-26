@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Folder } from 'src/app/interfaces';
+import { NavController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { FoldersService } from 'src/app/services/folders/folders.service';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-folder',
@@ -10,21 +16,51 @@ import { Folder } from 'src/app/interfaces';
 export class EditFolderPage implements OnInit {
 
   folder: Folder;
-  form: FormGroup;
+  public form: FormGroup;
+  private elementEditedSuccesfullyText: string;
+  private unknownErrorText: string;
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService) { }
 
   ngOnInit() {
     this.folder = history.state.folder;
     this.form = this.formBuilder.group({
       name: [this.folder.name, Validators.required],
-      color: [this.folder.color, Validators.required]
+      color: [this.folder.color, Validators.required],
+      created_at: [this.folder.created_at, Validators.required]
+    });
+
+    let translationTexts = this.getTranslationValues();
+    translationTexts.subscribe(translations => {
+      this.elementEditedSuccesfullyText = translations.elementEditedSuccesfullyText;
+      this.unknownErrorText = translations.unknownErrorText;
     });
   }
 
-  submitForm() {
-    console.log('submitForm()');
-    console.log(this.form.value);
+  async submitForm() {
+    let folder: Folder = this.form.value;
+    folder.id = this.folder.id;
+    let result = await this.foldersService.edit(folder);
+    if (result.success) {
+      this.utilitiesService.showToast(this.elementEditedSuccesfullyText);
+      this.navCtrl.navigateRoot('/folders');
+    }
+    else {
+      this.utilitiesService.showAlert('Error', this.unknownErrorText);
+    }
   }
 
+  private getTranslationValues() {
+    return forkJoin(
+      this.translateService.get('ELEMENT_EDITED_SUCCESFULLY'),
+      this.translateService.get('UNKNOWN_PETITION_ERROR'),
+    ).pipe(
+      map(([elementEditedSuccesfullyText, unknownErrorText]) => {
+        return {
+          elementEditedSuccesfullyText,
+          unknownErrorText,
+        };
+      })
+    );
+  }
 }

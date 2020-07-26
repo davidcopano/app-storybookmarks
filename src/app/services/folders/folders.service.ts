@@ -62,6 +62,18 @@ export class FoldersService {
     }
   }
 
+  public async edit(folder: Folder) {
+    try {
+      await this.httpClient.patch<Folder>(`${environment.apiUrl}folders/${folder.id}`, folder, this.httpOptions).toPromise();
+      let index = this.folders.findIndex(item => item.id == folder.id);
+      this.folders[index] = folder;
+      return { success: true };
+    }
+    catch (error) {
+      return { success: false, error };
+    }
+  }
+
   public onFoldersLoaded() {
     return this.$foldersLoaded.asObservable();
   }

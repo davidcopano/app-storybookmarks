@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Folder } from 'src/app/interfaces';
-import * as moment from 'moment';
 import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
@@ -19,7 +18,6 @@ export class AddFolderPage implements OnInit {
   public form: FormGroup;
   private elementCreatedSuccesfullyText: string;
   private unknownErrorText: string;
-  private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
   constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService) { }
 
