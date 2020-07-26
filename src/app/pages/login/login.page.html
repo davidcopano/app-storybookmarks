@@ -12,7 +12,7 @@
   <form class="form" [formGroup]="form" (ngSubmit)="submitForm()">
     <ion-item class="with-light-input" lines="none">
       <ion-label position="stacked">Email</ion-label>
-      <ion-input type="email" formControlName="email" clearInput></ion-input>
+      <ion-input clearInput type="email" formControlName="email" clearInput></ion-input>
     </ion-item>
     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="errors">
       <ion-text color="danger" *ngIf="email.errors.required">

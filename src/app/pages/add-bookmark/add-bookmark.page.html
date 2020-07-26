@@ -11,11 +11,11 @@
   <form [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
     <ion-item class="with-light-input" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'TITLE' | translate }}</ion-label>
-      <ion-input class="light-input" type="text" formControlName="title"></ion-input>
+      <ion-input clearInput class="light-input" type="text" formControlName="title"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'LINK' | translate }}</ion-label>
-      <ion-input class="light-input" type="url" formControlName="url"></ion-input>
+      <ion-input clearInput class="light-input" type="url" formControlName="url"></ion-input>
     </ion-item>
     <div *ngIf="url.invalid && (url.dirty || url.touched)" class="errors">
       <ion-text color="danger" *ngIf="url.errors.noProtocolInUrl">
@@ -24,13 +24,13 @@
     </div>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'BOOKMARK_COLOR' | translate }}</ion-label>
-      <ion-input class="light-input" type="color" formControlName="color"
+      <ion-input clearInput class="light-input" type="color" formControlName="color"
         [style.border-bottom]="'4px solid ' + form?.get('color').value"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'NOTE' | translate }}
         ({{ 'OPTIONAL' | translate | lowercase }})</ion-label>
-      <ion-input class="light-input" type="text" formControlName="note"></ion-input>
+      <ion-input clearInput class="light-input" type="text" formControlName="note"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label ion-padding-top" position="stacked">{{ 'FOLDER' | translate }}

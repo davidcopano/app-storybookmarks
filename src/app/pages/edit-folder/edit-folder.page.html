@@ -11,11 +11,11 @@
   <form [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
     <ion-item class="with-light-input" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'NAME' | translate }}</ion-label>
-      <ion-input class="light-input" type="text" formControlName="name"></ion-input>
+      <ion-input clearInput class="light-input" type="text" formControlName="name"></ion-input>
     </ion-item>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'FOLDER_COLOR' | translate }}</ion-label>
-      <ion-input class="light-input" type="color" formControlName="color"
+      <ion-input clearInput class="light-input" type="color" formControlName="color"
         [style.border-bottom]="'4px solid ' + form?.get('color').value"></ion-input>
     </ion-item>
     <ion-button type="submit" class="save-button" expand="full" color="primary" [disabled]="!form.valid">
