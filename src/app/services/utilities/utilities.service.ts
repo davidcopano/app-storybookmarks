@@ -110,8 +110,20 @@ export class UtilitiesService {
     return path.split('.').pop().toLowerCase();
   }
 
+  /**
+   * Devuelve si una URL es una imagen o no
+   * @param url URL que se va a comprobar
+   */
   public isImage(url: string) {
     return (url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+  }
+
+  /**
+   * Devuelve si una URL es un vídeo o no
+   * @param url URL que se va a comprobar
+   */
+  public isVideo(url: string) {
+    return (url.match(/\.(mp4|mov|wmv|flv|avi|webm|mkv)$/) != null);
   }
 
   /**
