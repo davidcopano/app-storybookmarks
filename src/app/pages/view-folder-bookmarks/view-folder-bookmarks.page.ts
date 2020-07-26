@@ -12,8 +12,9 @@ export class ViewFolderBookmarksPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  folder: Folder;
-  bookmarks: Bookmark[] = [];
+  public folder: Folder;
+  public bookmarks: Bookmark[] = [];
+  public isLoading: boolean = true;
   private page: number = 1;
 
   constructor(private foldersService: FoldersService) { }
@@ -21,6 +22,7 @@ export class ViewFolderBookmarksPage implements OnInit {
   async ngOnInit() {
     this.folder = history.state.folder;
     this.bookmarks = await this.foldersService.getBookmarksById(this.folder, this.page);
+    this.isLoading = false;
   }
 
   async loadMoreBookmarks($event) {
@@ -28,6 +30,9 @@ export class ViewFolderBookmarksPage implements OnInit {
     let newBookmarks = await this.foldersService.getBookmarksById(this.folder, this.page);
     this.bookmarks.push(...newBookmarks);
     $event.target.complete();
+    if(newBookmarks.length === 0) {
+      this.infiniteScroll.disabled = true;
+    }
   }
 
 }
