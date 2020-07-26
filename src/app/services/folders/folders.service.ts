@@ -74,6 +74,18 @@ export class FoldersService {
     }
   }
 
+  public async delete(folder: Folder) {
+    try {
+      await this.httpClient.delete<Folder>(`${environment.apiUrl}folders/${folder.id}`, this.httpOptions).toPromise();
+      let index = this.folders.findIndex(item => item.id == folder.id);
+      this.folders.splice(index, 1);
+      return { success: true };
+    }
+    catch (error) {
+      return { success: false, error };
+    }
+  }
+
   public onFoldersLoaded() {
     return this.$foldersLoaded.asObservable();
   }

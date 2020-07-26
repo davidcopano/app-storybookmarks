@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { Folder } from 'src/app/interfaces';
 import { NavParams, NavController, PopoverController, AlertController } from '@ionic/angular';
+import { FoldersService } from 'src/app/services/folders/folders.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-folder-options',
@@ -22,8 +24,10 @@ export class FolderOptionsComponent implements OnInit {
   public deleteText: string;
   public deleteFolderText: string;
   public deleteFolderConfirmationText: string;
+  public unknownErrorText: string;
+  public elementDeletedSuccesfullyText: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public translateService: TranslateService, public popoverCtrl: PopoverController, public alertCtrl: AlertController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public translateService: TranslateService, public popoverCtrl: PopoverController, public alertCtrl: AlertController, private foldersService: FoldersService, private utilitiesService: UtilitiesService) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
@@ -37,6 +41,8 @@ export class FolderOptionsComponent implements OnInit {
       this.deleteText = translations.deleteText;
       this.deleteFolderText = translations.deleteFolderText;
       this.deleteFolderConfirmationText = translations.deleteFolderConfirmationText;
+      this.unknownErrorText = translations.unknownErrorText;
+      this.elementDeletedSuccesfullyText = translations.elementDeletedSuccesfullyText;
     });
   }
 
@@ -71,9 +77,15 @@ export class FolderOptionsComponent implements OnInit {
           text: this.yesDeleteText,
           role: 'destructive',
           cssClass: 'text-danger',
-          handler: () => {
-            console.log('delete clicked');
-            this.closeSelf();
+          handler: async () => {
+            let result = await this.foldersService.delete(this.item);
+            if (result.success) {
+              this.utilitiesService.showToast(this.elementDeletedSuccesfullyText);
+              this.closeSelf();
+            }
+            else {
+              this.utilitiesService.showAlert('Error', this.unknownErrorText);
+            }
           }
         }
       ]
@@ -95,8 +107,10 @@ export class FolderOptionsComponent implements OnInit {
       this.translateService.get('DELETE'),
       this.translateService.get('DELETE_FOLDER'),
       this.translateService.get('DELETE_FOLDER_CONFIRMATION'),
+      this.translateService.get('ELEMENT_DELETED_SUCCESFULLY'),
+      this.translateService.get('UNKNOWN_PETITION_ERROR'),
     ).pipe(
-      map(([viewText, bookmarksText, yesDeleteText, cancelText, editDataText, deleteText, deleteFolderText, deleteFolderConfirmationText]) => {
+      map(([viewText, bookmarksText, yesDeleteText, cancelText, editDataText, deleteText, deleteFolderText, deleteFolderConfirmationText, elementDeletedSuccesfullyText, unknownErrorText]) => {
         return {
           viewText,
           bookmarksText,
@@ -105,7 +119,9 @@ export class FolderOptionsComponent implements OnInit {
           editDataText,
           deleteText,
           deleteFolderText,
-          deleteFolderConfirmationText
+          deleteFolderConfirmationText,
+          elementDeletedSuccesfullyText,
+          unknownErrorText
         };
       })
     );
