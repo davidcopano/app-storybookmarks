@@ -51,6 +51,11 @@ export class FoldersService {
     }
   }
 
+  public getBookmarksById(folder: Folder, page = 1) {
+    const folderPagination = this.httpClient.get<FolderPagination>(`${environment.apiUrl}folders/${folder.id}/bookmarks?page=${page}`, this.httpOptions);
+    return folderPagination.pipe(map(value => value.data)).toPromise();
+  }
+
   public async add(folder: Folder) {
     try {
       await this.httpClient.post<Folder>(`${environment.apiUrl}folders`, folder, this.httpOptions).toPromise();
