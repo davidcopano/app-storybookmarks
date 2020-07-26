@@ -21,7 +21,7 @@ export class SearchResultsComponent implements OnInit {
 
   async ngOnChanges(changes: SimpleChanges) {
     this.query = changes.query.currentValue;
-    if (this.query.length >= 3) {
+    if (this.query && this.query.length >= 3) {
       this.bookmarks = [];
       this.folders = [];
       this.isSearching = true;
