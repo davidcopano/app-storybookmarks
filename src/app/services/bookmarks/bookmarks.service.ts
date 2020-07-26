@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { UtilitiesService } from '../utilities/utilities.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class BookmarksService {
     headers: HttpHeaders
   }
 
-  constructor(private httpClient: HttpClient, public userService: UserService, private utilitiesService: UtilitiesService) {
+  constructor(private httpClient: HttpClient, public userService: UserService) {
     if (userService.loggedUser) {
       this.httpOptions = {
         headers: new HttpHeaders({

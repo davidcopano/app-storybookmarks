@@ -1,6 +1,9 @@
 <div class="no-query" [hidden]="query">
   {{ 'SEARCH_RESULTS_ENTER_TEXT' | translate }}
 </div>
+<div class="more-chars-required" [hidden]="!query || (query?.length >= 3)">
+  {{ 'WRITE_MORE_CHARACTERS' | translate }}
+</div>
 <div class="search-results" [hidden]="!query">
   <div class="bookmarks">
     <h4 class="title">{{ 'BOOKMARKS' | translate }}</h4>

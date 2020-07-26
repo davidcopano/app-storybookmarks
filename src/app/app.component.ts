@@ -9,6 +9,7 @@ import { forkJoin, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BookmarksService } from './services/bookmarks/bookmarks.service';
 import { FoldersService } from './services/folders/folders.service';
+import { SearchResultsService } from './services/search-results/search-results.service';
 
 @Component({
   selector: 'app-root',
@@ -50,7 +51,8 @@ export class AppComponent implements OnInit {
     public langService: LangService,
     public userService: UserService,
     public bookmarksService: BookmarksService,
-    public foldersService: FoldersService
+    public foldersService: FoldersService,
+    public searchResultsService: SearchResultsService
   ) {
     this.initializeApp();
   }
@@ -101,6 +103,8 @@ export class AppComponent implements OnInit {
 
     this.foldersService.setAuthToken(loggedUser.api_token);
     this.foldersService.get();
+
+    this.searchResultsService.setAuthToken(loggedUser.api_token);
   }
 
   toggleUserOptions() {

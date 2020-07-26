@@ -81,5 +81,6 @@
   "ELEMENT_CREATED_SUCCESFULLY": "Elemento creado con éxito",
   "ELEMENT_EDITED_SUCCESFULLY": "Elemento editado con éxito",
   "NO_FOLDER": "-Sin carpeta-",
-  "ELEMENT_DELETED_SUCCESFULLY": "Elemento eliminado con éxito"
+  "ELEMENT_DELETED_SUCCESFULLY": "Elemento eliminado con éxito",
+  "WRITE_MORE_CHARACTERS": "Escribe más caracteres para buscar..."
 }
