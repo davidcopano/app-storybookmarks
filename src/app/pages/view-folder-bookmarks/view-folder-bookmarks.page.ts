@@ -28,29 +28,6 @@ export class ViewFolderBookmarksPage implements OnInit {
     let newBookmarks = await this.foldersService.getBookmarksById(this.folder, this.page);
     this.bookmarks.push(...newBookmarks);
     $event.target.complete();
-
-    // setTimeout(() => {
-    //   for (let i = 1; i <= 5; i++) {
-    //     this.bookmarks.push({
-    //       id: i.toString(),
-    //       color: 'red',
-    //       created_at: new Date().toISOString(),
-    //       folder_id: null,
-    //       public: false,
-    //       title: `Carpeta ${i}`,
-    //       url: 'https://www.google.es',
-    //       user_id: 2,
-    //       expiration_date: null,
-    //       note: null,
-    //       tag_id: null
-    //     });
-    //   }
-    //   $event.target.complete();
-
-    //   if (this.bookmarks.length == 50) {
-    //     this.infiniteScroll.disabled = true;
-    //   }
-    // }, 500);
   }
 
 }
