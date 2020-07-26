@@ -1,9 +1,10 @@
 <ion-item class="ion-text-wrap" lines="none" [style.border-color]="item?.color ? item?.color : itemDefaultBorderColor">
   <ion-label>
     <h2 class="name">{{ item?.name }}</h2>
-    <p class="created_at">{{ item?.created_at }}</p>
+    <p class="created_at">{{ item?.created_at | amLocale: langService.currentLang | amTimeAgo }}</p>
   </ion-label>
-  <ion-button class="options ion-align-self-baseline" color="dark" fill="clear" shape="round" slot="end" (click)="showPopover($event, item)">
+  <ion-button class="options ion-align-self-baseline" color="dark" fill="clear" shape="round" slot="end"
+    (click)="showPopover($event, item)">
     <ion-icon name="ellipsis-vertical"></ion-icon>
   </ion-button>
 </ion-item>

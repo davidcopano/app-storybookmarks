@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, IonSearchbar } from '@ionic/angular';
 import { Folder } from '../../interfaces';
+import { FoldersService } from 'src/app/services/folders/folders.service';
 
 @Component({
   selector: 'app-folders',
@@ -16,19 +17,9 @@ export class FoldersPage implements OnInit {
   public isSearching: boolean = false;
   public searchTerm: string;
 
-  constructor() { }
+  constructor(public foldersService: FoldersService) { }
 
-  ngOnInit() {
-    for (let i = 1; i <= 5; i++) {
-      this.folders.push({
-        id: i.toString(),
-        name: `Carpeta ${i}`,
-        color: 'red',
-        created_at: new Date().toISOString(),
-        user_id: 1
-      });
-    }
-  }
+  ngOnInit() { }
 
   public loadMoreFolders($event) {
     setTimeout(() => {

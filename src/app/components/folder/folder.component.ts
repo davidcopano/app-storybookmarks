@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Folder } from '../../interfaces';
 import { PopoverController } from '@ionic/angular';
 import { FolderOptionsComponent } from '../folder-options/folder-options.component';
+import { LangService } from 'src/app/services/lang/lang.service';
 
 @Component({
   selector: 'app-folder',
@@ -14,9 +15,9 @@ export class FolderComponent implements OnInit {
 
   public itemDefaultBorderColor: string = 'black';
 
-  constructor(public popoverCtrl: PopoverController) { }
+  constructor(public popoverCtrl: PopoverController, public langService: LangService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async showPopover($event: any, item: Folder) {
     const popover = await this.popoverCtrl.create({

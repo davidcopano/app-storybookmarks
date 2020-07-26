@@ -127,6 +127,7 @@ export class AppComponent implements OnInit {
           handler: async () => {
             this.userService.logout();
             this.bookmarksService.reset();
+            this.foldersService.reset();
             this.menuCtrl.swipeGesture(false);
             await this.menuCtrl.close();
             this.navCtrl.navigateRoot('/login');
