@@ -16,6 +16,9 @@ ion-item {
 
 .created_at {
     color: #949494;
+    &::first-letter {
+        text-transform: uppercase;
+    }
 }
 
 .options {
