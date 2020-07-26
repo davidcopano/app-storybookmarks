@@ -9,12 +9,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MomentModule } from 'ngx-moment';
 import { LoadingComponent } from './loading/loading.component';
 import { NoResultsComponent } from './no-results/no-results.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
         IonicModule,
         TranslateModule,
-        MomentModule
+        MomentModule,
+        CommonModule
     ],
     declarations: [
         BookmarkComponent,
