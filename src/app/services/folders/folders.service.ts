@@ -51,6 +51,17 @@ export class FoldersService {
     }
   }
 
+  public async add(folder: Folder) {
+    try {
+      await this.httpClient.post<Folder>(`${environment.apiUrl}folders`, folder, this.httpOptions).toPromise();
+      this.folders.unshift(folder);
+      return { success: true };
+    }
+    catch (error) {
+      return { success: false, error };
+    }
+  }
+
   public onFoldersLoaded() {
     return this.$foldersLoaded.asObservable();
   }
