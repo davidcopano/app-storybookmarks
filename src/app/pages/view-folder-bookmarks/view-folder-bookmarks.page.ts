@@ -14,40 +14,43 @@ export class ViewFolderBookmarksPage implements OnInit {
 
   folder: Folder;
   bookmarks: Bookmark[] = [];
+  private page: number = 1;
 
   constructor(private foldersService: FoldersService) { }
 
   async ngOnInit() {
     this.folder = history.state.folder;
-    this.bookmarks = await this.foldersService.getBookmarksById(this.folder);
-
-    console.log('bookmarks = ');
-    console.log(this.bookmarks);
+    this.bookmarks = await this.foldersService.getBookmarksById(this.folder, this.page);
   }
 
-  loadMoreBookmarks($event) {
-    setTimeout(() => {
-      for (let i = 1; i <= 5; i++) {
-        this.bookmarks.push({
-          id: i.toString(),
-          color: 'red',
-          created_at: new Date().toISOString(),
-          folder_id: null,
-          public: false,
-          title: `Carpeta ${i}`,
-          url: 'https://www.google.es',
-          user_id: 2,
-          expiration_date: null,
-          note: null,
-          tag_id: null
-        });
-      }
-      $event.target.complete();
+  async loadMoreBookmarks($event) {
+    this.page++;
+    let newBookmarks = await this.foldersService.getBookmarksById(this.folder, this.page);
+    this.bookmarks.push(...newBookmarks);
+    $event.target.complete();
 
-      if (this.bookmarks.length == 50) {
-        this.infiniteScroll.disabled = true;
-      }
-    }, 500);
+    // setTimeout(() => {
+    //   for (let i = 1; i <= 5; i++) {
+    //     this.bookmarks.push({
+    //       id: i.toString(),
+    //       color: 'red',
+    //       created_at: new Date().toISOString(),
+    //       folder_id: null,
+    //       public: false,
+    //       title: `Carpeta ${i}`,
+    //       url: 'https://www.google.es',
+    //       user_id: 2,
+    //       expiration_date: null,
+    //       note: null,
+    //       tag_id: null
+    //     });
+    //   }
+    //   $event.target.complete();
+
+    //   if (this.bookmarks.length == 50) {
+    //     this.infiniteScroll.disabled = true;
+    //   }
+    // }, 500);
   }
 
 }
