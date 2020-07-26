@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { UserService } from '../user/user.service';
 import { UtilitiesService } from '../utilities/utilities.service';
-import { Folder } from 'src/app/interfaces';
+import { Folder, BookmarkPagination } from 'src/app/interfaces';
 import { Subject } from 'rxjs';
 import { FolderPagination } from 'src/app/interfaces/folders/FolderPagination';
 import { environment } from 'src/environments/environment';
@@ -52,8 +52,8 @@ export class FoldersService {
   }
 
   public getBookmarksById(folder: Folder, page = 1) {
-    const folderPagination = this.httpClient.get<FolderPagination>(`${environment.apiUrl}folders/${folder.id}/bookmarks?page=${page}`, this.httpOptions);
-    return folderPagination.pipe(map(value => value.data)).toPromise();
+    const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}folders/${folder.id}/bookmarks?page=${page}`, this.httpOptions);
+    return bookmarkPagination.pipe(map(value => value.data)).toPromise();
   }
 
   public async add(folder: Folder) {
