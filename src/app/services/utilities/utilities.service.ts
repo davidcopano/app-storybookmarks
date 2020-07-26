@@ -110,6 +110,14 @@ export class UtilitiesService {
     return path.split('.').pop().toLowerCase();
   }
 
+  public isImage(url: string) {
+
+    console.log('isImage');
+    console.log(url);
+
+    return (url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+  }
+
   /**
    * Muestra un alert genérico para notificar algo (un error, éxito, etc)
    * @param title Título del alert

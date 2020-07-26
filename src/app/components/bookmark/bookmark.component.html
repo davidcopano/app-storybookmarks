@@ -4,6 +4,7 @@
     <p class="subtitle ion-text-wrap" [hidden]="!item?.note">{{ item?.note }}</p>
     <a class="link ion-text-wrap" (click)="openLink(item?.url)">{{ item?.url }}</a>
     <p class="created_at ion-text-wrap">{{ item?.created_at | amLocale: langService.currentLang | amTimeAgo }}</p>
+    <ion-img [src]="item?.url" class="loaded-image" *ngIf="utilitiesService && utilitiesService?.isImage(item?.url)"></ion-img>
   </ion-label>
   <ion-button class="options ion-align-self-baseline" color="dark" fill="clear" shape="round" slot="end" (click)="showPopover($event, item)">
     <ion-icon name="ellipsis-vertical"></ion-icon>
