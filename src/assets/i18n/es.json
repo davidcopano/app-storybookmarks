@@ -84,5 +84,6 @@
   "ELEMENT_DELETED_SUCCESFULLY": "Elemento eliminado con éxito",
   "WRITE_MORE_CHARACTERS": "Escribe más caracteres para buscar...",
   "OPTIONS_SAVED_SUCCESFULLY": "Opciones guardadas con éxito",
-  "PUBLIC": "Público"
+  "PUBLIC": "Público",
+  "PROFILE_EDITED_SUCCESFULLY": "Perfil editado con éxito"
 }

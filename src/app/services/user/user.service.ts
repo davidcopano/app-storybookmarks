@@ -28,6 +28,10 @@ export class UserService {
     return this.httpClient.post<User>(environment.apiUrl + 'register', user);
   }
 
+  public editProfile(user: User) {
+    return this.httpClient.patch<User>(environment.apiUrl + 'edit-profile', user);
+  }
+
   public loginSuccessful(user: User) {
     this.$userLoginsSubject.next(user);
   }
