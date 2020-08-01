@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 import { BookmarksService } from './services/bookmarks/bookmarks.service';
 import { FoldersService } from './services/folders/folders.service';
 import { SearchResultsService } from './services/search-results/search-results.service';
+import { OptionsService } from './services/options/options.service';
 
 @Component({
   selector: 'app-root',
@@ -52,7 +53,8 @@ export class AppComponent implements OnInit {
     public userService: UserService,
     public bookmarksService: BookmarksService,
     public foldersService: FoldersService,
-    public searchResultsService: SearchResultsService
+    public searchResultsService: SearchResultsService,
+    public optionsService: OptionsService
   ) {
     this.initializeApp();
   }
@@ -105,6 +107,8 @@ export class AppComponent implements OnInit {
     this.foldersService.get();
 
     this.searchResultsService.setAuthToken(loggedUser.api_token);
+
+    this.optionsService.load();
   }
 
   toggleUserOptions() {

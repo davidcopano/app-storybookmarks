@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { OptionsService } from 'src/app/services/options/options.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-options',
@@ -8,19 +13,38 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class OptionsPage implements OnInit {
 
-  form: FormGroup;
+  public form: FormGroup;
+  private optionsSavedSuccesfullyText: string;
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(private translateService: TranslateService, public formBuilder: FormBuilder, public optionsService: OptionsService, private utilitiesService: UtilitiesService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      enable_multimedia: [''],
-      enable_dark_mode: ['']
-    })
+      enable_multimedia: [this.optionsService.enable_multimedia],
+      enable_dark_mode: [this.optionsService.enable_dark_mode]
+    });
+    this.getTranslationValues().subscribe(translations => {
+      this.optionsSavedSuccesfullyText = translations.optionsSavedSuccesfullyText;
+    });
   }
 
   submitForm() {
-    console.log('submitForm()');
-    console.log(this.form.value);
+    let { enable_multimedia, enable_dark_mode } = this.form.value;
+    this.optionsService.enable_multimedia = enable_multimedia;
+    this.optionsService.enable_dark_mode = enable_dark_mode;
+    this.optionsService.save();
+    this.utilitiesService.showToast(this.optionsSavedSuccesfullyText);
+  }
+
+  private getTranslationValues() {
+    return forkJoin(
+      this.translateService.get('OPTIONS_SAVED_SUCCESFULLY'),
+    ).pipe(
+      map(([optionsSavedSuccesfullyText]) => {
+        return {
+          optionsSavedSuccesfullyText
+        };
+      })
+    );
   }
 }
