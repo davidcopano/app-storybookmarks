@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from '../../interfaces';
 import { Storage } from '@ionic/storage';
@@ -12,6 +12,9 @@ export class UserService {
 
   public loggedUser: User;
   private $userLoginsSubject = new Subject<User>();
+  private httpOptions: {
+    headers: HttpHeaders
+  };
   private readonly USER_STORAGE_KEY: string = 'user';
 
   constructor(private httpClient: HttpClient, private storage: Storage) { }
@@ -29,7 +32,16 @@ export class UserService {
   }
 
   public editProfile(user: User) {
-    return this.httpClient.patch<User>(environment.apiUrl + 'edit-profile', user);
+    return this.httpClient.patch<User>(environment.apiUrl + 'edit-profile', user, this.httpOptions);
+  }
+
+  public setAuthToken(api_token: string) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${api_token}`
+      })
+    };
   }
 
   public loginSuccessful(user: User) {

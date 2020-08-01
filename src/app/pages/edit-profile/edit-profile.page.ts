@@ -17,7 +17,7 @@ import { NavController } from '@ionic/angular';
 export class EditProfilePage implements OnInit {
 
   form: FormGroup;
-  private profileEditarSuccesfullyText: string;
+  private profileEditedSuccesfullyText: string;
 
   constructor(private navCtrl: NavController, private translateService: TranslateService, public formBuilder: FormBuilder, private utilitiesService: UtilitiesService, private usersService: UserService) { }
 
@@ -29,7 +29,7 @@ export class EditProfilePage implements OnInit {
       password_confirmation: [''],
     });
     this.getTranslationValues().subscribe(translations => {
-      this.profileEditarSuccesfullyText = translations.profileEditarSuccesfullyText;
+      this.profileEditedSuccesfullyText = translations.profileEditedSuccesfullyText;
     });
   }
 
@@ -37,10 +37,9 @@ export class EditProfilePage implements OnInit {
     let userData: User = this.form.value;
     this.usersService.editProfile(userData).subscribe(user => {
       this.setNewLoggedUserData(user);
-      this.utilitiesService.showToast(this.profileEditarSuccesfullyText);
+      this.utilitiesService.showToast(this.profileEditedSuccesfullyText);
       this.navCtrl.navigateRoot('/bookmarks');
     }, async (error: HttpErrorResponse) => {
-      await this.utilitiesService.dismissLoading();
       this.utilitiesService.handleHttpErrorResponse(error);
     })
   }
@@ -51,15 +50,17 @@ export class EditProfilePage implements OnInit {
 
     this.usersService.loggedUser.username = userData.username;
     this.usersService.loggedUser.username_canonical = userData.username_canonical;
+
+    this.usersService.saveInLocal(this.usersService.loggedUser);
   }
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('OPTIONS_SAVED_SUCCESFULLY'),
+      this.translateService.get('PROFILE_EDITED_SUCCESFULLY'),
     ).pipe(
-      map(([profileEditarSuccesfullyText]) => {
+      map(([profileEditedSuccesfullyText]) => {
         return {
-          profileEditarSuccesfullyText
+          profileEditedSuccesfullyText
         };
       })
     );

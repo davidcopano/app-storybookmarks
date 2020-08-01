@@ -100,6 +100,8 @@ export class AppComponent implements OnInit {
   }
 
   private loadItemsFromServices(loggedUser: User) {
+    this.userService.setAuthToken(loggedUser.api_token);
+
     this.bookmarksService.setAuthToken(loggedUser.api_token);
     this.bookmarksService.get();
 
