@@ -49,6 +49,10 @@ export class AddBookmarkPage implements OnInit {
 
   async submitForm() {
     let bookmark: Bookmark = this.form.value;
+    if(bookmark.public) {
+      // change date format from Ionic date picker
+      bookmark.expiration_date = moment(this.form.get('expiration_date').value).format('YYYY-MM-DD HH:mm:ss');
+    }
     let result = await this.bookmarksService.add(bookmark);
     if (result.success) {
       this.utilitiesService.showToast(this.elementCreatedSuccesfullyText);

@@ -52,6 +52,10 @@ export class EditBookmarkPage implements OnInit {
   async submitForm() {
     let bookmark: Bookmark = this.form.value;
     bookmark.id = this.bookmark.id;
+    if (bookmark.public) {
+      // change date format from Ionic date picker
+      bookmark.expiration_date = moment(this.form.get('expiration_date').value).format('YYYY-MM-DD HH:mm:ss');
+    }
     let result = await this.bookmarksService.edit(bookmark);
     if (result.success) {
       this.utilitiesService.showToast(this.elementEditedSuccesfullyText);
