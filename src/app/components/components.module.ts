@@ -10,7 +10,7 @@ import { MomentModule } from 'ngx-moment';
 import { LoadingComponent } from './loading/loading.component';
 import { NoResultsComponent } from './no-results/no-results.component';
 import { CommonModule } from '@angular/common';
-import { PipesModule } from '../pipes/pipes/pipes.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
     imports: [
