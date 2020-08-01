@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-bookmark-options',
@@ -25,6 +26,7 @@ export class BookmarkOptionsComponent implements OnInit {
 
   public openLinkText: string;
   public copyLinkText: string;
+  public copyPublicLinkText: string;
   public editDataText: string;
   public deleteText: string;
   public unknownErrorText: string;
@@ -48,6 +50,7 @@ export class BookmarkOptionsComponent implements OnInit {
       this.deleteText = translations.deleteText;
       this.elementDeletedSuccesfullyText = translations.elementDeletedSuccesfullyText;
       this.unknownErrorText = translations.unknownErrorText;
+      this.copyPublicLinkText = translations.copyLinkText + ' ' + translations.publicText.toLowerCase();
     });
   }
 
@@ -58,6 +61,12 @@ export class BookmarkOptionsComponent implements OnInit {
 
   async copyLink() {
     this.utilitiesService.copyToClipboard(this.item.url);
+    this.closeSelf();
+    this.utilitiesService.showToast(this.linkCopiedToClipboardText);
+  }
+
+  async copyPublicLink() {
+    this.utilitiesService.copyToClipboard(`${environment.publicUrl}${this.item.id}`);
     this.closeSelf();
     this.utilitiesService.showToast(this.linkCopiedToClipboardText);
   }
@@ -86,7 +95,7 @@ export class BookmarkOptionsComponent implements OnInit {
           cssClass: 'text-danger',
           handler: async () => {
             let result = await this.bookmarksService.delete(this.item);
-            if(result.success) {
+            if (result.success) {
               this.utilitiesService.showToast(this.elementDeletedSuccesfullyText);
               this.closeSelf();
             }
@@ -104,7 +113,7 @@ export class BookmarkOptionsComponent implements OnInit {
     return this.popoverCtrl.dismiss();
   }
 
-  public getTranslationValues() {
+  private getTranslationValues() {
     return forkJoin(
       this.translateService.get('LINK_COPIED_TO_CLIPBOARD'),
       this.translateService.get('DELETE_BOOKMARK'),
@@ -117,8 +126,9 @@ export class BookmarkOptionsComponent implements OnInit {
       this.translateService.get('DELETE'),
       this.translateService.get('ELEMENT_DELETED_SUCCESFULLY'),
       this.translateService.get('UNKNOWN_PETITION_ERROR'),
+      this.translateService.get('PUBLIC'),
     ).pipe(
-      map(([linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText, openLinkText, copyLinkText, editDataText, deleteText, elementDeletedSuccesfullyText, unknownErrorText]) => {
+      map(([linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText, openLinkText, copyLinkText, editDataText, deleteText, elementDeletedSuccesfullyText, unknownErrorText, publicText]) => {
         return {
           linkCopiedToClipboardText,
           deleteBookmarkText,
@@ -130,7 +140,8 @@ export class BookmarkOptionsComponent implements OnInit {
           editDataText,
           deleteText,
           elementDeletedSuccesfullyText,
-          unknownErrorText
+          unknownErrorText,
+          publicText
         };
       })
     );

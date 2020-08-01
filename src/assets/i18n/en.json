@@ -83,5 +83,6 @@
   "NO_FOLDER": "-No folder-",
   "ELEMENT_DELETED_SUCCESFULLY": "Element deleted succesfully",
   "WRITE_MORE_CHARACTERS": "Write more characters in order to search...",
-  "OPTIONS_SAVED_SUCCESFULLY": "Options saved succesfully"
+  "OPTIONS_SAVED_SUCCESFULLY": "Options saved succesfully",
+  "PUBLIC": "Public"
 }
