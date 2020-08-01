@@ -9,7 +9,9 @@
     <video class="loaded-video" controls playsinline *ngIf="utilitiesService && utilitiesService?.isVideo(item?.url)">
       <source [src]="item?.url">
     </video>
-    <iframe height="315" class="loaded-youtube-video" [src]="sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + utilitiesService?.getYoutubeVideoId(item?.url))" *ngIf="utilitiesService && utilitiesService?.getYoutubeVideoId(item?.url)">
+    <iframe height="315" class="loaded-youtube-video"
+      [src]="'https://www.youtube.com/embed/' + utilitiesService?.getYoutubeVideoId(item?.url) | safe: 'resourceUrl'"
+      *ngIf="utilitiesService && utilitiesService?.getYoutubeVideoId(item?.url)">
     </iframe>
   </ion-label>
   <ion-button class="options ion-align-self-baseline" color="dark" fill="clear" shape="round" slot="end"
