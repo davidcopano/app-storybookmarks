@@ -6,6 +6,7 @@ import { BookmarkOptionsComponent } from '../bookmark-options/bookmark-options.c
 import { LangService } from 'src/app/services/lang/lang.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { OptionsService } from 'src/app/services/options/options.service';
 
 @Component({
   selector: 'app-bookmark',
@@ -18,7 +19,7 @@ export class BookmarkComponent implements OnInit {
 
   public itemDefaultBorderColor: string = 'black';
 
-  constructor(public sanitizer: DomSanitizer, public inAppBrowser: InAppBrowser, public popoverCtrl: PopoverController, public langService: LangService, public utilitiesService: UtilitiesService) { }
+  constructor(public sanitizer: DomSanitizer, public inAppBrowser: InAppBrowser, public popoverCtrl: PopoverController, public langService: LangService, public utilitiesService: UtilitiesService, public optionsService: OptionsService) { }
 
   ngOnInit() { }
 
