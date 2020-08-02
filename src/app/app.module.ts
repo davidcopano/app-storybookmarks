@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG, HammerModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicGestureConfig } from './services/ionic-gesture-config/ionic-gesture-config.service';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -32,6 +33,7 @@ export function createTranslateLoader(http: HttpClient) {
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    HammerModule,
     TranslateModule.forRoot({
       defaultLanguage: navigator.language,
       loader: {
@@ -49,7 +51,11 @@ export function createTranslateLoader(http: HttpClient) {
     GooglePlus,
     InAppBrowser,
     Clipboard,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: IonicGestureConfig
+    }
   ],
   bootstrap: [AppComponent]
 })
