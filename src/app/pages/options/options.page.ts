@@ -24,6 +24,9 @@ export class OptionsPage implements OnInit {
       enable_multimedia: [this.optionsService.enable_multimedia],
       enable_dark_mode: [this.optionsService.enable_dark_mode]
     });
+    this.form.get('enable_dark_mode').valueChanges.subscribe(value => {
+      this.utilitiesService.toggleDarkTheme(value);
+    });
     this.getTranslationValues().subscribe(translations => {
       this.optionsSavedSuccesfullyText = translations.optionsSavedSuccesfullyText;
     });

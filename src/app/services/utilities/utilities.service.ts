@@ -196,4 +196,8 @@ export class UtilitiesService {
       })
     }
   }
+
+  public toggleDarkTheme(shouldToggle) {
+    document.body.classList.toggle('dark', shouldToggle);
+  }
 }
