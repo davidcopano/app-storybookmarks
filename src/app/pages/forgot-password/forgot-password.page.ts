@@ -24,7 +24,7 @@ export class ForgotPasswordPage implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      email: ['davidcopano96@outlook.com', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]]
     });
     this.getTranslationValues().subscribe(translations => {
       this.loadingText = translations.loadingText + '...';
