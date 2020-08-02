@@ -52,8 +52,8 @@ export class BookmarksService {
 
   public async add(bookmark: Bookmark) {
     try {
-      await this.httpClient.post<Bookmark>(`${environment.apiUrl}bookmarks`, bookmark, this.httpOptions).toPromise();
-      this.bookmarks.unshift(bookmark);
+      let createdBookmark = await this.httpClient.post<Bookmark>(`${environment.apiUrl}bookmarks`, bookmark, this.httpOptions).toPromise();
+      this.bookmarks.unshift(createdBookmark);
       return { success: true };
     }
     catch (error) {
@@ -63,9 +63,9 @@ export class BookmarksService {
 
   public async edit(bookmark: Bookmark) {
     try {
-      await this.httpClient.patch<Bookmark>(`${environment.apiUrl}bookmarks/${bookmark.id}`, bookmark, this.httpOptions).toPromise();
+      let editedBookmark = await this.httpClient.patch<Bookmark>(`${environment.apiUrl}bookmarks/${bookmark.id}`, bookmark, this.httpOptions).toPromise();
       let index = this.bookmarks.findIndex(item => item.id == bookmark.id);
-      this.bookmarks[index] = bookmark;
+      this.bookmarks[index] = editedBookmark;
       return { success: true };
     }
     catch (error) {
