@@ -8,6 +8,7 @@ import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { NavController } from '@ionic/angular';
+import { OptionsService } from 'src/app/services/options/options.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -19,7 +20,7 @@ export class EditProfilePage implements OnInit {
   form: FormGroup;
   private profileEditedSuccesfullyText: string;
 
-  constructor(private navCtrl: NavController, private translateService: TranslateService, public formBuilder: FormBuilder, private utilitiesService: UtilitiesService, private usersService: UserService) { }
+  constructor(private navCtrl: NavController, private translateService: TranslateService, public formBuilder: FormBuilder, private utilitiesService: UtilitiesService, private usersService: UserService, private optionsService: OptionsService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

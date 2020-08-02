@@ -9,6 +9,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { NavController } from '@ionic/angular';
 import { FoldersService } from 'src/app/services/folders/folders.service';
 import * as moment from 'moment';
+import { OptionsService } from 'src/app/services/options/options.service';
 
 @Component({
   selector: 'app-add-bookmark',
@@ -22,7 +23,7 @@ export class AddBookmarkPage implements OnInit {
   private unknownErrorText: string;
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService) { }
+  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, public optionsService: OptionsService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

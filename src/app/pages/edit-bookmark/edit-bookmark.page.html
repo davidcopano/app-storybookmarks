@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" [class.dark]="optionsService?.enable_dark_mode">
   <form [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
     <ion-item class="with-light-input" lines="none">
       <ion-label class="dark-label" position="stacked">{{ 'TITLE' | translate }}</ion-label>

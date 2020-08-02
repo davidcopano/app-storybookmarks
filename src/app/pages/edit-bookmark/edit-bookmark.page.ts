@@ -9,6 +9,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { FoldersService } from 'src/app/services/folders/folders.service';
 import { map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
+import { OptionsService } from 'src/app/services/options/options.service';
 
 @Component({
   selector: 'app-edit-bookmark',
@@ -23,7 +24,7 @@ export class EditBookmarkPage implements OnInit {
   private unknownErrorText: string;
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService) { }
+  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, private optionsService: OptionsService) { }
 
   ngOnInit() {
     this.bookmark = history.state.bookmark;

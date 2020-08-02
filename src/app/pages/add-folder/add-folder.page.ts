@@ -7,6 +7,7 @@ import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { FoldersService } from 'src/app/services/folders/folders.service';
+import { OptionsService } from 'src/app/services/options/options.service';
 
 @Component({
   selector: 'app-add-folder',
@@ -19,7 +20,7 @@ export class AddFolderPage implements OnInit {
   private elementCreatedSuccesfullyText: string;
   private unknownErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService) { }
+  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, private optionsService: OptionsService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

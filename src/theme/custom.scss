@@ -60,3 +60,17 @@ ion-item.with-light-input {
 .text-danger {
     color: var(--ion-color-danger) !important;
 }
+
+// dark mode styles
+
+ion-content.dark {
+    ion-input {
+        --background: var(--ion-color-dark) !important;
+    }
+    ion-select::part(text),
+    ion-select::part(icon),
+    ion-datetime::part(text) {
+        --color: var(--ion-color-dark);
+        color: var(--ion-color-dark);
+    }
+}

@@ -7,6 +7,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { FoldersService } from 'src/app/services/folders/folders.service';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { OptionsService } from 'src/app/services/options/options.service';
 
 @Component({
   selector: 'app-edit-folder',
@@ -20,7 +21,7 @@ export class EditFolderPage implements OnInit {
   private elementEditedSuccesfullyText: string;
   private unknownErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService) { }
+  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, private optionsService: OptionsService) { }
 
   ngOnInit() {
     this.folder = history.state.folder;
