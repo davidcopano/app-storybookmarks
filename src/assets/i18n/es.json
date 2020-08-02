@@ -85,5 +85,7 @@
   "WRITE_MORE_CHARACTERS": "Escribe más caracteres para buscar...",
   "OPTIONS_SAVED_SUCCESFULLY": "Opciones guardadas con éxito",
   "PUBLIC": "Público",
-  "PROFILE_EDITED_SUCCESFULLY": "Perfil editado con éxito"
+  "PROFILE_EDITED_SUCCESFULLY": "Perfil editado con éxito",
+  "RECOVER_PASSWORD_SUCCESS": "Se ha enviado un correo al email que has especificado.<br><br>Sigue los pasos de este correo para recuperar tu contraseña.",
+  "LOADING": "Cargando"
 }

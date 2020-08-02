@@ -51,7 +51,7 @@ export class UtilitiesService {
   }
 
   /**
-   * Quita el loading cargado (arreglado)
+   * Quita el loading cargado
    */
   public dismissLoading() {
     if (this.isInMobileDevice()) {

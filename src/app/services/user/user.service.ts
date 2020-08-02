@@ -31,6 +31,10 @@ export class UserService {
     return this.httpClient.post<User>(environment.apiUrl + 'register', user);
   }
 
+  public recoverPassword(email: string) {
+    return this.httpClient.post(environment.apiUrl + 'forgot-password', { email });
+  }
+
   public editProfile(user: User) {
     return this.httpClient.patch<User>(environment.apiUrl + 'edit-profile', user, this.httpOptions);
   }
