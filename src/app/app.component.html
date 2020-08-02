@@ -11,7 +11,7 @@
               <ion-icon name="person"></ion-icon>
               {{ 'HI' | translate }}, {{ userService?.loggedUser.username }}
             </ion-label>
-            <ion-button color="light" fill="clear" slot="end" (click)="toggleUserOptions()">
+            <ion-button class="always-light" color="light" fill="clear" slot="end" (click)="toggleUserOptions()">
               <ion-icon [name]="showUserOptions ? 'chevron-up' : 'chevron-down'"></ion-icon>
             </ion-button>
           </ion-item>
