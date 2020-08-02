@@ -65,7 +65,8 @@ ion-item.with-light-input {
 
 ion-content.dark {
     ion-input {
-        --background: var(--ion-color-dark) !important;
+        --background: var(--ion-color-light) !important;
+        --color: var(--ion-color-dark) !important;
     }
     ion-select::part(text),
     ion-select::part(icon),
