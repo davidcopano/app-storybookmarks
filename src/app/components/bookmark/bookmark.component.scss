@@ -11,6 +11,9 @@ ion-item {
     display: block;
     color: #0653AD;
     margin: 14px 0;
+    &:active {
+        background: var(--ion-color-light);
+    }
 }
 
 .created_at {
