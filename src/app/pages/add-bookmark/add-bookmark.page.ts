@@ -19,6 +19,8 @@ import { OptionsService } from 'src/app/services/options/options.service';
 export class AddBookmarkPage implements OnInit {
 
   public form: FormGroup;
+  public minYear = new Date().getFullYear();
+  public maxYear = new Date().getFullYear() + 5;
   private elementCreatedSuccesfullyText: string;
   private unknownErrorText: string;
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');

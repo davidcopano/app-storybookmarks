@@ -20,6 +20,8 @@ export class EditBookmarkPage implements OnInit {
 
   bookmark: Bookmark;
   public form: FormGroup;
+  public minYear = new Date().getFullYear();
+  public maxYear = new Date().getFullYear() + 5;
   private elementEditedSuccesfullyText: string;
   private unknownErrorText: string;
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
