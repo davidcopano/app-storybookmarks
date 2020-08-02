@@ -26,7 +26,7 @@ export class EditBookmarkPage implements OnInit {
   private unknownErrorText: string;
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, private optionsService: OptionsService) { }
+  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, public optionsService: OptionsService) { }
 
   ngOnInit() {
     this.bookmark = history.state.bookmark;

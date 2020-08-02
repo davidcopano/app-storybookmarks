@@ -20,7 +20,7 @@ export class EditProfilePage implements OnInit {
   form: FormGroup;
   private profileEditedSuccesfullyText: string;
 
-  constructor(private navCtrl: NavController, private translateService: TranslateService, public formBuilder: FormBuilder, private utilitiesService: UtilitiesService, private usersService: UserService, private optionsService: OptionsService) { }
+  constructor(private navCtrl: NavController, private translateService: TranslateService, public formBuilder: FormBuilder, private utilitiesService: UtilitiesService, private usersService: UserService, public optionsService: OptionsService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

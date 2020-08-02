@@ -20,7 +20,7 @@ export class AddFolderPage implements OnInit {
   private elementCreatedSuccesfullyText: string;
   private unknownErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, private optionsService: OptionsService) { }
+  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, public optionsService: OptionsService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

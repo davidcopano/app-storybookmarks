@@ -21,7 +21,7 @@ export class EditFolderPage implements OnInit {
   private elementEditedSuccesfullyText: string;
   private unknownErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, private optionsService: OptionsService) { }
+  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, public optionsService: OptionsService) { }
 
   ngOnInit() {
     this.folder = history.state.folder;
