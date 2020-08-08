@@ -66,7 +66,7 @@ export class BookmarkOptionsComponent implements OnInit {
   }
 
   async copyPublicLink() {
-    this.utilitiesService.copyToClipboard(`${environment.publicUrl}${this.item.id}`);
+    this.utilitiesService.copyToClipboard(`${environment.publicBookmarksUrl}${this.item.id}`);
     this.closeSelf();
     this.utilitiesService.showToast(this.linkCopiedToClipboardText);
   }
