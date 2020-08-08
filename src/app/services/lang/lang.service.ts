@@ -33,6 +33,9 @@ export class LangService {
   }
 
   async saveLang(lang: string) {
+    this.currentLang = lang;
+    this.currentMonthShortNames = this.monthShortNames[this.currentLang];
+    this.currentDateFormat = this.supportedDateFormats[this.currentLang];
     return this.storage.set('lang', lang);
   }
 }
