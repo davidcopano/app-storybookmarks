@@ -7,7 +7,17 @@ import { Storage } from '@ionic/storage';
 export class LangService {
 
   public currentLang: string;
-  public supportedLangs = ['es', 'en'];
+  public currentMonthShortNames: string[];
+  public currentDateFormat: string;
+  private supportedLangs = ['es', 'en'];
+  private monthShortNames = {
+    es: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  };
+  private supportedDateFormats = {
+    es: 'D MMM YYYY',
+    en: 'MMM DD YYYY'
+  }
 
   constructor(public storage: Storage) { }
 
@@ -18,6 +28,8 @@ export class LangService {
       this.currentLang = matchingLangs.length > 0 ? matchingLangs[0] : 'es';
       await this.storage.set('lang', this.currentLang);
     }
+    this.currentMonthShortNames = this.monthShortNames[this.currentLang];
+    this.currentDateFormat = this.supportedDateFormats[this.currentLang];
   }
 
   async saveLang(lang: string) {
