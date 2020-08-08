@@ -26,7 +26,7 @@ export class LangService {
   async loadSavedLang() {
     this.currentLang = await this.storage.get('lang');
     if (!this.currentLang) {
-      let matchingLangs = navigator.languages.filter(lang => this.supportedLangs.includes(lang));
+      const matchingLangs = navigator.languages.filter(lang => this.supportedLangs.includes(lang));
       this.currentLang = matchingLangs.length > 0 ? matchingLangs[0] : 'es';
       await this.storage.set('lang', this.currentLang);
     }
