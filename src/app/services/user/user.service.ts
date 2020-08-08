@@ -20,11 +20,11 @@ export class UserService {
   constructor(private httpClient: HttpClient, private storage: Storage) { }
 
   public login(email: string, password: string) {
-    return this.httpClient.post<User>(environment.apiUrl + 'login', { email: email, password: password });
+    return this.httpClient.post<User>(environment.apiUrl + 'login', { email, password });
   }
 
   public socialLogin(email: string, username: string) {
-    return this.httpClient.post<User>(environment.apiUrl + 'social-login', { email: email, username: username });
+    return this.httpClient.post<User>(environment.apiUrl + 'social-login', { email, username });
   }
 
   public register(user: User) {
@@ -39,11 +39,11 @@ export class UserService {
     return this.httpClient.patch<User>(environment.apiUrl + 'edit-profile', user, this.httpOptions);
   }
 
-  public setAuthToken(api_token: string) {
+  public setAuthToken(apiToken: string) {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${api_token}`
+        Authorization: `Bearer ${apiToken}`
       })
     };
   }

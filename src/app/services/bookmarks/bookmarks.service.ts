@@ -26,7 +26,7 @@ export class BookmarksService {
       this.httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.userService.loggedUser.api_token}`
+          Authorization: `Bearer ${this.userService.loggedUser.api_token}`
         })
       };
     }
@@ -93,7 +93,7 @@ export class BookmarksService {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${api_token}`
+        Authorization: `Bearer ${api_token}`
       })
     };
   }

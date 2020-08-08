@@ -11,14 +11,14 @@ export class SearchResultsService {
 
   private httpOptions: {
     headers: HttpHeaders
-  }
+  };
 
   constructor(private httpClient: HttpClient, public userService: UserService) {
     if (userService.loggedUser) {
       this.httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.userService.loggedUser.api_token}`
+          Authorization: `Bearer ${this.userService.loggedUser.api_token}`
         })
       };
     }
@@ -31,11 +31,11 @@ export class SearchResultsService {
     return this.httpClient.get<SearchResult>(`${environment.apiUrl}search?query=${query}`, this.httpOptions).toPromise();
   }
 
-  public setAuthToken(api_token: string) {
+  public setAuthToken(apiToken: string) {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${api_token}`
+        Authorization: `Bearer ${apiToken}`
       })
     };
   }
