@@ -7,6 +7,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
 import { checkPasswords } from 'src/app/validators';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { environment } from 'src/environments/environment';
+import { LangService } from 'src/app/services/lang/lang.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +24,7 @@ export class RegisterPage implements OnInit {
 
   passwordTypeInput = 'password';
 
-  constructor(private formBuilder: FormBuilder, private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService, private bookmarksService: BookmarksService) { }
+  constructor(private formBuilder: FormBuilder, private inAppBrowser: InAppBrowser, private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService, private bookmarksService: BookmarksService, private langService: LangService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -29,6 +32,7 @@ export class RegisterPage implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       password_confirmation: ['', Validators.required],
+      acceptsPrivacyPolicy: [false, Validators.requiredTrue]
     }, {
       validator: checkPasswords
     })
@@ -66,6 +70,21 @@ export class RegisterPage implements OnInit {
     setTimeout(() => {
       nativeEl.setSelectionRange(inputSelection, inputSelection);
     }, 1);
+  }
+
+  togglePrivacyPolicyCheck($event: MouseEvent) {
+    let target = $event.target as HTMLElement;
+    let tagName = target.tagName.toLowerCase();
+    if(tagName !== 'a') {
+      let currentValue = this.form.get('acceptsPrivacyPolicy').value;
+      this.form.patchValue({
+        acceptsPrivacyPolicy: !currentValue
+      });
+    }
+  }
+
+  showPrivacyPolicy($event) {
+    this.inAppBrowser.create(`${environment.webUrl}${this.langService.currentLang}/privacy-policy`, '_system');
   }
 
   get email() { return this.form.get('email'); }

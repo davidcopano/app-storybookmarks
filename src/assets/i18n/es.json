@@ -88,5 +88,7 @@
   "PROFILE_EDITED_SUCCESFULLY": "Perfil editado con éxito",
   "RECOVER_PASSWORD_SUCCESS": "Se ha enviado un correo al email que has especificado.<br><br>Sigue los pasos de este correo para recuperar tu contraseña.",
   "LOADING": "Cargando",
-  "DONE": "Hecho"
+  "DONE": "Hecho",
+  "PRIVACY_POLICY_TEXT": "He leído y acepto la",
+  "PRIVACY_POLICY": "política de privacidad"
 }

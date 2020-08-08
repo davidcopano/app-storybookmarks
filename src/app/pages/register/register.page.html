@@ -62,11 +62,15 @@
         <p>{{'PASSWORDS_NOT_MATCHING' | translate }}</p>
       </ion-text>
     </div>
+    <ion-item class="with-light-input ion-margin-top ion-text-wrap" lines="none">
+      <ion-checkbox color="secondary" formControlName="acceptsPrivacyPolicy"></ion-checkbox>
+      <ion-label class="ion-text-wrap privacy-text" (click)="togglePrivacyPolicyCheck($event)">{{ 'PRIVACY_POLICY_TEXT' | translate }} <a class="privacy-link" (click)="showPrivacyPolicy()">{{ 'PRIVACY_POLICY' | translate }}</a></ion-label>
+    </ion-item>
     <ion-button type="submit" class="clear-both register-button" expand="full" color="secondary"
       [disabled]="!form?.valid">{{'REGISTER' | translate}}
     </ion-button>
   </form>
-  <p class="ion-text-center ion-margin-bottom text-light">{{'ALREADY_HAVE_AN_ACCOUNT' | translate}} <a class="register"
+  <p class="ion-text-center already-have-account text-light">{{'ALREADY_HAVE_AN_ACCOUNT' | translate}} <a class="register"
       class="text-secondary" routerLink="/login" routerDirection="root">{{'LOGIN' | translate}}</a>
   </p>
 </ion-content>
