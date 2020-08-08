@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
   public logoutConfirmationText: string;
   public cancelText: string;
   public loginSubscription: Subscription;
+  public langChangeSubscription: Subscription;
 
   constructor(
     public platform: Platform,
@@ -74,6 +75,13 @@ export class AppComponent implements OnInit {
       this.loadItemsFromServices(this.userService.loggedUser);
       this.menuCtrl.swipeGesture(true);
     });
+    this.langChangeSubscription = this.langService.onLangChange().subscribe(lang => {
+      this.getTranslationValues().subscribe(values => {
+        this.logoutText = values.logoutText;
+        this.logoutConfirmationText = values.logoutConfirmationText;
+        this.cancelText = values.cancelText;
+      });
+    })
   }
 
   async initTranslations() {
@@ -84,7 +92,7 @@ export class AppComponent implements OnInit {
       this.logoutText = values.logoutText;
       this.logoutConfirmationText = values.logoutConfirmationText;
       this.cancelText = values.cancelText;
-    })
+    });
   }
 
   async checkForLoggedUser() {
