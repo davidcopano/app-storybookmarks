@@ -4,6 +4,14 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>{{ 'OPTIONS' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" class="change-lang-button" fill="clear" *ngIf="translateService?.currentLang == 'es'" (click)="changeLang('en')">
+        <img src="assets/imgs/uk.png">
+      </ion-button>
+      <ion-button color="primary" class="change-lang-button" fill="clear" *ngIf="translateService?.currentLang == 'en'" (click)="changeLang('es')">
+        <img src="assets/imgs/spain.png">
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +19,8 @@
   <form [formGroup]="form" *ngIf="form" (ngSubmit)="submitForm()">
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-toggle color="primary" slot="start" mode="ios" formControlName="enable_multimedia"></ion-toggle>
-      <ion-label class="dark-label" position="stacked">{{ 'ENABLE' | translate }} {{ 'MULTIMEDIA' | translate | lowercase }}</ion-label>
+      <ion-label class="dark-label" position="stacked">{{ 'ENABLE' | translate }}
+        {{ 'MULTIMEDIA' | translate | lowercase }}</ion-label>
     </ion-item>
     <p class="description">{{ 'ENABLE_MULTIMEDIA_DESCRIPTION' | translate }}</p>
     <p class="warning">
@@ -19,7 +28,8 @@
     </p>
     <ion-item class="with-light-input ion-margin-top" lines="none">
       <ion-toggle color="primary" slot="start" mode="ios" formControlName="enable_dark_mode"></ion-toggle>
-      <ion-label class="dark-label" position="stacked">{{ 'ENABLE' | translate }} {{ 'DARK_MODE' | translate | lowercase }}</ion-label>
+      <ion-label class="dark-label" position="stacked">{{ 'ENABLE' | translate }}
+        {{ 'DARK_MODE' | translate | lowercase }}</ion-label>
     </ion-item>
     <p class="description">{{ 'ENABLE_DARK_MODE_DESCRIPTION' | translate }}</p>
     <ion-button type="submit" class="clear-both save-button" expand="full" color="primary">

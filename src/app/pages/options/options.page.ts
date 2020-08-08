@@ -6,6 +6,7 @@ import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { OptionsService } from 'src/app/services/options/options.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { LangService } from 'src/app/services/lang/lang.service';
 
 @Component({
   selector: 'app-options',
@@ -17,7 +18,7 @@ export class OptionsPage implements OnInit {
   public form: FormGroup;
   private optionsSavedSuccesfullyText: string;
 
-  constructor(private navCtrl: NavController, private translateService: TranslateService, public formBuilder: FormBuilder, public optionsService: OptionsService, private utilitiesService: UtilitiesService) { }
+  constructor(private navCtrl: NavController, public translateService: TranslateService, public formBuilder: FormBuilder, public optionsService: OptionsService, private utilitiesService: UtilitiesService, private langService: LangService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -39,6 +40,12 @@ export class OptionsPage implements OnInit {
     this.optionsService.save();
     this.utilitiesService.showToast(this.optionsSavedSuccesfullyText);
     this.navCtrl.navigateRoot('/bookmarks');
+  }
+
+  async changeLang(lang: string) {
+    this.translateService.setDefaultLang(lang);
+    this.translateService.use(lang);
+    this.langService.saveLang(lang);
   }
 
   private getTranslationValues() {
