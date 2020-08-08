@@ -90,5 +90,6 @@
   "LOADING": "Loading",
   "DONE": "Done",
   "PRIVACY_POLICY_TEXT": "I have read and accept the",
-  "PRIVACY_POLICY": "privacy policy"
+  "PRIVACY_POLICY": "privacy policy",
+  "PRIVACY_POLICY_REQUIRED": "You must accept the privacy policy to continue"
 }
