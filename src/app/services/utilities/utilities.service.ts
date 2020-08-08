@@ -17,7 +17,8 @@ export class UtilitiesService {
   constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, public platform: Platform, public toast: ToastController, public storage: Storage, public langService: LangService, public translateService: TranslateService, public spinnerDialog: SpinnerDialog, public clipboard: Clipboard) { }
 
   /**
-   * Cierra la sesión borrando todos los datos del usuario actual
+   * Close the current sessión in the application.
+   * @returns An resolved promise if the session is successfully closed. An rejected promise when it fails
    */
   public closeSession(): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -34,8 +35,9 @@ export class UtilitiesService {
   }
 
   /**
-   * Muestra loading
-   * @param message Mensaje del loading (opcional)
+   * Shows a loading spinner. Internally detects when the application is running as a mobile app or in a browser, and shows the appropiate loading.
+   * @param [message] Loading message.
+   * @param [duration] Duration of the spinner about to show.
    */
   async showLoading(message?: string, duration?: number) {
     if (this.isInMobileDevice()) {
@@ -51,7 +53,7 @@ export class UtilitiesService {
   }
 
   /**
-   * Quita el loading cargado
+   * Dismiss the current loading spinner. Internally detects when the application is running as a mobile app or in a browser, and hides the appropiate loading.
    */
   public dismissLoading() {
     if (this.isInMobileDevice()) {
@@ -63,8 +65,8 @@ export class UtilitiesService {
   }
 
   /**
-   * Copia el texto pasado al portapapeles del dispositivo
-   * @param text Texto a copiar en el portapapeles
+   * Copies the text passed to the device's clipboard. Internally detects when the application is running as a mobile app or in a browser, and properly copies the text.
+   * @param text Text to be copied to the clipboard
    */
   public copyToClipboard(text: string) {
     if (this.isInMobileDevice()) {
@@ -81,54 +83,57 @@ export class UtilitiesService {
   }
 
   /**
-   * Devuelve si se está ejecutando la aplicación en un dispositivo móvil
+   * Returns if the application is running on a mobile device.
+   * @returns If the application is running on a mobile device.
    */
   isInMobileDevice() {
     return this.platform.is('mobile') ? true : false;
   }
 
   /**
-   * Devuelve el sistema operativo del dispositivo
+   * Returns the operating system of the device.
+   * @returns The operating system of the device.
    */
   public getPlatform() {
     return this.platform.is('ios') ? 'ios' : 'android';
   }
 
   /**
-   * Devuelve el nombre del archivo pasado (incluida la extensión)
-   * @param path Ruta del archivo
+   * Returns the name of the passed file (including the extension).
+   * @param path File path
    */
   public getFileName(path: string) {
     return path.split('/').pop();
   }
 
   /**
-   * Devuelve la extensión del archivo pasado
-   * @param path Ruta del archivo
+   * Returns the extension of the passed file
+   * @param path File path
    */
   public getFileExtension(path: string) {
     return path.split('.').pop().toLowerCase();
   }
 
   /**
-   * Devuelve si una URL es una imagen o no
-   * @param url URL que se va a comprobar
+   * Returns whether a URL is an image or not
+   * @param url URL to be checked
    */
   public isImage(url: string) {
     return (url.match(/\.(jpeg|jpg|gif|png)$/) != null);
   }
 
   /**
-   * Devuelve si una URL es un vídeo o no
-   * @param url URL que se va a comprobar
+   * Returns whether a URL is a video or not
+   * @param url URL to be checked
    */
   public isVideo(url: string) {
     return (url.match(/\.(mp4|mov|wmv|flv|avi|webm|mkv)$/) != null);
   }
 
   /**
-   * Devuelve si una URL es un vídeo de YouTube o no. Si lo es, devuelve su ID
-   * @param url URL que se va a comprobar
+   * Returns whether a URL is a YouTube video or not. If it is, returns its ID.
+   * @param url URL to be checked.
+   * @returns ID of the YouTube video. `null` if it isn't a YouTube video.
    */
   public getYoutubeVideoId(url: string) {
     let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
@@ -140,9 +145,9 @@ export class UtilitiesService {
   }
 
   /**
-   * Muestra un alert genérico para notificar algo (un error, éxito, etc)
-   * @param title Título del alert
-   * @param message Mensaje del alert
+   * Shows a generic alert to report something (an error, success, etc).
+   * @param title Alert title.
+   * @param message Alert message.
    */
   public async showAlert(title: string, message: string) {
     let alert = await this.alertCtrl.create({
@@ -154,8 +159,8 @@ export class UtilitiesService {
   }
 
   /**
-   * Muestra un toast genérico para notificar algo (un error, éxito, etc)
-   * @param message Mensaje del toast
+   * Shows a generic toast to report something (an error, success, etc).
+   * @param message Toast message.
    */
   public async showToast(message: string) {
     const toast = await this.toast.create({
@@ -166,13 +171,17 @@ export class UtilitiesService {
     toast.present();
   }
 
+  /**
+   * Capitalises the first letter of a string.
+   * @param string String to be uppercased his first letter.
+   */
   public capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   /**
-   * Devuelve un array conteniendo los errores totales de una petición HTTP
-   * @param httpErrorResponse Error HTTP
+   * Returns an array containing the total errors of an HTTP request.
+   * @param httpErrorResponse HTTP response error.
    */
   public getArrayOfHttpErrors(httpErrorResponse: HttpErrorResponse) {
     let keys = Object.keys(httpErrorResponse.error.errors);
@@ -185,6 +194,10 @@ export class UtilitiesService {
     return errorMessages;
   }
 
+  /**
+   * Handles a HTTP response error showing a helpful report.
+   * @param httpErrorResponse HTTP response error.
+   */
   public handleHttpErrorResponse(httpErrorResponse: HttpErrorResponse) {
     let errors = this.getArrayOfHttpErrors(httpErrorResponse);
     if (errors.length > 0) {
@@ -197,6 +210,10 @@ export class UtilitiesService {
     }
   }
 
+  /**
+   * Toggles the dark theme in the application.
+   * @param shouldToggle Toggle the dark theme or not.
+   */
   public toggleDarkTheme(shouldToggle) {
     document.body.classList.toggle('dark', shouldToggle);
   }
