@@ -66,7 +66,8 @@
       <ion-checkbox color="light" formControlName="acceptsPrivacyPolicy"></ion-checkbox>
       <ion-label class="ion-text-wrap privacy-text" (click)="togglePrivacyPolicyCheck($event)">
         {{ 'PRIVACY_POLICY_TEXT' | translate }} <a class="privacy-link"
-          (click)="showPrivacyPolicy()">{{ 'PRIVACY_POLICY' | translate }}</a><span class="required"> *</span></ion-label>
+          (click)="showPrivacyPolicy()">{{ 'PRIVACY_POLICY' | translate }}</a><span class="required"> *</span>
+      </ion-label>
     </ion-item>
     <ion-button type="submit" class="clear-both register-button" expand="full" color="secondary"
       [disabled]="!form?.valid">{{'REGISTER' | translate}}
