@@ -48,7 +48,7 @@
     <ion-item class="with-light-input ion-margin-bottom" lines="none" [hidden]="!form?.get('public').value">
       <ion-label class="dark-label ion-padding-top" position="stacked">
         {{ 'WHEN_DOES_THE_PUBLIC_BOOKMARK_EXPIRE' | translate }}</ion-label>
-      <ion-datetime color="primary" [min]="minYear" [max]="maxYear" formControlName="expiration_date"></ion-datetime>
+      <ion-datetime color="primary" [cancelText]="'CANCEL' | translate" [doneText]="'DONE' | translate" [min]="minYear" [max]="maxYear" formControlName="expiration_date"></ion-datetime>
     </ion-item>
     <ion-button type="submit" class="clear-both save-button" expand="full" color="primary" [disabled]="!form.valid">
       {{'SAVE' | translate}}

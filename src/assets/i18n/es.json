@@ -87,5 +87,6 @@
   "PUBLIC": "Público",
   "PROFILE_EDITED_SUCCESFULLY": "Perfil editado con éxito",
   "RECOVER_PASSWORD_SUCCESS": "Se ha enviado un correo al email que has especificado.<br><br>Sigue los pasos de este correo para recuperar tu contraseña.",
-  "LOADING": "Cargando"
+  "LOADING": "Cargando",
+  "DONE": "Hecho"
 }
