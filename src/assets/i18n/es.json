@@ -91,5 +91,6 @@
   "DONE": "Hecho",
   "PRIVACY_POLICY_TEXT": "He leído y acepto la",
   "PRIVACY_POLICY": "política de privacidad",
-  "PRIVACY_POLICY_REQUIRED": "Debes aceptar la política de privacidad para continuar"
+  "PRIVACY_POLICY_REQUIRED": "Debes aceptar la política de privacidad para continuar",
+  "LOGGING_IN": "Iniciando sesión"
 }

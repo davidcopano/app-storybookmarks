@@ -10,6 +10,9 @@ import { checkPasswords } from 'src/app/validators';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { environment } from 'src/environments/environment';
 import { LangService } from 'src/app/services/lang/lang.service';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -21,10 +24,10 @@ export class RegisterPage implements OnInit {
   @ViewChild('passwordInput', { read: ElementRef }) passwordEye: ElementRef;
 
   public form: FormGroup;
+  public passwordTypeInput = 'password';
+  private loadingText: string;
 
-  passwordTypeInput = 'password';
-
-  constructor(private formBuilder: FormBuilder, private inAppBrowser: InAppBrowser, private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService, private bookmarksService: BookmarksService, private langService: LangService) { }
+  constructor(private formBuilder: FormBuilder, private translateService: TranslateService,private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService, private bookmarksService: BookmarksService, private langService: LangService, private inAppBrowser: InAppBrowser) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -35,11 +38,14 @@ export class RegisterPage implements OnInit {
       acceptsPrivacyPolicy: [false, Validators.requiredTrue]
     }, {
       validator: checkPasswords
+    });
+    this.getTranslationValues().subscribe(values => {
+      this.loadingText = values.loadingText;
     })
   }
 
   async submitForm() {
-    await this.utilitiesService.showLoading('Cargando...');
+    await this.utilitiesService.showLoading(this.loadingText + '...');
     const user: User = this.form.value;
     this.userService.register(user).subscribe(async (user) => {
       this.processSuccessfulLogin(user);
@@ -83,8 +89,20 @@ export class RegisterPage implements OnInit {
     }
   }
 
-  showPrivacyPolicy($event) {
+  showPrivacyPolicy() {
     this.inAppBrowser.create(`${environment.webUrl}${this.langService.currentLang}/privacy-policy`, '_system');
+  }
+
+  private getTranslationValues() {
+    return forkJoin(
+      this.translateService.get('LOADING'),
+    ).pipe(
+      map(([loadingText]) => {
+        return {
+          loadingText
+        };
+      })
+    );
   }
 
   get email() { return this.form.get('email'); }
