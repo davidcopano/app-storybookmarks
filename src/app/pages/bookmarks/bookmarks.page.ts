@@ -16,7 +16,7 @@ export class BookmarksPage implements OnInit {
 
   public bookmarks: Bookmark[] = [];
   public onBookmarksLoadedSubscription: Subscription;
-  public isSearching: boolean = false;
+  public isSearching = false;
   public searchTerm: string;
 
   constructor(public bookmarksService: BookmarksService) { }
@@ -37,7 +37,7 @@ export class BookmarksPage implements OnInit {
   }
 
   search($event) {
-    let value = $event.target.value;
+    const value = $event.target.value;
     this.searchTerm = value;
   }
 

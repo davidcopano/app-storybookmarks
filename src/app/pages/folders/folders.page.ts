@@ -14,7 +14,7 @@ export class FoldersPage implements OnInit {
   @ViewChild(IonSearchbar) searchBar: IonSearchbar;
 
   public folders: Folder[] = [];
-  public isSearching: boolean = false;
+  public isSearching = false;
   public searchTerm: string;
 
   constructor(public foldersService: FoldersService) { }

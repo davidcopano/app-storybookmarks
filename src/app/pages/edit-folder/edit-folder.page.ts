@@ -21,7 +21,14 @@ export class EditFolderPage implements OnInit {
   private elementEditedSuccesfullyText: string;
   private unknownErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, public optionsService: OptionsService) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private navCtrl: NavController,
+    private translateService: TranslateService,
+    private utilitiesService: UtilitiesService,
+    public foldersService: FoldersService,
+    public optionsService: OptionsService
+  ) { }
 
   ngOnInit() {
     this.folder = history.state.folder;
@@ -31,17 +38,16 @@ export class EditFolderPage implements OnInit {
       created_at: [this.folder.created_at, Validators.required]
     });
 
-    let translationTexts = this.getTranslationValues();
-    translationTexts.subscribe(translations => {
+    this.getTranslationValues().subscribe(translations => {
       this.elementEditedSuccesfullyText = translations.elementEditedSuccesfullyText;
       this.unknownErrorText = translations.unknownErrorText;
     });
   }
 
   async submitForm() {
-    let folder: Folder = this.form.value;
+    const folder: Folder = this.form.value;
     folder.id = this.folder.id;
-    let result = await this.foldersService.edit(folder);
+    const result = await this.foldersService.edit(folder);
     if (result.success) {
       this.utilitiesService.showToast(this.elementEditedSuccesfullyText);
       this.navCtrl.navigateRoot('/folders');
@@ -53,10 +59,17 @@ export class EditFolderPage implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('ELEMENT_EDITED_SUCCESFULLY'),
-      this.translateService.get('UNKNOWN_PETITION_ERROR'),
+      [
+        this.translateService.get('ELEMENT_EDITED_SUCCESFULLY'),
+        this.translateService.get('UNKNOWN_PETITION_ERROR')
+      ]
     ).pipe(
-      map(([elementEditedSuccesfullyText, unknownErrorText]) => {
+      map((
+        [
+          elementEditedSuccesfullyText,
+          unknownErrorText
+        ]
+      ) => {
         return {
           elementEditedSuccesfullyText,
           unknownErrorText,

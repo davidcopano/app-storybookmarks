@@ -27,7 +27,16 @@ export class EditBookmarkPage implements OnInit {
   private unknownErrorText: string;
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, public optionsService: OptionsService, public langService: LangService) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private navCtrl: NavController,
+    private bookmarksService: BookmarksService,
+    private translateService: TranslateService,
+    private utilitiesService: UtilitiesService,
+    public foldersService: FoldersService,
+    public optionsService: OptionsService,
+    public langService: LangService
+  ) { }
 
   ngOnInit() {
     this.bookmark = history.state.bookmark;
@@ -46,21 +55,20 @@ export class EditBookmarkPage implements OnInit {
       });
     });
 
-    let translationTexts = this.getTranslationValues();
-    translationTexts.subscribe(translations => {
+    this.getTranslationValues().subscribe(translations => {
       this.elementEditedSuccesfullyText = translations.elementEditedSuccesfullyText;
       this.unknownErrorText = translations.unknownErrorText;
     });
   }
 
   async submitForm() {
-    let bookmark: Bookmark = this.form.value;
+    const bookmark: Bookmark = this.form.value;
     bookmark.id = this.bookmark.id;
     if (bookmark.public) {
       // change date format from Ionic date picker
       bookmark.expiration_date = moment(this.form.get('expiration_date').value).format('YYYY-MM-DD HH:mm:ss');
     }
-    let result = await this.bookmarksService.edit(bookmark);
+    const result = await this.bookmarksService.edit(bookmark);
     if (result.success) {
       this.utilitiesService.showToast(this.elementEditedSuccesfullyText);
       this.navCtrl.navigateRoot('/bookmarks');
@@ -72,10 +80,17 @@ export class EditBookmarkPage implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('ELEMENT_EDITED_SUCCESFULLY'),
-      this.translateService.get('UNKNOWN_PETITION_ERROR'),
+      [
+        this.translateService.get('ELEMENT_EDITED_SUCCESFULLY'),
+        this.translateService.get('UNKNOWN_PETITION_ERROR')
+      ]
     ).pipe(
-      map(([elementEditedSuccesfullyText, unknownErrorText]) => {
+      map((
+        [
+          elementEditedSuccesfullyText,
+          unknownErrorText
+        ]
+      ) => {
         return {
           elementEditedSuccesfullyText,
           unknownErrorText,

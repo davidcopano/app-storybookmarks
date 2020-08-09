@@ -20,7 +20,14 @@ export class EditProfilePage implements OnInit {
   form: FormGroup;
   private profileEditedSuccesfullyText: string;
 
-  constructor(private navCtrl: NavController, private translateService: TranslateService, public formBuilder: FormBuilder, private utilitiesService: UtilitiesService, private usersService: UserService, public optionsService: OptionsService) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private translateService: TranslateService,
+    private navCtrl: NavController,
+    private utilitiesService: UtilitiesService,
+    private usersService: UserService,
+    public optionsService: OptionsService
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -35,7 +42,7 @@ export class EditProfilePage implements OnInit {
   }
 
   submitForm() {
-    let userData: User = this.form.value;
+    const userData: User = this.form.value;
     this.usersService.editProfile(userData).subscribe(user => {
       this.setNewLoggedUserData(user);
       this.utilitiesService.showToast(this.profileEditedSuccesfullyText);
@@ -57,9 +64,15 @@ export class EditProfilePage implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('PROFILE_EDITED_SUCCESFULLY'),
+      [
+        this.translateService.get('PROFILE_EDITED_SUCCESFULLY')
+      ]
     ).pipe(
-      map(([profileEditedSuccesfullyText]) => {
+      map((
+        [
+          profileEditedSuccesfullyText
+        ]
+      ) => {
         return {
           profileEditedSuccesfullyText
         };
