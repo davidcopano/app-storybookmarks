@@ -36,6 +36,9 @@ export class FoldersService {
     }
   }
 
+  /**
+   * Get folders from system.
+   */
   public get() {
     if (!this.loadedFirstTime || this.page != 1) {
       this.isLoading = true;
@@ -51,11 +54,20 @@ export class FoldersService {
     }
   }
 
+  /**
+   * Get bookmarks by folder ID.
+   * @param folder Folder which will have the bookmarks
+   * @param page Page number
+   */
   public getBookmarksById(folder: Folder, page = 1) {
     const bookmarkPagination = this.httpClient.get<BookmarkPagination>(`${environment.apiUrl}folders/${folder.id}/bookmarks?page=${page}`, this.httpOptions);
     return bookmarkPagination.pipe(map(value => value.data)).toPromise();
   }
 
+  /**
+   * Add a new folder to the system.
+   * @param folder Folder to be saved
+   */
   public async add(folder: Folder) {
     try {
       await this.httpClient.post<Folder>(`${environment.apiUrl}folders`, folder, this.httpOptions).toPromise();
@@ -67,6 +79,10 @@ export class FoldersService {
     }
   }
 
+  /**
+   * Edit a folder from the system.
+   * @param folder Folder to be edited.
+   */
   public async edit(folder: Folder) {
     try {
       await this.httpClient.patch<Folder>(`${environment.apiUrl}folders/${folder.id}`, folder, this.httpOptions).toPromise();
@@ -79,6 +95,10 @@ export class FoldersService {
     }
   }
 
+  /**
+   * Delete a folder from the system.
+   * @param folder Folder to be deleted
+   */
   public async delete(folder: Folder) {
     try {
       await this.httpClient.delete<Folder>(`${environment.apiUrl}folders/${folder.id}`, this.httpOptions).toPromise();
@@ -91,10 +111,17 @@ export class FoldersService {
     }
   }
 
+  /**
+   * Listens when folders are loaded.
+   */
   public onFoldersLoaded() {
     return this.$foldersLoaded.asObservable();
   }
 
+  /**
+   * Sets an authorization token when using folder-related methods.
+   * @param api_token API token
+   */
   public setAuthToken(api_token: string) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -104,6 +131,9 @@ export class FoldersService {
     };
   }
 
+  /**
+   * Reset all service variables.
+   */
   public reset() {
     this.folders = [];
     this.isLoading = true;

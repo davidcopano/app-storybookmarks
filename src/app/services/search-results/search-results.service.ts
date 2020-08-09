@@ -27,10 +27,18 @@ export class SearchResultsService {
     }
   }
 
+  /**
+   * Get search result by a given query.
+   * @param query Search term
+   */
   public get(query: string) {
     return this.httpClient.get<SearchResult>(`${environment.apiUrl}search?query=${query}`, this.httpOptions).toPromise();
   }
 
+  /**
+   * Sets an authorization token when using search result-related methods.
+   * @param apiToken API token
+   */
   public setAuthToken(apiToken: string) {
     this.httpOptions = {
       headers: new HttpHeaders({

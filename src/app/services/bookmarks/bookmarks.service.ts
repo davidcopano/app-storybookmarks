@@ -35,6 +35,9 @@ export class BookmarksService {
     }
   }
 
+  /**
+   * Get bookmarks from system.
+   */
   public get() {
     if (!this.loadedFirstTime || this.page != 1) {
       this.isLoading = true;
@@ -50,6 +53,10 @@ export class BookmarksService {
     }
   }
 
+  /**
+   * Add a new bookmark to the system.
+   * @param bookmark Bookmark to be saved
+   */
   public async add(bookmark: Bookmark) {
     try {
       let createdBookmark = await this.httpClient.post<Bookmark>(`${environment.apiUrl}bookmarks`, bookmark, this.httpOptions).toPromise();
@@ -61,6 +68,10 @@ export class BookmarksService {
     }
   }
 
+  /**
+   * Edit a bookmark from the system.
+   * @param bookmark Bookmark to be edited
+   */
   public async edit(bookmark: Bookmark) {
     try {
       let editedBookmark = await this.httpClient.patch<Bookmark>(`${environment.apiUrl}bookmarks/${bookmark.id}`, bookmark, this.httpOptions).toPromise();
@@ -73,6 +84,10 @@ export class BookmarksService {
     }
   }
 
+  /**
+   * Delete a bookmark from the system.
+   * @param bookmark Bookmark to be deleted
+   */
   public async delete(bookmark: Bookmark) {
     try {
       await this.httpClient.delete<Bookmark>(`${environment.apiUrl}bookmarks/${bookmark.id}`, this.httpOptions).toPromise();
@@ -85,10 +100,17 @@ export class BookmarksService {
     }
   }
 
+  /**
+   * Listens when bookmarks are loaded.
+   */
   public onBookmarksLoaded() {
     return this.$bookmarksLoaded.asObservable();
   }
 
+  /**
+   * Sets an authorization token when using bookmark-related methods.
+   * @param api_token API token
+   */
   public setAuthToken(api_token: string) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -98,6 +120,9 @@ export class BookmarksService {
     };
   }
 
+  /**
+   * Reset all service variables.
+   */
   public reset() {
     this.bookmarks = [];
     this.isLoading = true;

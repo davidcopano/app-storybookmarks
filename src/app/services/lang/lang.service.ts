@@ -23,6 +23,9 @@ export class LangService {
 
   constructor(public storage: Storage) { }
 
+  /**
+   * Loads and sets current language variables.
+   */
   async loadSavedLang() {
     this.currentLang = await this.storage.get('lang');
     if (!this.currentLang) {
@@ -34,6 +37,10 @@ export class LangService {
     this.currentDateFormat = this.supportedDateFormats[this.currentLang];
   }
 
+  /**
+   * Saves a language in local storage.
+   * @param lang Language to be saved
+   */
   async saveLang(lang: string) {
     this.currentLang = lang;
     this.currentMonthShortNames = this.monthShortNames[this.currentLang];
@@ -42,6 +49,9 @@ export class LangService {
     return this.storage.set('lang', lang);
   }
 
+  /**
+   * Listen on language change across the application.
+   */
   public onLangChange() {
     return this.$langChanged.asObservable();
   }

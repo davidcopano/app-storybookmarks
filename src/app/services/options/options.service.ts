@@ -14,6 +14,9 @@ export class OptionsService {
 
   constructor(private storage: Storage, private utilitiesService: UtilitiesService) { }
 
+  /**
+   * Load user options.
+   */
   public async load() {
     this.enable_multimedia = await this.storage.get(this.ENABLE_MULTIMEDIA_STORAGE_KEY);
     if (this.enable_multimedia === null) {
@@ -30,6 +33,9 @@ export class OptionsService {
     }
   }
 
+  /**
+   * Save options in local storage.
+   */
   public async save() {
     await this.storage.set(this.ENABLE_MULTIMEDIA_STORAGE_KEY, this.enable_multimedia);
     await this.storage.set(this.ENABLE_DARK_MODE_STORAGE_KEY, this.enable_dark_mode);
