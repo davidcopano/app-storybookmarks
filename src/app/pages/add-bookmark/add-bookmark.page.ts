@@ -26,7 +26,16 @@ export class AddBookmarkPage implements OnInit {
   private unknownErrorText: string;
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private bookmarksService: BookmarksService, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, public optionsService: OptionsService, public langService: LangService) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private navCtrl: NavController,
+    private bookmarksService: BookmarksService,
+    private translateService: TranslateService,
+    private utilitiesService: UtilitiesService,
+    public foldersService: FoldersService,
+    public optionsService: OptionsService,
+    public langService: LangService
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -44,20 +53,19 @@ export class AddBookmarkPage implements OnInit {
       });
     });
 
-    let translationTexts = this.getTranslationValues();
-    translationTexts.subscribe(translations => {
+    this.getTranslationValues().subscribe(translations => {
       this.elementCreatedSuccesfullyText = translations.elementCreatedSuccesfullyText;
       this.unknownErrorText = translations.unknownErrorText;
     });
   }
 
   async submitForm() {
-    let bookmark: Bookmark = this.form.value;
-    if(bookmark.public) {
+    const bookmark: Bookmark = this.form.value;
+    if (bookmark.public) {
       // change date format from Ionic date picker
       bookmark.expiration_date = moment(this.form.get('expiration_date').value).format('YYYY-MM-DD HH:mm:ss');
     }
-    let result = await this.bookmarksService.add(bookmark);
+    const result = await this.bookmarksService.add(bookmark);
     if (result.success) {
       this.utilitiesService.showToast(this.elementCreatedSuccesfullyText);
       this.navCtrl.navigateRoot('/bookmarks');
@@ -69,10 +77,17 @@ export class AddBookmarkPage implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('ELEMENT_CREATED_SUCCESFULLY'),
-      this.translateService.get('UNKNOWN_PETITION_ERROR'),
+      [
+        this.translateService.get('ELEMENT_CREATED_SUCCESFULLY'),
+        this.translateService.get('UNKNOWN_PETITION_ERROR')
+      ]
     ).pipe(
-      map(([elementCreatedSuccesfullyText, unknownErrorText]) => {
+      map((
+        [
+          elementCreatedSuccesfullyText,
+          unknownErrorText
+        ]
+      ) => {
         return {
           elementCreatedSuccesfullyText,
           unknownErrorText,

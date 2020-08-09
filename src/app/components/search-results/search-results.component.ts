@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { Bookmark, Folder } from '../../interfaces';
 import { SearchResultsService } from 'src/app/services/search-results/search-results.service';
 
@@ -7,13 +7,13 @@ import { SearchResultsService } from 'src/app/services/search-results/search-res
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnChanges {
 
   @Input() query: string;
 
   public bookmarks: Bookmark[] = [];
   public folders: Folder[] = [];
-  public isSearching: boolean = false;
+  public isSearching = false;
 
   constructor(private searchResultsService: SearchResultsService) { }
 
@@ -25,7 +25,7 @@ export class SearchResultsComponent implements OnInit {
       this.bookmarks = [];
       this.folders = [];
       this.isSearching = true;
-      let { bookmarks, folders } = await this.searchResultsService.get(this.query);
+      const { bookmarks, folders } = await this.searchResultsService.get(this.query);
       this.bookmarks = bookmarks;
       this.folders = folders;
       this.isSearching = false;

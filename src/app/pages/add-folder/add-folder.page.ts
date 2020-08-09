@@ -20,7 +20,14 @@ export class AddFolderPage implements OnInit {
   private elementCreatedSuccesfullyText: string;
   private unknownErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private navCtrl: NavController, private translateService: TranslateService, private utilitiesService: UtilitiesService, public foldersService: FoldersService, public optionsService: OptionsService) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private navCtrl: NavController,
+    private translateService: TranslateService,
+    private utilitiesService: UtilitiesService,
+    public foldersService: FoldersService,
+    public optionsService: OptionsService
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -28,16 +35,15 @@ export class AddFolderPage implements OnInit {
       color: ['#000000', Validators.required]
     });
 
-    let translationTexts = this.getTranslationValues();
-    translationTexts.subscribe(translations => {
+    this.getTranslationValues().subscribe(translations => {
       this.elementCreatedSuccesfullyText = translations.elementCreatedSuccesfullyText;
       this.unknownErrorText = translations.unknownErrorText;
     });
   }
 
   async submitForm() {
-    let folder: Folder = this.form.value;
-    let result = await this.foldersService.add(folder);
+    const folder: Folder = this.form.value;
+    const result = await this.foldersService.add(folder);
     if (result.success) {
       this.utilitiesService.showToast(this.elementCreatedSuccesfullyText);
       this.navCtrl.navigateRoot('/folders');
@@ -49,10 +55,17 @@ export class AddFolderPage implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('ELEMENT_CREATED_SUCCESFULLY'),
-      this.translateService.get('UNKNOWN_PETITION_ERROR'),
+      [
+        this.translateService.get('ELEMENT_CREATED_SUCCESFULLY'),
+        this.translateService.get('UNKNOWN_PETITION_ERROR')
+      ]
     ).pipe(
-      map(([elementCreatedSuccesfullyText, unknownErrorText]) => {
+      map((
+        [
+          elementCreatedSuccesfullyText,
+          unknownErrorText
+        ]
+      ) => {
         return {
           elementCreatedSuccesfullyText,
           unknownErrorText,

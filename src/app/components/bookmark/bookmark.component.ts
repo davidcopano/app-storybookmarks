@@ -54,7 +54,7 @@ export class BookmarkComponent implements OnInit {
       event: $event,
       translucent: true,
       componentProps: {
-        item: item
+        item
       }
     });
     await popover.present();
@@ -66,7 +66,11 @@ export class BookmarkComponent implements OnInit {
         this.translateService.get('LINK_COPIED_TO_CLIPBOARD')
       ]
     ).pipe(
-      map(([linkCopiedToClipboardText]) => {
+      map((
+        [
+          linkCopiedToClipboardText
+        ]
+      ) => {
         return {
           linkCopiedToClipboardText,
         };

@@ -85,7 +85,7 @@ export class FolderOptionsComponent implements OnInit {
           role: 'destructive',
           cssClass: 'text-danger',
           handler: async () => {
-            let result = await this.foldersService.delete(this.item);
+            const result = await this.foldersService.delete(this.item);
             if (result.success) {
               this.utilitiesService.showToast(this.elementDeletedSuccesfullyText);
               this.closeSelf();

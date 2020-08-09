@@ -13,7 +13,7 @@ export class FolderComponent implements OnInit {
 
   @Input() item: Folder;
 
-  public itemDefaultBorderColor: string = 'black';
+  public itemDefaultBorderColor = 'black';
 
   constructor(public popoverCtrl: PopoverController, public langService: LangService) { }
 
@@ -25,7 +25,7 @@ export class FolderComponent implements OnInit {
       event: $event,
       translucent: true,
       componentProps: {
-        item: item
+        item
       }
     });
     await popover.present();
