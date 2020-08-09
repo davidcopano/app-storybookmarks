@@ -30,8 +30,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      email: ['davidcopano96@outlook.com', [Validators.required, Validators.email]],
-      password: ['Copano1996', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     });
     this.getTranslationValues().subscribe(values => {
       this.logginInText = values.logginInText;

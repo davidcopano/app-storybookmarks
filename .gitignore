@@ -29,3 +29,6 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+/*.jks
+/keystore-info.txt
+/resources/android/*.properties

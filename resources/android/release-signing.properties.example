@@ -1,0 +1,6 @@
+target=android-25
+android.library.reference.1=CordovaLib
+storePassword=MyPassword
+keyPassword=MyPassword
+keyAlias=mycompanyname
+storeFile=../../resources/android-release-key.jks
