@@ -20,15 +20,23 @@ export class BookmarkComponent implements OnInit {
 
   @Input() item: Bookmark;
 
-  public itemDefaultBorderColor: string = 'black';
+  public itemDefaultBorderColor = 'black';
   private linkCopiedToClipboardText: string;
 
-  constructor(public sanitizer: DomSanitizer, private translateService: TranslateService, public inAppBrowser: InAppBrowser, public popoverCtrl: PopoverController, public langService: LangService, public utilitiesService: UtilitiesService, public optionsService: OptionsService) { }
+  constructor(
+    public sanitizer: DomSanitizer,
+    private translateService: TranslateService,
+    public inAppBrowser: InAppBrowser,
+    public popoverCtrl: PopoverController,
+    public langService: LangService,
+    public utilitiesService: UtilitiesService,
+    public optionsService: OptionsService
+  ) { }
 
   ngOnInit() {
     this.getTranslationValues().subscribe(translations => {
       this.linkCopiedToClipboardText = translations.linkCopiedToClipboardText;
-    })
+    });
   }
 
   openLink(url: string) {
@@ -54,7 +62,9 @@ export class BookmarkComponent implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('LINK_COPIED_TO_CLIPBOARD'),
+      [
+        this.translateService.get('LINK_COPIED_TO_CLIPBOARD')
+      ]
     ).pipe(
       map(([linkCopiedToClipboardText]) => {
         return {

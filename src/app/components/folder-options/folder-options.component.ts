@@ -27,12 +27,19 @@ export class FolderOptionsComponent implements OnInit {
   public unknownErrorText: string;
   public elementDeletedSuccesfullyText: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public translateService: TranslateService, public popoverCtrl: PopoverController, public alertCtrl: AlertController, private foldersService: FoldersService, private utilitiesService: UtilitiesService) { }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public translateService: TranslateService,
+    public popoverCtrl: PopoverController,
+    public alertCtrl: AlertController,
+    private foldersService: FoldersService,
+    private utilitiesService: UtilitiesService
+  ) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
-    let translationTexts = this.getTranslationValues();
-    translationTexts.subscribe(translations => {
+    this.getTranslationValues().subscribe(translations => {
       this.viewText = translations.viewText;
       this.bookmarksText = translations.bookmarksText;
       this.yesDeleteText = translations.yesDeleteText;
@@ -65,7 +72,7 @@ export class FolderOptionsComponent implements OnInit {
   }
 
   async delete() {
-    let alert = await this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       header: this.deleteFolderText,
       message: this.deleteFolderConfirmationText,
       buttons: [
@@ -99,18 +106,33 @@ export class FolderOptionsComponent implements OnInit {
 
   public getTranslationValues() {
     return forkJoin(
-      this.translateService.get('VIEW'),
-      this.translateService.get('BOOKMARKS'),
-      this.translateService.get('YES_DELETE'),
-      this.translateService.get('CANCEL'),
-      this.translateService.get('EDIT_DATA'),
-      this.translateService.get('DELETE'),
-      this.translateService.get('DELETE_FOLDER'),
-      this.translateService.get('DELETE_FOLDER_CONFIRMATION'),
-      this.translateService.get('ELEMENT_DELETED_SUCCESFULLY'),
-      this.translateService.get('UNKNOWN_PETITION_ERROR'),
+      [
+        this.translateService.get('VIEW'),
+        this.translateService.get('BOOKMARKS'),
+        this.translateService.get('YES_DELETE'),
+        this.translateService.get('CANCEL'),
+        this.translateService.get('EDIT_DATA'),
+        this.translateService.get('DELETE'),
+        this.translateService.get('DELETE_FOLDER'),
+        this.translateService.get('DELETE_FOLDER_CONFIRMATION'),
+        this.translateService.get('ELEMENT_DELETED_SUCCESFULLY'),
+        this.translateService.get('UNKNOWN_PETITION_ERROR')
+      ]
     ).pipe(
-      map(([viewText, bookmarksText, yesDeleteText, cancelText, editDataText, deleteText, deleteFolderText, deleteFolderConfirmationText, elementDeletedSuccesfullyText, unknownErrorText]) => {
+      map((
+        [
+          viewText,
+          bookmarksText,
+          yesDeleteText,
+          cancelText,
+          editDataText,
+          deleteText,
+          deleteFolderText,
+          deleteFolderConfirmationText,
+          elementDeletedSuccesfullyText,
+          unknownErrorText
+        ]
+      ) => {
         return {
           viewText,
           bookmarksText,

@@ -158,9 +158,11 @@ export class AppComponent implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
-      [this.translateService.get('LOGOUT'),
-      this.translateService.get('LOGOUT_CONFIRMATION'),
-      this.translateService.get('CANCEL'),]
+      [
+        this.translateService.get('LOGOUT'),
+        this.translateService.get('LOGOUT_CONFIRMATION'),
+        this.translateService.get('CANCEL'),
+      ]
     ).pipe(
       map(([logoutText, logoutConfirmationText, cancelText]) => {
         return {

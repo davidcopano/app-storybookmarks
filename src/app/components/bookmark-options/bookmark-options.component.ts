@@ -32,12 +32,20 @@ export class BookmarkOptionsComponent implements OnInit {
   public unknownErrorText: string;
   public elementDeletedSuccesfullyText: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public utilitiesService: UtilitiesService, public inAppBrowser: InAppBrowser, public popoverCtrl: PopoverController, public translateService: TranslateService, public alertCtrl: AlertController, private bookmarksService: BookmarksService) { }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public utilitiesService: UtilitiesService,
+    public inAppBrowser: InAppBrowser,
+    public popoverCtrl: PopoverController,
+    public translateService: TranslateService,
+    public alertCtrl: AlertController,
+    private bookmarksService: BookmarksService
+  ) { }
 
   ngOnInit() {
     this.item = this.navParams.get('item');
-    let translationTexts = this.getTranslationValues();
-    translationTexts.subscribe(translations => {
+    this.getTranslationValues().subscribe(translations => {
       this.linkCopiedToClipboardText = translations.linkCopiedToClipboardText;
       this.deleteBookmarkText = translations.deleteBookmarkText;
       this.deleteBookmarkConfirmationText = translations.deleteBookmarkConfirmationText;
@@ -81,7 +89,7 @@ export class BookmarkOptionsComponent implements OnInit {
   }
 
   async delete() {
-    let alert = await this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       header: this.deleteBookmarkText,
       message: this.deleteBookmarkConfirmationText,
       buttons: [
@@ -94,7 +102,7 @@ export class BookmarkOptionsComponent implements OnInit {
           role: 'destructive',
           cssClass: 'text-danger',
           handler: async () => {
-            let result = await this.bookmarksService.delete(this.item);
+            const result = await this.bookmarksService.delete(this.item);
             if (result.success) {
               this.utilitiesService.showToast(this.elementDeletedSuccesfullyText);
               this.closeSelf();
@@ -115,20 +123,37 @@ export class BookmarkOptionsComponent implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('LINK_COPIED_TO_CLIPBOARD'),
-      this.translateService.get('DELETE_BOOKMARK'),
-      this.translateService.get('DELETE_BOOKMARK_CONFIRMATION'),
-      this.translateService.get('YES_DELETE'),
-      this.translateService.get('CANCEL'),
-      this.translateService.get('OPEN_LINK'),
-      this.translateService.get('COPY_LINK'),
-      this.translateService.get('EDIT_DATA'),
-      this.translateService.get('DELETE'),
-      this.translateService.get('ELEMENT_DELETED_SUCCESFULLY'),
-      this.translateService.get('UNKNOWN_PETITION_ERROR'),
-      this.translateService.get('PUBLIC'),
+      [
+        this.translateService.get('LINK_COPIED_TO_CLIPBOARD'),
+        this.translateService.get('DELETE_BOOKMARK'),
+        this.translateService.get('DELETE_BOOKMARK_CONFIRMATION'),
+        this.translateService.get('YES_DELETE'),
+        this.translateService.get('CANCEL'),
+        this.translateService.get('OPEN_LINK'),
+        this.translateService.get('COPY_LINK'),
+        this.translateService.get('EDIT_DATA'),
+        this.translateService.get('DELETE'),
+        this.translateService.get('ELEMENT_DELETED_SUCCESFULLY'),
+        this.translateService.get('UNKNOWN_PETITION_ERROR'),
+        this.translateService.get('PUBLIC')
+      ]
     ).pipe(
-      map(([linkCopiedToClipboardText, deleteBookmarkText, deleteBookmarkConfirmationText, yesDeleteText, cancelText, openLinkText, copyLinkText, editDataText, deleteText, elementDeletedSuccesfullyText, unknownErrorText, publicText]) => {
+      map((
+        [
+          linkCopiedToClipboardText,
+          deleteBookmarkText,
+          deleteBookmarkConfirmationText,
+          yesDeleteText,
+          cancelText,
+          openLinkText,
+          copyLinkText,
+          editDataText,
+          deleteText,
+          elementDeletedSuccesfullyText,
+          unknownErrorText,
+          publicText
+        ]
+      ) => {
         return {
           linkCopiedToClipboardText,
           deleteBookmarkText,
