@@ -14,15 +14,15 @@ import { map } from 'rxjs/operators';
 export class FoldersService {
 
   public folders: Folder[] = [];
-  public isLoading: boolean = true;
-  public loadedFirstTime: boolean = false;
-  private page: number = 1;
+  public isLoading = true;
+  public loadedFirstTime = false;
+  private page = 1;
   private $foldersLoaded = new Subject();
   private httpOptions: {
     headers: HttpHeaders
-  }
+  };
 
-  constructor(private httpClient: HttpClient, public userService: UserService, private utilitiesService: UtilitiesService) {
+  constructor(private httpClient: HttpClient, public userService: UserService) {
     if (userService.loggedUser) {
       this.httpOptions = {
         headers: new HttpHeaders({
