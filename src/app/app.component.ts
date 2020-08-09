@@ -19,7 +19,7 @@ import { OptionsService } from './services/options/options.service';
 })
 export class AppComponent implements OnInit {
 
-  public showUserOptions: boolean = false;
+  public showUserOptions = false;
   public menuRoutes: MenuRoute[] = [
     {
       translationKey: 'BOOKMARKS',
@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
         this.logoutConfirmationText = values.logoutConfirmationText;
         this.cancelText = values.cancelText;
       });
-    })
+    });
   }
 
   async initTranslations() {
@@ -96,7 +96,7 @@ export class AppComponent implements OnInit {
   }
 
   async checkForLoggedUser() {
-    let loggedUser = await this.userService.getFromLocal();
+    const loggedUser = await this.userService.getFromLocal();
     if (loggedUser) {
       this.userService.loggedUser = loggedUser;
       this.loadItemsFromServices(loggedUser);
@@ -130,7 +130,7 @@ export class AppComponent implements OnInit {
   }
 
   async logout() {
-    let alert = await this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       header: this.logoutText,
       message: this.logoutConfirmationText,
       buttons: [
@@ -158,9 +158,9 @@ export class AppComponent implements OnInit {
 
   private getTranslationValues() {
     return forkJoin(
-      this.translateService.get('LOGOUT'),
+      [this.translateService.get('LOGOUT'),
       this.translateService.get('LOGOUT_CONFIRMATION'),
-      this.translateService.get('CANCEL'),
+      this.translateService.get('CANCEL'),]
     ).pipe(
       map(([logoutText, logoutConfirmationText, cancelText]) => {
         return {
