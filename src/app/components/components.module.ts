@@ -6,6 +6,7 @@ import { FolderOptionsComponent } from './folder-options/folder-options.componen
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 import { MomentModule } from 'ngx-moment';
 import { LoadingComponent } from './loading/loading.component';
 import { NoResultsComponent } from './no-results/no-results.component';
@@ -18,7 +19,8 @@ import { PipesModule } from '../pipes/pipes.module';
         TranslateModule,
         MomentModule,
         CommonModule,
-        PipesModule
+        PipesModule,
+        NgxIonicImageViewerModule
     ],
     declarations: [
         BookmarkComponent,

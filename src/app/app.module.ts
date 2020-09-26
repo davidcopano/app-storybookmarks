@@ -5,6 +5,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicGestureConfig } from './services/ionic-gesture-config/ionic-gesture-config.service';
 
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
@@ -42,7 +44,8 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }),
+    NgxIonicImageViewerModule
   ],
   providers: [
     StatusBar,

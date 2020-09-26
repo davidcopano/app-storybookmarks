@@ -5,7 +5,7 @@
     <a class="link ion-text-wrap" (click)="openLink(item?.url)" (press)="copyLink(item?.url)">{{ item?.url }}</a>
     <p class="created_at ion-text-wrap">{{ item?.created_at | amLocale: langService.currentLang | amTimeAgo }}</p>
     <ion-img [src]="item?.url" class="loaded-image"
-      *ngIf="utilitiesService && utilitiesService?.isImage(item?.url) && optionsService?.enable_multimedia" (click)="openLink(item?.url)">
+      *ngIf="utilitiesService && utilitiesService?.isImage(item?.url) && optionsService?.enable_multimedia" (click)="viewImage()">
     </ion-img>
     <iframe height="315" class="loaded-youtube-video"
       [src]="'https://www.youtube.com/embed/' + utilitiesService?.getYoutubeVideoId(item?.url) | safe: 'resourceUrl'"

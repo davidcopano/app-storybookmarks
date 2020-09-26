@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
+import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Bookmark } from '../../interfaces';
 import { BookmarkOptionsComponent } from '../bookmark-options/bookmark-options.component';
@@ -30,7 +31,8 @@ export class BookmarkComponent implements OnInit {
     public popoverCtrl: PopoverController,
     public langService: LangService,
     public utilitiesService: UtilitiesService,
-    public optionsService: OptionsService
+    public optionsService: OptionsService,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,21 @@ export class BookmarkComponent implements OnInit {
 
   openLink(url: string) {
     this.inAppBrowser.create(url, '_system');
+  }
+
+  async viewImage() {
+    const modal = await this.modalController.create({
+      component: ViewerModalComponent,
+      componentProps: {
+        src: this.item.url,
+        text: this.item.title,
+        scheme: this.optionsService.enable_dark_mode ? 'dark' : 'light'
+      },
+      cssClass: 'ion-img-viewer',
+      keyboardClose: true,
+      showBackdrop: true
+    });
+    modal.present();
   }
 
   copyLink(url: string) {
