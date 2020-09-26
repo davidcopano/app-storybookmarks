@@ -65,6 +65,24 @@ ion-item.with-light-input {
     color: var(--ion-color-danger) !important;
 }
 
+// ngx-ionic-image-viewer default styles
+
+ion-viewer-modal {
+    ion-header {
+        ion-button {
+            color: var(--ion-color-primary);
+        }
+    }
+    ion-footer {
+        &:before {
+            content: none !important;
+        }
+        ion-text {
+            color: var(--ion-color-primary);
+        }
+    }
+}
+
 // dark mode styles
 
 ion-content.dark {
@@ -77,5 +95,22 @@ ion-content.dark {
     ion-datetime::part(text) {
         --color: var(--ion-color-dark);
         color: var(--ion-color-dark);
+    }
+}
+
+// ngx-ionic-image-viewer dark styles
+
+body.dark {
+    ion-viewer-modal {
+        ion-header {
+            ion-button {
+                color: var(--ion-color-dark);
+            }
+        }
+        ion-footer {
+            ion-text {
+                color: var(--ion-color-dark);
+            }
+        }
     }
 }
