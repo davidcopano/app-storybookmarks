@@ -51,7 +51,8 @@ export class BookmarkComponent implements OnInit {
       componentProps: {
         src: this.item.url,
         text: this.item.title,
-        scheme: this.optionsService.enable_dark_mode ? 'dark' : 'light'
+        scheme: this.optionsService.enable_dark_mode ? 'dark' : 'light',
+        swipeToClose: false
       },
       cssClass: 'ion-img-viewer',
       keyboardClose: true,
