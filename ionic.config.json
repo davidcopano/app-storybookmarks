@@ -1,7 +1,8 @@
 {
   "name": "app-storybookmarks",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

@@ -1,0 +1,30 @@
+{
+  "appId": "com.davidcopano.storybookmarks",
+  "appName": "Storybookmarks",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {
+    "preferences": {
+      "ScrollEnabled": "false",
+      "android-minSdkVersion": "19",
+      "android-targetSdkVersion": "29",
+      "BackupWebStorage": "none",
+      "SplashMaintainAspectRatio": "true",
+      "FadeSplashScreenDuration": "300",
+      "SplashShowOnlyFirstTime": "false",
+      "SplashScreen": "screen",
+      "ShowSplashScreenSpinner": "false",
+      "StatusBarBackgroundColor": "#247ba0"
+    }
+  },
+  "server": {
+    "url": "http://192.168.0.161:8100",
+    "cleartext": true
+  }
+}
