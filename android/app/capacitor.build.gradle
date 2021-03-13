@@ -12,8 +12,6 @@ dependencies {
     implementation project(':capacitor-community-facebook-login')
     implementation project(':codetrix-studio-capacitor-google-auth')
     implementation "com.google.android.gms:play-services-analytics:11.0.1"
-    implementation "com.google.android.gms:play-services-auth:15.0.1"
-    implementation "com.google.android.gms:play-services-identity:15.0.1"
 }
 
 
