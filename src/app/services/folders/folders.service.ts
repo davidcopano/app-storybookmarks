@@ -32,7 +32,7 @@ export class FoldersService {
       };
     }
     else {
-      console.error('No hay usuario logeado actualmente - folders.service.ts');
+      console.warn('No hay usuario logeado actualmente - folders.service.ts');
     }
   }
 

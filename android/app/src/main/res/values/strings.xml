@@ -6,4 +6,6 @@
     <string name="custom_url_scheme">com.davidcopano.storybookmarks</string>
     <string name="fb_app_id">607453476872398</string>
     <string name="fb_app_name">Storybookmarks</string>
+    <string name="facebook_app_id">607453476872398</string>
+    <string name="fb_login_protocol_scheme">fb607453476872398</string>
 </resources>

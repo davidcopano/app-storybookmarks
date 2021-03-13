@@ -23,7 +23,7 @@ export class SearchResultsService {
       };
     }
     else {
-      console.error('No hay usuario logeado actualmente - bookmarks.service.ts');
+      console.warn('No hay usuario logeado actualmente - bookmarks.service.ts');
     }
   }
 

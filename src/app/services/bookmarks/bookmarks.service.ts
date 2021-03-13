@@ -31,7 +31,7 @@ export class BookmarksService {
       };
     }
     else {
-      console.error('No hay usuario logeado actualmente - bookmarks.service.ts');
+      console.warn('No hay usuario logeado actualmente - bookmarks.service.ts');
     }
   }
 

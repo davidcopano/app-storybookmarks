@@ -1,16 +1,19 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { User, FacebookProfile, GoogleLoginResponse } from "../../interfaces";
 import { HttpErrorResponse } from '@angular/common/http';
-import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { Facebook } from '@ionic-native/facebook/ngx';
+import { TranslateService } from '@ngx-translate/core';
+import { User, GoogleLoginResponse, FacebookProfile } from "../../interfaces";
+import { Plugins } from '@capacitor/core';
+import { FacebookLoginResponse } from '@capacitor-community/facebook-login';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { NavController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user/user.service';
 import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
 import { forkJoin } from 'rxjs';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { map } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
+
+const { FacebookLogin } = Plugins;
 
 @Component({
   selector: 'app-login',
@@ -26,7 +29,7 @@ export class LoginPage implements OnInit {
   private logginInText: string;
   private unknownPetitionErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private translateService: TranslateService, public navCtrl: NavController, public userService: UserService, public utilitiesService: UtilitiesService, public facebook: Facebook, public google: GooglePlus, public bookmarksService: BookmarksService) { }
+  constructor(public formBuilder: FormBuilder, private translateService: TranslateService, public navCtrl: NavController, public userService: UserService, public utilitiesService: UtilitiesService, public google: GooglePlus, public bookmarksService: BookmarksService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -62,8 +65,9 @@ export class LoginPage implements OnInit {
 
   async loginWithFacebook() {
     try {
-      await this.facebook.login(['public_profile', 'user_friends', 'email']);
-      let facebookProfile: FacebookProfile = await this.facebook.api('me?fields=id,email,name', []);
+      const FACEBOOK_PERMISSIONS = ['public_profile', 'user_friends', 'email'];
+      const result = await <FacebookLoginResponse><unknown>FacebookLogin.login({ permissions: FACEBOOK_PERMISSIONS });
+      let facebookProfile: FacebookProfile = await FacebookLogin.getProfile({ fields: ['id', 'email', 'name'] });
       await this.utilitiesService.showLoading(this.logginInText + '...');
       this.userService.socialLogin(facebookProfile.email, facebookProfile.name).subscribe(async (user) => {
         await this.utilitiesService.dismissLoading();
@@ -79,6 +83,26 @@ export class LoginPage implements OnInit {
 
       this.utilitiesService.showAlert('Error Facebook', this.unknownPetitionErrorText);
     }
+
+
+    // try {
+    //   await this.facebook.login(['public_profile', 'user_friends', 'email']);
+    //   let facebookProfile: FacebookProfile = await this.facebook.api('me?fields=id,email,name', []);
+    //   await this.utilitiesService.showLoading(this.logginInText + '...');
+    //   this.userService.socialLogin(facebookProfile.email, facebookProfile.name).subscribe(async (user) => {
+    //     await this.utilitiesService.dismissLoading();
+    //     this.processSuccessfulLogin(user);
+    //   }, async (error: HttpErrorResponse) => {
+    //     await this.utilitiesService.dismissLoading();
+    //     this.utilitiesService.handleHttpErrorResponse(error);
+    //   });
+    // }
+    // catch (err) {
+    //   console.log('err');
+    //   console.log(err);
+
+    //   this.utilitiesService.showAlert('Error Facebook', this.unknownPetitionErrorText);
+    // }
   }
 
   async loginWithGoogle() {
