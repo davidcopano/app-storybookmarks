@@ -1,18 +1,20 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
+import { Plugins } from '@capacitor/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from '../../interfaces';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { NavController } from '@ionic/angular';
 import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
 import { checkPasswords } from 'src/app/validators';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { environment } from 'src/environments/environment';
 import { LangService } from 'src/app/services/lang/lang.service';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+
+const { Browser } = Plugins;
 
 @Component({
   selector: 'app-register',
@@ -27,7 +29,7 @@ export class RegisterPage implements OnInit {
   public passwordTypeInput = 'password';
   private loadingText: string;
 
-  constructor(private formBuilder: FormBuilder, private translateService: TranslateService,private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService, private bookmarksService: BookmarksService, private langService: LangService, private inAppBrowser: InAppBrowser) { }
+  constructor(private formBuilder: FormBuilder, private translateService: TranslateService, private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService, private bookmarksService: BookmarksService, private langService: LangService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -81,7 +83,7 @@ export class RegisterPage implements OnInit {
   togglePrivacyPolicyCheck($event: MouseEvent) {
     let target = $event.target as HTMLElement;
     let tagName = target.tagName.toLowerCase();
-    if(tagName !== 'a') {
+    if (tagName !== 'a') {
       let currentValue = this.form.get('acceptsPrivacyPolicy').value;
       this.form.patchValue({
         acceptsPrivacyPolicy: !currentValue
@@ -90,7 +92,12 @@ export class RegisterPage implements OnInit {
   }
 
   showPrivacyPolicy() {
-    this.inAppBrowser.create(`${environment.webUrl}${this.langService.currentLang}/privacy-policy`, '_system');
+    const styles = getComputedStyle(document.documentElement);
+    const color = String(styles.getPropertyValue('--ion-color-primary')).trim();
+    Browser.open({
+      url: `${environment.webUrl}${this.langService.currentLang}/privacy-policy`,
+      toolbarColor: color ? color : '#247ba0'
+    });
   }
 
   private getTranslationValues() {

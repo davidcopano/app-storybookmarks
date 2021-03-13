@@ -1,16 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Plugins } from '@capacitor/core';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Bookmark } from '../../interfaces';
 import { BookmarkOptionsComponent } from '../bookmark-options/bookmark-options.component';
 import { LangService } from 'src/app/services/lang/lang.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { TranslateService } from '@ngx-translate/core';
 import { OptionsService } from 'src/app/services/options/options.service';
+
+const { Browser } = Plugins;
 
 @Component({
   selector: 'app-bookmark',
@@ -27,7 +29,6 @@ export class BookmarkComponent implements OnInit {
   constructor(
     public sanitizer: DomSanitizer,
     private translateService: TranslateService,
-    public inAppBrowser: InAppBrowser,
     public popoverCtrl: PopoverController,
     public langService: LangService,
     public utilitiesService: UtilitiesService,
@@ -42,7 +43,12 @@ export class BookmarkComponent implements OnInit {
   }
 
   openLink(url: string) {
-    this.inAppBrowser.create(url, '_system');
+    const styles = getComputedStyle(document.documentElement);
+    const value = String(styles.getPropertyValue('--ion-color-primary')).trim();
+    Browser.open({
+      url: url,
+      toolbarColor: value ? value : '#247ba0'
+    });
   }
 
   async viewImage() {

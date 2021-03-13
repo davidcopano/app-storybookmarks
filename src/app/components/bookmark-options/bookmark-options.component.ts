@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Bookmark } from '../../interfaces';
 import { NavParams, PopoverController, AlertController, NavController } from '@ionic/angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Plugins } from '@capacitor/core';
+import { Bookmark } from '../../interfaces';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { TranslateService } from '@ngx-translate/core';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
 import { environment } from 'src/environments/environment';
+
+const { Browser } = Plugins;
 
 @Component({
   selector: 'app-bookmark-options',
@@ -36,7 +38,6 @@ export class BookmarkOptionsComponent implements OnInit {
     public navCtrl: NavController,
     public navParams: NavParams,
     public utilitiesService: UtilitiesService,
-    public inAppBrowser: InAppBrowser,
     public popoverCtrl: PopoverController,
     public translateService: TranslateService,
     public alertCtrl: AlertController,
@@ -63,7 +64,12 @@ export class BookmarkOptionsComponent implements OnInit {
   }
 
   openLink() {
-    this.inAppBrowser.create(this.item.url, '_system');
+    const styles = getComputedStyle(document.documentElement);
+    const value = String(styles.getPropertyValue('--ion-color-primary')).trim();
+    Browser.open({
+      url: this.item.url,
+      toolbarColor: value ? value : '#247ba0'
+    });
     this.closeSelf();
   }
 
