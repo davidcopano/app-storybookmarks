@@ -5,7 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { User, GoogleLoginResponse, FacebookProfile } from "../../interfaces";
 import { Plugins } from '@capacitor/core';
 import { FacebookLoginResponse } from '@capacitor-community/facebook-login';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { NavController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user/user.service';
 import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
@@ -13,7 +12,7 @@ import { forkJoin } from 'rxjs';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { map } from 'rxjs/operators';
 
-const { FacebookLogin } = Plugins;
+const { FacebookLogin, GoogleAuth } = Plugins;
 
 @Component({
   selector: 'app-login',
@@ -29,7 +28,7 @@ export class LoginPage implements OnInit {
   private logginInText: string;
   private unknownPetitionErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private translateService: TranslateService, public navCtrl: NavController, public userService: UserService, public utilitiesService: UtilitiesService, public google: GooglePlus, public bookmarksService: BookmarksService) { }
+  constructor(public formBuilder: FormBuilder, private translateService: TranslateService, public navCtrl: NavController, public userService: UserService, public utilitiesService: UtilitiesService, public bookmarksService: BookmarksService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -87,7 +86,7 @@ export class LoginPage implements OnInit {
 
   async loginWithGoogle() {
     try {
-      let googleLoginResponse: GoogleLoginResponse = await this.google.login({});
+      let googleLoginResponse: GoogleLoginResponse = await GoogleAuth.signIn();
       await this.utilitiesService.showLoading(this.logginInText + '...');
       this.userService.socialLogin(googleLoginResponse.email, googleLoginResponse.displayName).subscribe(async (user) => {
         await this.utilitiesService.dismissLoading();
