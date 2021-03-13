@@ -13,8 +13,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
-import { Facebook } from '@ionic-native/facebook/ngx';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -51,8 +49,6 @@ export function createTranslateLoader(http: HttpClient) {
     StatusBar,
     SplashScreen,
     SpinnerDialog,
-    Facebook,
-    GooglePlus,
     GoogleAnalytics,
     InAppBrowser,
     Clipboard,
