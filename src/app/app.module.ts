@@ -9,7 +9,6 @@ import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
@@ -50,7 +49,6 @@ export function createTranslateLoader(http: HttpClient) {
     SplashScreen,
     SpinnerDialog,
     GoogleAnalytics,
-    InAppBrowser,
     Clipboard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {

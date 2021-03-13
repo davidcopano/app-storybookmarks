@@ -92,11 +92,10 @@ export class RegisterPage implements OnInit {
   }
 
   showPrivacyPolicy() {
-    const styles = getComputedStyle(document.documentElement);
-    const color = String(styles.getPropertyValue('--ion-color-primary')).trim();
+    const value = this.utilitiesService.getCssPropertyValue('--ion-color-primary');
     Browser.open({
       url: `${environment.webUrl}${this.langService.currentLang}/privacy-policy`,
-      toolbarColor: color ? color : '#247ba0'
+      toolbarColor: value ? value : '#247ba0'
     });
   }
 

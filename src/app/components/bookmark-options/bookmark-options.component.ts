@@ -64,8 +64,7 @@ export class BookmarkOptionsComponent implements OnInit {
   }
 
   openLink() {
-    const styles = getComputedStyle(document.documentElement);
-    const value = String(styles.getPropertyValue('--ion-color-primary')).trim();
+    const value = this.utilitiesService.getCssPropertyValue('--ion-color-primary');
     Browser.open({
       url: this.item.url,
       toolbarColor: value ? value : '#247ba0'

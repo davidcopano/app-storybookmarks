@@ -229,4 +229,14 @@ export class UtilitiesService {
   public toggleDarkTheme(shouldToggle) {
     document.body.classList.toggle('dark', shouldToggle);
   }
+
+  /**
+   * Get the CSS property value by it's name.
+   * @param cssPropertyName CSS property name.
+   * @returns CSS property value by it's name.
+   */
+  public getCssPropertyValue(cssPropertyName: string) {
+    const styles = getComputedStyle(document.documentElement);
+    return String(styles.getPropertyValue(cssPropertyName)).trim();
+  }
 }
