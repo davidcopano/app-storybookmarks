@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
   async loginWithFacebook() {
     try {
       const FACEBOOK_PERMISSIONS = ['public_profile', 'user_friends', 'email'];
-      const result = await <FacebookLoginResponse><unknown>FacebookLogin.login({ permissions: FACEBOOK_PERMISSIONS });
+      await <FacebookLoginResponse><unknown>FacebookLogin.login({ permissions: FACEBOOK_PERMISSIONS });
       let facebookProfile: FacebookProfile = await FacebookLogin.getProfile({ fields: ['id', 'email', 'name'] });
       await this.utilitiesService.showLoading(this.logginInText + '...');
       this.userService.socialLogin(facebookProfile.email, facebookProfile.name).subscribe(async (user) => {
@@ -83,26 +83,6 @@ export class LoginPage implements OnInit {
 
       this.utilitiesService.showAlert('Error Facebook', this.unknownPetitionErrorText);
     }
-
-
-    // try {
-    //   await this.facebook.login(['public_profile', 'user_friends', 'email']);
-    //   let facebookProfile: FacebookProfile = await this.facebook.api('me?fields=id,email,name', []);
-    //   await this.utilitiesService.showLoading(this.logginInText + '...');
-    //   this.userService.socialLogin(facebookProfile.email, facebookProfile.name).subscribe(async (user) => {
-    //     await this.utilitiesService.dismissLoading();
-    //     this.processSuccessfulLogin(user);
-    //   }, async (error: HttpErrorResponse) => {
-    //     await this.utilitiesService.dismissLoading();
-    //     this.utilitiesService.handleHttpErrorResponse(error);
-    //   });
-    // }
-    // catch (err) {
-    //   console.log('err');
-    //   console.log(err);
-
-    //   this.utilitiesService.showAlert('Error Facebook', this.unknownPetitionErrorText);
-    // }
   }
 
   async loginWithGoogle() {
