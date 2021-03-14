@@ -8,7 +8,6 @@ import { IonicGestureConfig } from './services/ionic-gesture-config/ionic-gestur
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
@@ -45,7 +44,6 @@ export function createTranslateLoader(http: HttpClient) {
     NgxIonicImageViewerModule
   ],
   providers: [
-    StatusBar,
     SplashScreen,
     SpinnerDialog,
     GoogleAnalytics,

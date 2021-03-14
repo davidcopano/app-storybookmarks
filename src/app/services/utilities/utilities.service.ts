@@ -33,7 +33,7 @@ export class UtilitiesService {
     return new Promise((resolve, reject) => {
       this.storage.ready().then(() => {
         this.storage.remove('userData').then(() => {
-          resolve();
+          resolve(null);
         }).catch(error => {
           reject('Error al borrar datos de sesión');
         });
@@ -231,7 +231,7 @@ export class UtilitiesService {
   }
 
   /**
-   * Get the CSS property value by it's name.
+   * Get the CSS property value by it's name. Example: `--ion-color-primary`
    * @param cssPropertyName CSS property name.
    * @returns CSS property value by it's name.
    */
