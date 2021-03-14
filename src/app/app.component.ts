@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform, NavController, AlertController, MenuController, IonMenu } from '@ionic/angular';
+import { Plugins } from '@capacitor/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from './services/lang/lang.service';
@@ -11,6 +12,9 @@ import { BookmarksService } from './services/bookmarks/bookmarks.service';
 import { FoldersService } from './services/folders/folders.service';
 import { SearchResultsService } from './services/search-results/search-results.service';
 import { OptionsService } from './services/options/options.service';
+import { UtilitiesService } from './services/utilities/utilities.service';
+
+const { StatusBar } = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -55,7 +59,8 @@ export class AppComponent implements OnInit {
     public bookmarksService: BookmarksService,
     public foldersService: FoldersService,
     public searchResultsService: SearchResultsService,
-    public optionsService: OptionsService
+    public optionsService: OptionsService,
+    public utilitiesService: UtilitiesService
   ) {
     this.initializeApp();
   }
@@ -69,6 +74,7 @@ export class AppComponent implements OnInit {
       await this.checkForLoggedUser();
       setTimeout(() => {
         this.splashScreen.hide();
+        this.setStatusBarBgColor();
       }, 225);
     });
     this.loginSubscription = this.userService.onLoginSuccessful().subscribe(user => {
@@ -154,6 +160,13 @@ export class AppComponent implements OnInit {
       ]
     });
     alert.present();
+  }
+
+  private setStatusBarBgColor() {
+    const color = this.utilitiesService.getCssPropertyValue('--ion-color-primary');
+    StatusBar.setBackgroundColor({
+      color: color ? color : '#ff0000'
+    });
   }
 
   private getTranslationValues() {

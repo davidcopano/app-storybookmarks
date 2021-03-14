@@ -27,8 +27,11 @@
       "FadeSplashScreenDuration": "300",
       "SplashShowOnlyFirstTime": "false",
       "SplashScreen": "screen",
-      "ShowSplashScreenSpinner": "false",
-      "StatusBarBackgroundColor": "#247ba0"
+      "ShowSplashScreenSpinner": "false"
     }
+  },
+  "server": {
+    "url": "http://192.168.0.161:8100",
+    "cleartext": true
   }
 }
