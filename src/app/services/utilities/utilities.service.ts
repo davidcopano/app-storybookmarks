@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController, LoadingController, Platform } from '@ionic/angular';
+import { Plugins } from '@capacitor/core';
 import { Storage } from '@ionic/storage';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LangService } from '../lang/lang.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
-import { Clipboard } from '@ionic-native/clipboard/ngx';
+
+const { Clipboard } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +24,8 @@ export class UtilitiesService {
     public storage: Storage,
     public langService: LangService,
     public translateService: TranslateService,
-    public spinnerDialog: SpinnerDialog,
-    public clipboard: Clipboard) { }
+    public spinnerDialog: SpinnerDialog
+  ) { }
 
   /**
    * Close the current sessión in the application.
@@ -82,7 +84,9 @@ export class UtilitiesService {
    */
   public copyToClipboard(text: string) {
     if (this.isInMobileDevice()) {
-      this.clipboard.copy(text);
+      Clipboard.write({
+        string: text
+      });
     }
     else {
       const aux = document.createElement('input');

@@ -8,7 +8,6 @@ import { IonicGestureConfig } from './services/ionic-gesture-config/ionic-gestur
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
 import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
@@ -47,7 +46,6 @@ export function createTranslateLoader(http: HttpClient) {
     SplashScreen,
     SpinnerDialog,
     GoogleAnalytics,
-    Clipboard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HAMMER_GESTURE_CONFIG,
