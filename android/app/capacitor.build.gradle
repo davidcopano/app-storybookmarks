@@ -11,7 +11,7 @@ apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
     implementation project(':capacitor-community-facebook-login')
     implementation project(':codetrix-studio-capacitor-google-auth')
-    implementation "com.google.android.gms:play-services-analytics:11.0.1"
+
 }
 
 
