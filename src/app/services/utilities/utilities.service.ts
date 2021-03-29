@@ -5,7 +5,6 @@ import { Storage } from '@ionic/storage';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LangService } from '../lang/lang.service';
 import { TranslateService } from '@ngx-translate/core';
-import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
 
 const { Clipboard } = Plugins;
 
@@ -24,7 +23,6 @@ export class UtilitiesService {
     public storage: Storage,
     public langService: LangService,
     public translateService: TranslateService,
-    public spinnerDialog: SpinnerDialog
   ) { }
 
   /**

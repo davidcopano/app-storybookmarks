@@ -9,7 +9,6 @@ import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { IonicStorageModule } from '@ionic/storage';
-import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -43,7 +42,6 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     SplashScreen,
-    SpinnerDialog,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HAMMER_GESTURE_CONFIG,
