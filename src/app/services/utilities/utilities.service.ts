@@ -47,34 +47,25 @@ export class UtilitiesService {
 
   /**
    * Shows a loading spinner.
-   * Internally detects when the application is running as a mobile app or in a browser, and shows the appropiate loading.
    * @param [message] Loading message.
    * @param [duration] Duration of the spinner about to show.
    */
   async showLoading(message?: string, duration?: number) {
-    if (this.isInMobileDevice()) {
-      this.spinnerDialog.show(message, null);
-    }
-    else {
-      this.loading = await this.loadingCtrl.create({
-        message: message ? message : null,
-        duration: duration ? duration : null
-      });
-      return this.loading.present();
-    }
+    this.loading = await this.loadingCtrl.create({
+      message: message ? message : null,
+      duration: duration ? duration : null
+    });
+    return this.loading.present();
   }
 
   /**
    * Dismiss the current loading spinner.
-   * Internally detects when the application is running as a mobile app or in a browser, and hides the appropiate loading.
    */
   public dismissLoading() {
-    if (this.isInMobileDevice()) {
-      this.spinnerDialog.hide();
-    }
-    else {
+    if(this.loading) {
       return this.loading.dismiss();
     }
+    return Promise.resolve(true);
   }
 
   /**
