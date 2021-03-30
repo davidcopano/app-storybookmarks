@@ -29,5 +29,9 @@
       "SplashScreen": "screen",
       "ShowSplashScreenSpinner": "false"
     }
+  },
+  "server": {
+    "url": "http://192.168.0.161:8100",
+    "cleartext": true
   }
 }

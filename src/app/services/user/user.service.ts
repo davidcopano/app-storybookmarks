@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from '../../interfaces';
-import { Storage } from '@ionic/storage';
 import { Subject } from 'rxjs';
+import { Plugins } from '@capacitor/core';
+
+const { Storage } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class UserService {
   };
   private readonly USER_STORAGE_KEY: string = 'user';
 
-  constructor(private httpClient: HttpClient, private storage: Storage) { }
+  constructor(private httpClient: HttpClient) { }
 
   /**
    * Log in into the application.
@@ -93,15 +95,23 @@ export class UserService {
    * Save user data in local storage.
    * @param user User to be saved
    */
-  public saveInLocal(user: User): Promise<User> {
-    return this.storage.set(this.USER_STORAGE_KEY, user);
+  public async saveInLocal(user: User): Promise<User> {
+    await Storage.set({
+      key: this.USER_STORAGE_KEY,
+      value: JSON.stringify(user)
+    });
+    return Promise.resolve(user);
   }
 
   /**
    * Get user data from local storage.
    */
-  public getFromLocal(): Promise<User> {
-    return this.storage.get(this.USER_STORAGE_KEY);
+  public async getFromLocal(): Promise<User> {
+    let { value } = await Storage.get({
+      key: this.USER_STORAGE_KEY
+    });
+    let user: User = JSON.parse(value);
+    return Promise.resolve(user);
   }
 
   /**
@@ -109,6 +119,9 @@ export class UserService {
    */
   public logout() {
     this.loggedUser = null;
-    this.storage.remove(this.USER_STORAGE_KEY);
+    Storage.remove({
+      key: this.USER_STORAGE_KEY
+    });
+    // this.storage.remove(this.USER_STORAGE_KEY);
   }
 }

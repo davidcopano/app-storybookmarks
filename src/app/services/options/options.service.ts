@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Plugins } from '@capacitor/core';
 import { UtilitiesService } from '../utilities/utilities.service';
+
+const { Storage } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +14,33 @@ export class OptionsService {
   private readonly ENABLE_MULTIMEDIA_STORAGE_KEY: string = 'enable_multimedia';
   private readonly ENABLE_DARK_MODE_STORAGE_KEY: string = 'enable_dark_mode';
 
-  constructor(private storage: Storage, private utilitiesService: UtilitiesService) { }
+  constructor(private utilitiesService: UtilitiesService) { }
 
   /**
    * Load user options.
    */
   public async load() {
-    this.enable_multimedia = await this.storage.get(this.ENABLE_MULTIMEDIA_STORAGE_KEY);
+    let { value } = await Storage.get({
+      key: this.ENABLE_MULTIMEDIA_STORAGE_KEY
+    });
+    this.enable_multimedia = value == 'true' ? true : null;
     if (this.enable_multimedia === null) {
       this.enable_multimedia = true;
-      await this.storage.set(this.ENABLE_MULTIMEDIA_STORAGE_KEY, this.enable_multimedia);
+      await Storage.set({
+        key: this.ENABLE_MULTIMEDIA_STORAGE_KEY,
+        value: 'true'
+      });
     }
-    this.enable_dark_mode = await this.storage.get(this.ENABLE_DARK_MODE_STORAGE_KEY);
+    let resultDarkMode = await Storage.get({
+      key: this.ENABLE_DARK_MODE_STORAGE_KEY
+    });
+    this.enable_dark_mode = resultDarkMode.value == 'true' ? true : null;
     if (this.enable_dark_mode === null) {
       this.enable_dark_mode = false;
-      await this.storage.set(this.ENABLE_DARK_MODE_STORAGE_KEY, this.enable_dark_mode);
+      await Storage.set({
+        key: this.ENABLE_DARK_MODE_STORAGE_KEY,
+        value: 'false'
+      }, );
     }
     if (this.enable_dark_mode) {
       this.utilitiesService.toggleDarkTheme(this.enable_dark_mode);
@@ -37,7 +51,15 @@ export class OptionsService {
    * Save options in local storage.
    */
   public async save() {
-    await this.storage.set(this.ENABLE_MULTIMEDIA_STORAGE_KEY, this.enable_multimedia);
-    await this.storage.set(this.ENABLE_DARK_MODE_STORAGE_KEY, this.enable_dark_mode);
+    await Storage.set({
+      key: this.ENABLE_MULTIMEDIA_STORAGE_KEY,
+      value: this.enable_multimedia.toString()
+    });
+    await Storage.set({
+      key: this.ENABLE_DARK_MODE_STORAGE_KEY,
+      value: this.enable_dark_mode.toString()
+    });
+    // await this.storage.set(this.ENABLE_MULTIMEDIA_STORAGE_KEY, this.enable_multimedia);
+    // await this.storage.set(this.ENABLE_DARK_MODE_STORAGE_KEY, this.enable_dark_mode);
   }
 }

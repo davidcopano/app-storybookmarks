@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Plugins } from '@capacitor/core';
 import { Subject } from 'rxjs';
+
+const { Storage } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -21,17 +23,24 @@ export class LangService {
   };
   private $langChanged = new Subject<string>();
 
-  constructor(public storage: Storage) { }
+  constructor() { }
 
   /**
    * Loads and sets current language variables.
    */
   async loadSavedLang() {
-    this.currentLang = await this.storage.get('lang');
+    let { value } = await Storage.get({
+      key: 'lang'
+    });
+    this.currentLang = value;
     if (!this.currentLang) {
       const matchingLangs = navigator.languages.filter(lang => this.supportedLangs.includes(lang));
       this.currentLang = matchingLangs.length > 0 ? matchingLangs[0] : 'es';
-      await this.storage.set('lang', this.currentLang);
+      await Storage.set({
+        key: 'lang',
+        value: this.currentLang
+      });
+      // await this.storage.set('lang', this.currentLang);
     }
     this.currentMonthShortNames = this.monthShortNames[this.currentLang];
     this.currentDateFormat = this.supportedDateFormats[this.currentLang];
@@ -46,7 +55,11 @@ export class LangService {
     this.currentMonthShortNames = this.monthShortNames[this.currentLang];
     this.currentDateFormat = this.supportedDateFormats[this.currentLang];
     this.$langChanged.next(lang);
-    return this.storage.set('lang', lang);
+    return Storage.set({
+      key: 'lang',
+      value: lang
+    });
+    // return this.storage.set('lang', lang);
   }
 
   /**

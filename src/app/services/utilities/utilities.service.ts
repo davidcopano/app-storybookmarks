@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController, LoadingController, Platform } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
-import { Storage } from '@ionic/storage';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LangService } from '../lang/lang.service';
 import { TranslateService } from '@ngx-translate/core';
 
-const { Clipboard } = Plugins;
+const { Clipboard, Storage } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,6 @@ export class UtilitiesService {
     public alertCtrl: AlertController,
     public platform: Platform,
     public toast: ToastController,
-    public storage: Storage,
     public langService: LangService,
     public translateService: TranslateService,
   ) { }
@@ -31,15 +29,23 @@ export class UtilitiesService {
    */
   public closeSession(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.storage.ready().then(() => {
-        this.storage.remove('userData').then(() => {
-          resolve(null);
-        }).catch(error => {
-          reject('Error al borrar datos de sesión');
-        });
+      Storage.remove({
+        key: 'userData'
+      }).then(() => {
+        resolve(null);
       }).catch(error => {
-        reject('Error al obtener tus datos');
+        reject('Error al borrar datos de sesión');
       });
+
+      // this.storage.ready().then(() => {
+      //   this.storage.remove('userData').then(() => {
+      //     resolve(null);
+      //   }).catch(error => {
+      //     reject('Error al borrar datos de sesión');
+      //   });
+      // }).catch(error => {
+      //   reject('Error al obtener tus datos');
+      // });
     });
   }
 
@@ -60,7 +66,7 @@ export class UtilitiesService {
    * Dismiss the current loading spinner.
    */
   public dismissLoading() {
-    if(this.loading) {
+    if (this.loading) {
       return this.loading.dismiss();
     }
     return Promise.resolve(true);
