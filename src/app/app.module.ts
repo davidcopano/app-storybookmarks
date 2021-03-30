@@ -8,7 +8,6 @@ import { IonicGestureConfig } from './services/ionic-gesture-config/ionic-gestur
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { IonicStorageModule } from '@ionic/storage';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -26,7 +25,6 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     HammerModule,

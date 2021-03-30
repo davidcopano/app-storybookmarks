@@ -122,6 +122,5 @@ export class UserService {
     Storage.remove({
       key: this.USER_STORAGE_KEY
     });
-    // this.storage.remove(this.USER_STORAGE_KEY);
   }
 }
