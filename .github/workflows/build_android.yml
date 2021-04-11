@@ -29,8 +29,23 @@ jobs:
       - name: Instalar dependencias de la aplicación
         run: npm install
 
+      - name: Convertir finales de línea de Windows a Linux del archivo gradlew
+        run: sudo apt update && sudo apt install dos2unix && cd android && dos2unix ./gradlew && cd ..
+
       - name: Hacer comando ./gradlew ejecutable
         run: cd android && chmod +x ./gradlew && cd ..
 
+      - name: Generar assets de Ionic
+        run: ionic build --prod
+
+      - name: Copiar assets generados de Ionic a plataforma Android de Capacitor
+        run: npx cap copy android && npx cap update android
+
       - name: Generar APK
-        run: ionic capacitor copy android --prod && cd android && ./gradlew assembleRelease && cd ..
+        run: cd android && ./gradlew && cd ..
+
+      - name: Subir APK generada a Github
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-dev
+          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
