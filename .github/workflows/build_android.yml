@@ -45,16 +45,17 @@ jobs:
         run: cd android && ./gradlew assembleRelease && cd ..
 
       - name: Firmar APK
+        id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: app/build/outputs/apk/release
+          releaseDirectory: android/app/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Subir APK generada como artefacto a Github
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: app-release
-          path: android/app/release/app-release-unsigned.apk
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
