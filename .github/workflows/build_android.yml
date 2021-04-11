@@ -1,0 +1,36 @@
+name: Generar APK Android
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  prepare_tools:
+    name: Preparar herramientas y generar el APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener código del repositorio
+        uses: actions/checkout@v2
+
+      - name: Instalar Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Instalar SDK de Android
+        uses: android-actions/setup-android@v2
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v1
+
+      - name: Instalar Ionic
+        run: npm install -g @ionic/cli
+
+      - name: Instalar dependencias de la aplicación
+        run: npm install
+
+      - name: Hacer comando ./gradlew ejecutable
+        run: cd android && chmod +x ./gradlew && cd ..
+
+      - name: Generar APK
+        run: ionic capacitor copy android --prod && cd android && ./gradlew assembleRelease && cd ..
