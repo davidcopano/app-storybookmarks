@@ -33,3 +33,4 @@ npm-debug.log*
 /keystore-info.txt
 /resources/android/*.properties
 /act
+.actsecrets

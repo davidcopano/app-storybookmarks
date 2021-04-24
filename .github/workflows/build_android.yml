@@ -53,9 +53,14 @@ jobs:
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "29.0.2"
 
-      - name: Subir APK generada como artefacto a Github
+      - name: Renombrar APK firmada
+        run: mv android/app/build/outputs/apk/release/app-release-unsigned-signed.apk android/app/build/outputs/apk/release/app-release-signed.apk
+
+      - name: Subir APK generada y firmada como artefacto a Github
         uses: actions/upload-artifact@v2
         with:
           name: app-release
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          path: android/app/build/outputs/apk/release/app-release-signed.apk
