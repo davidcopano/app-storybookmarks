@@ -1,3 +1,3 @@
 # App Storybookmarks
 
-App Storybookmarks
+App Storybookmark
