@@ -42,7 +42,7 @@ jobs:
         run: npx cap copy android && npx cap update android
 
       - name: Generar APK
-        run: cd android && ./gradlew assembleRelease && cd ..
+        run: cd android && ./gradlew assembleRelease
 
       - name: Firmar APK
         uses: r0adkll/sign-android-release@v1
@@ -53,8 +53,8 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
-      - name: Subir APK generada como artefacto a Github
-        uses: actions/upload-artifact@v1
-        with:
-          name: app-release
-          path: android/app/release/app-release.apk
+      # - name: Subir APK generada como artefacto a Github
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: app-release
+      #     path: android/app/release/app-release.apk
