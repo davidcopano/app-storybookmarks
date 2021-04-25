@@ -9,14 +9,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
-        run: echo ${{ github.sha }} > Release2.txt
+        run: echo ${{ github.sha }} > Release3.txt
       - name: Test
-        run: cat Release2.txt
+        run: cat Release3.txt
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: Release2.txt
+          files: Release3.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
