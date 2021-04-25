@@ -1,4 +1,4 @@
-name: Generar APK Android
+name: Generar APK Android y publicar release en Github
 
 on:
   push:
