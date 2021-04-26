@@ -1,4 +1,4 @@
-name: Generar APK Android y publicar release en Github
+name: Generar APK Android y publicar release en Github y Play Store
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   prepare_tools:
-    name: Preparar herramientas y generar el APK
+    name: Preparar herramientas, generar el APK y subir a Github y Play Store
     runs-on: ubuntu-latest
     steps:
       - name: Obtener código del repositorio
@@ -80,6 +80,7 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_PLAIN_TEXT }}
           packageName: com.davidcopano.storybookmarks
           releaseFiles: android/app/build/outputs/apk/release/app-release-signed.apk
-          track: internal
+          track: production
+          # track: internal
           inAppUpdatePriority: 5
           whatsNewDirectory: play_store_assets/whatsnew
