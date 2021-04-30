@@ -34,3 +34,4 @@ npm-debug.log*
 /resources/android/*.properties
 /act
 .actsecrets
+publish-web.sh
