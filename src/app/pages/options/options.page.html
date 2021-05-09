@@ -6,10 +6,10 @@
     <ion-title>{{ 'OPTIONS' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button color="primary" class="change-lang-button" fill="clear" *ngIf="translateService?.currentLang == 'es'" (click)="changeLang('en')">
-        <img src="assets/imgs/uk.png">
+        <img loading="lazy" src="assets/imgs/uk.png">
       </ion-button>
       <ion-button color="primary" class="change-lang-button" fill="clear" *ngIf="translateService?.currentLang == 'en'" (click)="changeLang('es')">
-        <img src="assets/imgs/spain.png">
+        <img loading="lazy" src="assets/imgs/spain.png">
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
