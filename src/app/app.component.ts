@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform, NavController, AlertController, MenuController, IonMenu } from '@ionic/angular';
-import { Plugins } from '@capacitor/core';
+import { Capacitor, Plugins } from '@capacitor/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from './services/lang/lang.service';
@@ -74,7 +74,9 @@ export class AppComponent implements OnInit {
       await this.checkForLoggedUser();
       setTimeout(() => {
         this.splashScreen.hide();
-        this.setStatusBarBgColor();
+        if(this.utilitiesService.getPlatform() !== 'web') {
+          this.setStatusBarBgColor();
+        }
       }, 225);
     });
     this.loginSubscription = this.userService.onLoginSuccessful().subscribe(user => {

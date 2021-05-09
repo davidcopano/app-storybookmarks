@@ -28,7 +28,14 @@ export class LoginPage implements OnInit {
   private logginInText: string;
   private unknownPetitionErrorText: string;
 
-  constructor(public formBuilder: FormBuilder, private translateService: TranslateService, public navCtrl: NavController, public userService: UserService, public utilitiesService: UtilitiesService, public bookmarksService: BookmarksService) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private translateService: TranslateService,
+    public navCtrl: NavController,
+    public userService: UserService,
+    public utilitiesService: UtilitiesService,
+    public bookmarksService: BookmarksService
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
