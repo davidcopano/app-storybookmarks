@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController, LoadingController, Platform } from '@ionic/angular';
-import { Plugins } from '@capacitor/core';
+import { Capacitor, Plugins } from '@capacitor/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LangService } from '../lang/lang.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -106,7 +106,7 @@ export class UtilitiesService {
    * @returns The operating system of the device.
    */
   public getPlatform() {
-    return this.platform.is('ios') ? 'ios' : 'android';
+    return Capacitor.getPlatform();
   }
 
   /**
