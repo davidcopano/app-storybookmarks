@@ -31,7 +31,8 @@
                 "output": "./svg"
               },
               "src/manifest.webmanifest",
-              "src/apple-touch-icon.png"
+              "src/apple-touch-icon.png",
+              "src/apple-touch-startup-image.png"
             ],
             "styles": [
               {
