@@ -1,3 +1,6 @@
+@import '~swiper/swiper';
+@import '~@ionic/angular/css/ionic-swiper';
+
 ion-content {
     --background: var(--ion-color-primary);
 }
@@ -24,12 +27,12 @@ ion-content {
     }
 }
 
-ion-slides {
+.swiper-container {
     height: 95%;
     --bullet-background-active: var(--ion-color-secondary);
 }
 
-ion-slide {
+.swiper-slide {
     flex-direction: column;
     .img-group {
         width: 100%;
@@ -80,7 +83,7 @@ ion-slide {
     .title {
         top: 5vh;
     }
-    ion-slide {
+    .swiper-slide {
         .subtitle {
             top: 5%;
         }
