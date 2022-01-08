@@ -22,7 +22,9 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Instalar Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
       - name: Instalar Ionic
         run: npm install -g @ionic/cli
