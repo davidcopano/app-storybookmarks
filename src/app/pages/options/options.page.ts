@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NavController } from '@ionic/angular';
@@ -15,10 +15,10 @@ import { LangService } from 'src/app/services/lang/lang.service';
 })
 export class OptionsPage implements OnInit {
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   private optionsSavedSuccesfullyText: string;
 
-  constructor(private navCtrl: NavController, public translateService: TranslateService, public formBuilder: FormBuilder, public optionsService: OptionsService, private utilitiesService: UtilitiesService, private langService: LangService) { }
+  constructor(private navCtrl: NavController, public translateService: TranslateService, public formBuilder: UntypedFormBuilder, public optionsService: OptionsService, private utilitiesService: UtilitiesService, private langService: LangService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

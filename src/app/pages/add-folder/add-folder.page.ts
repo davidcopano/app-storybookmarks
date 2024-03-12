@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Folder } from 'src/app/interfaces';
@@ -16,12 +16,12 @@ import { OptionsService } from 'src/app/services/options/options.service';
 })
 export class AddFolderPage implements OnInit {
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   private elementCreatedSuccesfullyText: string;
   private unknownErrorText: string;
 
   constructor(
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     private navCtrl: NavController,
     private translateService: TranslateService,
     private utilitiesService: UtilitiesService,

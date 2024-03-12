@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,12 +15,12 @@ import { NavController } from '@ionic/angular';
 })
 export class ForgotPasswordPage implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   private loadingText: string;
   private recoverPasswordText: string;
   private recoverPasswordSuccessText: string;
 
-  constructor(private formBuilder: FormBuilder, private translateService: TranslateService, private navCtrl: NavController, private utilitiesService: UtilitiesService, private usersService: UserService) { }
+  constructor(private formBuilder: UntypedFormBuilder, private translateService: TranslateService, private navCtrl: NavController, private utilitiesService: UtilitiesService, private usersService: UserService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

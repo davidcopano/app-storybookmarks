@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -17,11 +17,11 @@ import { OptionsService } from 'src/app/services/options/options.service';
 })
 export class EditProfilePage implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   private profileEditedSuccesfullyText: string;
 
   constructor(
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     private translateService: TranslateService,
     private navCtrl: NavController,
     private utilitiesService: UtilitiesService,

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
@@ -25,11 +25,11 @@ export class RegisterPage implements OnInit {
 
   @ViewChild('passwordInput', { read: ElementRef }) passwordEye: ElementRef;
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public passwordTypeInput = 'password';
   private loadingText: string;
 
-  constructor(private formBuilder: FormBuilder, private translateService: TranslateService, private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService, private bookmarksService: BookmarksService, private langService: LangService) { }
+  constructor(private formBuilder: UntypedFormBuilder, private translateService: TranslateService, private navCtrl: NavController, public userService: UserService, private utilitiesService: UtilitiesService, private bookmarksService: BookmarksService, private langService: LangService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

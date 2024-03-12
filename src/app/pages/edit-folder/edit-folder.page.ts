@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Folder } from 'src/app/interfaces';
 import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,12 +17,12 @@ import { OptionsService } from 'src/app/services/options/options.service';
 export class EditFolderPage implements OnInit {
 
   folder: Folder;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   private elementEditedSuccesfullyText: string;
   private unknownErrorText: string;
 
   constructor(
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     private navCtrl: NavController,
     private translateService: TranslateService,
     private utilitiesService: UtilitiesService,

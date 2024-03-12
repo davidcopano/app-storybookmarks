@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Bookmark } from '../../interfaces';
 import * as moment from 'moment';
 import { NavController } from '@ionic/angular';
@@ -20,7 +20,7 @@ import { LangService } from 'src/app/services/lang/lang.service';
 export class EditBookmarkPage implements OnInit {
 
   bookmark: Bookmark;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public minYear = new Date().getFullYear();
   public maxYear = new Date().getFullYear() + 5;
   private elementEditedSuccesfullyText: string;
@@ -28,7 +28,7 @@ export class EditBookmarkPage implements OnInit {
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
   constructor(
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     private navCtrl: NavController,
     private bookmarksService: BookmarksService,
     private translateService: TranslateService,

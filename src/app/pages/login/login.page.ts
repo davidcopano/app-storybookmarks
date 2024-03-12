@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { User, GoogleLoginResponse, FacebookProfile } from "../../interfaces";
@@ -24,12 +24,12 @@ export class LoginPage implements OnInit {
   @ViewChild('passwordInput', { read: ElementRef }) passwordEye: ElementRef;
 
   public passwordTypeInput = 'password';
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   private logginInText: string;
   private unknownPetitionErrorText: string;
 
   constructor(
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     private translateService: TranslateService,
     public navCtrl: NavController,
     public userService: UserService,

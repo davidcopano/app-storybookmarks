@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { BookmarksService } from 'src/app/services/bookmarks/bookmarks.service';
 import { Bookmark } from 'src/app/interfaces';
 import { forkJoin } from 'rxjs';
@@ -19,7 +19,7 @@ import { LangService } from 'src/app/services/lang/lang.service';
 })
 export class AddBookmarkPage implements OnInit {
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public minYear = new Date().getFullYear();
   public maxYear = new Date().getFullYear() + 5;
   private elementCreatedSuccesfullyText: string;
@@ -27,7 +27,7 @@ export class AddBookmarkPage implements OnInit {
   private currentDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
   constructor(
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     private navCtrl: NavController,
     private bookmarksService: BookmarksService,
     private translateService: TranslateService,
